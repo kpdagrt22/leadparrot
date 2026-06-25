@@ -56,6 +56,26 @@ export function formatCurrency(amount: number): string {
   return amount === 0 ? "$0" : `$${amount}`;
 }
 
+/**
+ * Returns a safe, same-origin, root-relative redirect path or the fallback.
+ * Prevents open-redirect attacks (?next=https://evil.com, protocol-relative
+ * //evil.com, and /\evil.com tricks) by only allowing paths that begin with a
+ * single "/" and contain no control/whitespace characters.
+ */
+export function safeRedirectPath(
+  value: string | null | undefined,
+  fallback = "/app",
+): string {
+  if (!value || typeof value !== "string") return fallback;
+  if (value[0] !== "/") return fallback; // must be root-relative
+  if (value[1] === "/" || value[1] === "\\") return fallback; // block //host and /\host
+  // Reject any control character or whitespace (code point <= 0x20).
+  for (let i = 0; i < value.length; i++) {
+    if (value.charCodeAt(i) <= 0x20) return fallback;
+  }
+  return value;
+}
+
 export const SAFETY_DISCLAIMER =
   "LeadParrot helps you discover public conversations and draft replies. You are responsible for following each platform's rules before responding.";
 

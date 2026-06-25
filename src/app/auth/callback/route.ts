@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { createServerSupabase } from "@/lib/supabase/server";
+import { safeRedirectPath } from "@/lib/utils";
 
 /**
  * OAuth / email-confirmation callback. Exchanges the `code` for a session and
@@ -8,7 +9,8 @@ import { createServerSupabase } from "@/lib/supabase/server";
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);
   const code = searchParams.get("code");
-  const next = searchParams.get("next") ?? "/app";
+  // Validate the post-auth destination to prevent open-redirect abuse.
+  const next = safeRedirectPath(searchParams.get("next"));
 
   if (code) {
     const supabase = await createServerSupabase();

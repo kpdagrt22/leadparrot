@@ -401,6 +401,16 @@ export class SupabaseStore implements DataStore {
     return (data as ReplyDraft) ?? null;
   }
 
+  async getReplyDraftById(orgId: string, replyId: string): Promise<ReplyDraft | null> {
+    const { data } = await this.sb
+      .from("reply_drafts")
+      .select("*")
+      .eq("organization_id", orgId)
+      .eq("id", replyId)
+      .maybeSingle();
+    return (data as ReplyDraft) ?? null;
+  }
+
   async markReplyCopied(orgId: string, replyId: string): Promise<ReplyDraft> {
     const { data, error } = await this.sb
       .from("reply_drafts")
@@ -444,6 +454,16 @@ export class SupabaseStore implements DataStore {
   async listSavedLeads(orgId: string): Promise<SavedLead[]> {
     const { data } = await this.sb.from("saved_leads").select("*").eq("organization_id", orgId);
     return (data as SavedLead[]) ?? [];
+  }
+
+  async getSavedLeadById(orgId: string, savedLeadId: string): Promise<SavedLead | null> {
+    const { data } = await this.sb
+      .from("saved_leads")
+      .select("*")
+      .eq("organization_id", orgId)
+      .eq("id", savedLeadId)
+      .maybeSingle();
+    return (data as SavedLead) ?? null;
   }
 
   async recordUsageEvent(

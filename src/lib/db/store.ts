@@ -188,12 +188,14 @@ export interface DataStore {
   // reply drafts
   createReplyDraft(orgId: string, input: CreateReplyDraftInput): Promise<ReplyDraft>;
   getReplyDraftForLead(orgId: string, leadId: string): Promise<ReplyDraft | null>;
+  getReplyDraftById(orgId: string, replyId: string): Promise<ReplyDraft | null>;
   markReplyCopied(orgId: string, replyId: string): Promise<ReplyDraft>;
 
   // saved leads
   saveLead(orgId: string, leadId: string, notes?: string | null): Promise<SavedLead>;
   isLeadSaved(orgId: string, leadId: string): Promise<boolean>;
   listSavedLeads(orgId: string): Promise<SavedLead[]>;
+  getSavedLeadById(orgId: string, savedLeadId: string): Promise<SavedLead | null>;
 
   // usage + logs
   recordUsageEvent(orgId: string, eventType: string, metadata?: Record<string, unknown>, projectId?: string | null): Promise<void>;

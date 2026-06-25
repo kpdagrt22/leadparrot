@@ -401,6 +401,10 @@ export class MemoryStore implements DataStore {
     );
   }
 
+  async getReplyDraftById(orgId: string, replyId: string): Promise<ReplyDraft | null> {
+    return state().replyDrafts.find((d) => d.organization_id === orgId && d.id === replyId) ?? null;
+  }
+
   async markReplyCopied(orgId: string, replyId: string): Promise<ReplyDraft> {
     const draft = state().replyDrafts.find((d) => d.organization_id === orgId && d.id === replyId);
     if (!draft) throw new Error("Reply draft not found");
@@ -439,6 +443,10 @@ export class MemoryStore implements DataStore {
 
   async listSavedLeads(orgId: string): Promise<SavedLead[]> {
     return state().savedLeads.filter((sl) => sl.organization_id === orgId);
+  }
+
+  async getSavedLeadById(orgId: string, savedLeadId: string): Promise<SavedLead | null> {
+    return state().savedLeads.find((sl) => sl.organization_id === orgId && sl.id === savedLeadId) ?? null;
   }
 
   async recordUsageEvent(

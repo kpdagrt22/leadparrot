@@ -29,21 +29,32 @@ export const env = {
   redditClientSecret: str(process.env.REDDIT_CLIENT_SECRET),
   redditUserAgent: str(process.env.REDDIT_USER_AGENT) ?? "leadparrot/0.1",
 
-  // Email
+  // Email — accept FROM_EMAIL (preferred) or legacy DIGEST_FROM_EMAIL.
   resendApiKey: str(process.env.RESEND_API_KEY),
-  digestFromEmail: str(process.env.DIGEST_FROM_EMAIL) ?? "LeadParrot <digest@example.com>",
+  digestFromEmail:
+    str(process.env.FROM_EMAIL) ??
+    str(process.env.DIGEST_FROM_EMAIL) ??
+    "LeadParrot <digest@example.com>",
 
-  // Stripe
+  // Stripe — public price ids preferred (used client-side at checkout); fall
+  // back to the legacy server-only names.
   stripeSecretKey: str(process.env.STRIPE_SECRET_KEY),
   stripeWebhookSecret: str(process.env.STRIPE_WEBHOOK_SECRET),
   stripePublishableKey: str(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY),
-  stripePriceStarter: str(process.env.STRIPE_PRICE_STARTER),
-  stripePricePro: str(process.env.STRIPE_PRICE_PRO),
-  stripePriceAgency: str(process.env.STRIPE_PRICE_AGENCY),
+  stripePriceStarter:
+    str(process.env.NEXT_PUBLIC_STRIPE_PRICE_STARTER) ?? str(process.env.STRIPE_PRICE_STARTER),
+  stripePricePro:
+    str(process.env.NEXT_PUBLIC_STRIPE_PRICE_PRO) ?? str(process.env.STRIPE_PRICE_PRO),
+  stripePriceAgency:
+    str(process.env.NEXT_PUBLIC_STRIPE_PRICE_AGENCY) ?? str(process.env.STRIPE_PRICE_AGENCY),
 
-  // Web search placeholder
+  // Web search placeholders (NOT implemented in v1 — no scraping). Reserved for
+  // official search APIs only: Tavily / Exa / SerpAPI.
   webSearchProvider: str(process.env.WEB_SEARCH_PROVIDER),
   webSearchApiKey: str(process.env.WEB_SEARCH_API_KEY),
+  tavilyApiKey: str(process.env.TAVILY_API_KEY),
+  exaApiKey: str(process.env.EXA_API_KEY),
+  serpapiApiKey: str(process.env.SERPAPI_API_KEY),
 
   // App
   appUrl: str(process.env.NEXT_PUBLIC_APP_URL) ?? "http://localhost:3000",
@@ -88,7 +99,13 @@ export function isRedditConfigured(): boolean {
 }
 
 export function isWebSearchConfigured(): boolean {
-  return Boolean(env.webSearchProvider && env.webSearchApiKey);
+  // Configured when an official search-API key is present. No scraping fallback.
+  return Boolean(
+    env.tavilyApiKey ||
+      env.exaApiKey ||
+      env.serpapiApiKey ||
+      (env.webSearchProvider && env.webSearchApiKey),
+  );
 }
 
 export function isAdminEmail(email: string | null | undefined): boolean {
