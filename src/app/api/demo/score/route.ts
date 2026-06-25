@@ -1,8 +1,9 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { scoreLead } from "@/lib/ai/service";
+import { mockProvider } from "@/lib/ai/providers/mock";
 import { computeOverallScore } from "@/lib/scoring/score";
 import { parseList } from "@/lib/utils";
+import { rateLimit } from "@/lib/ratelimit";
 
 const bodySchema = z.object({
   product: z.string().min(1).max(2000),
@@ -13,12 +14,29 @@ const bodySchema = z.object({
   postBody: z.string().min(1).max(5000),
 });
 
+function clientIp(req: Request): string {
+  const fwd = req.headers.get("x-forwarded-for");
+  if (fwd) return fwd.split(",")[0]!.trim();
+  return req.headers.get("x-real-ip")?.trim() || "unknown";
+}
+
 /**
- * Public, unauthenticated demo scoring endpoint. Uses the configured AI
- * provider (mock by default) to score a pasted post against a described
- * product. No data is persisted.
+ * Public, unauthenticated demo scoring endpoint. No data is persisted.
+ *
+ * Two safety properties for an endpoint anyone can call:
+ *  - Per-IP rate limiting, so it can't be used to run up cost or as a DoS.
+ *  - It ALWAYS uses the deterministic mock provider, never a paid provider —
+ *    an unauthenticated endpoint must not be able to spend API budget.
  */
 export async function POST(req: Request) {
+  const rl = rateLimit(`demo-score:${clientIp(req)}`, { limit: 20, windowMs: 60_000 });
+  if (!rl.allowed) {
+    return NextResponse.json(
+      { error: "Too many requests. Please slow down and try again shortly." },
+      { status: 429, headers: { "Retry-After": "60" } },
+    );
+  }
+
   const json = await req.json().catch(() => null);
   const parsed = bodySchema.safeParse(json);
   if (!parsed.success) {
@@ -26,7 +44,7 @@ export async function POST(req: Request) {
   }
   const b = parsed.data;
 
-  const { output } = await scoreLead({
+  const output = await mockProvider.scoreLead({
     project: {
       name: "Demo",
       product_description: b.product,

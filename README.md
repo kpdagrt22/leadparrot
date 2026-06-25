@@ -53,7 +53,8 @@ All optional. See [`.env.example`](.env.example) for the full list.
 | AI | `AI_PROVIDER` (`mock`/`openai`/`anthropic`), `OPENAI_API_KEY`, `ANTHROPIC_API_KEY` | Deterministic mock provider |
 | Reddit | `REDDIT_CLIENT_ID`, `REDDIT_CLIENT_SECRET`, `REDDIT_USER_AGENT` | Reddit scans return demo posts + setup note |
 | Email | `RESEND_API_KEY`, `DIGEST_FROM_EMAIL` | Digest is in-app preview only |
-| Stripe | `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`, `STRIPE_PRICE_*` | "Billing not configured" |
+| Stripe | `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`, `STRIPE_PRICE_*` | "Billing not configured"; webhook **refuses** unverified events once Stripe is configured |
+| Jobs / observability | `CRON_SECRET`, `ERROR_WEBHOOK_URL` | Digest cron refuses to run without `CRON_SECRET`; errors fall back to structured logs |
 | App | `NEXT_PUBLIC_APP_URL`, `ADMIN_EMAILS` | Localhost default; admin gated by demo/role |
 
 ---
@@ -97,14 +98,22 @@ Switch to a real provider by setting `AI_PROVIDER=openai` (or `anthropic`) **and
 ## Running tests
 
 ```bash
-npm run test        # Vitest unit tests (scoring, schemas, keywords, usage, status, scan flow)
-npm run typecheck   # tsc --noEmit
-npm run lint        # next lint
+npm run test          # Vitest unit tests (scoring, schemas, keywords, usage, status, scan flow,
+                      #   reply-safety, rate limiter, Stripe signature, AI fallback, saveLead parity)
+npm run test:coverage # same + coverage gate on the core business-logic modules
+npm run typecheck     # tsc --noEmit
+npm run lint          # next lint
 
 # E2E (demo mode, offline):
 npx playwright install chromium   # one-time
 npm run test:e2e
 ```
+
+CI runs typecheck · lint · `test:coverage` · build, then the Playwright e2e happy path (all in demo mode, no secrets).
+
+### Scheduled jobs
+
+The daily digest is delivered by a scheduled call to `POST/GET /api/cron/digest`, wired for **Vercel Cron** in [`vercel.json`](vercel.json) (daily at 13:00 UTC). The route requires `Authorization: Bearer $CRON_SECRET`, is idempotent per UTC day (it records a `digest_emails` row and skips orgs already sent today), and no-ops safely when the Supabase service role isn't configured. Without `CRON_SECRET` it refuses to run, so it can never be triggered anonymously.
 
 ---
 

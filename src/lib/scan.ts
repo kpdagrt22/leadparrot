@@ -4,11 +4,12 @@ import { getFetcher } from "@/lib/sources";
 import type { FetchedPost } from "@/lib/sources/types";
 import { transition } from "@/lib/sources/status";
 import { filterPost } from "@/lib/scoring/keywords";
-import { computeOverallScore } from "@/lib/scoring/score";
+import { computeOverallScore, clampScore, clamp01 } from "@/lib/scoring/score";
 import { scoreLead, draftReply } from "@/lib/ai/service";
+import { enforceReplySafety } from "@/lib/ai/safety";
 import { checkUsage } from "@/lib/usage/limits";
-import { getPlan } from "@/lib/plans";
 import { truncate } from "@/lib/utils";
+import { captureError } from "@/lib/observability";
 
 export interface ScanSummary {
   runId: string | null;
@@ -112,6 +113,7 @@ export async function runSourceScan(
     await store.updateSource(orgId, source.id, { last_checked_at: new Date().toISOString() });
   } catch (err) {
     summary.error = err instanceof Error ? err.message : String(err);
+    captureError(err, { scope: "scan", orgId, projectId: project.id, sourceId: source.id });
     await store.updateSourceRun(orgId, run.id, {
       status: "error",
       finished_at: new Date().toISOString(),
@@ -212,10 +214,10 @@ async function scoreAndPersist(
     url: post.url ?? null,
     source_type: sourceType,
     posted_at: post.posted_at ?? null,
-    intent_score: output.intent_score,
-    relevance_score: output.relevance_score,
-    urgency_score: output.urgency_score,
-    fit_score: output.fit_score,
+    intent_score: clampScore(output.intent_score),
+    relevance_score: clampScore(output.relevance_score),
+    urgency_score: clampScore(output.urgency_score),
+    fit_score: clampScore(output.fit_score),
     overall_score: overall,
     lead_stage: output.lead_stage,
     reason: output.reason,
@@ -224,7 +226,7 @@ async function scoreAndPersist(
     disqualifiers: output.disqualifiers,
     suggested_angle: output.suggested_angle,
     risk_flags: output.risk_flags,
-    confidence: output.confidence,
+    confidence: clamp01(output.confidence),
   });
 }
 
@@ -266,6 +268,10 @@ export async function generateReplyForLead(
     },
   });
 
+  // Platform-safety backstop: guarantee an affiliation disclosure + reminder
+  // even if a real provider ignored the prompt's instruction to include one.
+  const safe = enforceReplySafety(output, project.name);
+
   await store.recordAiLog(orgId, {
     project_id: project.id,
     raw_post_id: lead.raw_post_id,
@@ -281,12 +287,12 @@ export async function generateReplyForLead(
   const draft = await store.createReplyDraft(orgId, {
     project_id: project.id,
     lead_candidate_id: leadId,
-    draft_text: output.reply_text,
+    draft_text: safe.reply_text,
     tone,
-    why_this_reply: output.why_this_reply,
-    suggested_disclosure: output.suggested_disclosure,
-    safety_notes: output.safety_notes,
-    confidence: output.confidence,
+    why_this_reply: safe.why_this_reply,
+    suggested_disclosure: safe.suggested_disclosure,
+    safety_notes: safe.safety_notes,
+    confidence: clamp01(safe.confidence),
   });
   return { draft, limitReached: false };
 }

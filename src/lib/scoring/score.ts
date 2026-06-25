@@ -30,6 +30,12 @@ export function clampScore(n: number): number {
   return Math.max(0, Math.min(100, Math.round(n)));
 }
 
+/** Clamp a confidence/probability value to the [0, 1] range. */
+export function clamp01(n: number): number {
+  if (Number.isNaN(n)) return 0;
+  return Math.max(0, Math.min(1, n));
+}
+
 /** Combine the four sub-scores into a single weighted overall score. */
 export function computeOverallScore(scores: SubScores): number {
   const relevance = clampScore(scores.relevance_score);

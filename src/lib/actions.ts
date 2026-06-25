@@ -7,6 +7,11 @@ import { getStore } from "@/lib/db";
 import { parseList } from "@/lib/utils";
 import { runSourceScan, scoreManualPost, generateReplyForLead } from "@/lib/scan";
 import { checkUsage } from "@/lib/usage/limits";
+import {
+  AuthorizationError,
+  assertLeadBelongsToOrg,
+  assertReplyDraftBelongsToOrg,
+} from "@/lib/auth/organizations";
 import type { BusinessType, LeadStatus, ReplyTone, SourceType } from "@/lib/types";
 
 export interface ActionResult {
@@ -184,6 +189,12 @@ export async function addManualPostAction(formData: FormData): Promise<ActionRes
 export async function generateReplyAction(leadId: string): Promise<ActionResult> {
   const ctx = await requireContext();
   const store = await getStore();
+  try {
+    await assertLeadBelongsToOrg(leadId, ctx.organization.id);
+  } catch (e) {
+    if (e instanceof AuthorizationError) return { ok: false, message: "Not authorized for this lead." };
+    throw e;
+  }
   const { limitReached, error } = await generateReplyForLead(
     store,
     ctx.organization.id,
@@ -200,6 +211,12 @@ export async function generateReplyAction(leadId: string): Promise<ActionResult>
 export async function copyReplyAction(replyId: string): Promise<ActionResult> {
   const ctx = await requireContext();
   const store = await getStore();
+  try {
+    await assertReplyDraftBelongsToOrg(replyId, ctx.organization.id);
+  } catch (e) {
+    if (e instanceof AuthorizationError) return { ok: false, message: "Not authorized for this reply." };
+    throw e;
+  }
   await store.markReplyCopied(ctx.organization.id, replyId);
   revalidatePath("/app");
   return { ok: true, message: "Marked as copied." };
@@ -208,6 +225,12 @@ export async function copyReplyAction(replyId: string): Promise<ActionResult> {
 export async function saveLeadAction(leadId: string, notes?: string): Promise<ActionResult> {
   const ctx = await requireContext();
   const store = await getStore();
+  try {
+    await assertLeadBelongsToOrg(leadId, ctx.organization.id);
+  } catch (e) {
+    if (e instanceof AuthorizationError) return { ok: false, message: "Not authorized for this lead." };
+    throw e;
+  }
   await store.saveLead(ctx.organization.id, leadId, notes);
   revalidatePath(`/app/leads/${leadId}`);
   revalidatePath("/app/leads");
@@ -217,6 +240,12 @@ export async function saveLeadAction(leadId: string, notes?: string): Promise<Ac
 export async function updateLeadStatusAction(leadId: string, status: string): Promise<ActionResult> {
   const ctx = await requireContext();
   const store = await getStore();
+  try {
+    await assertLeadBelongsToOrg(leadId, ctx.organization.id);
+  } catch (e) {
+    if (e instanceof AuthorizationError) return { ok: false, message: "Not authorized for this lead." };
+    throw e;
+  }
   await store.updateLeadStatus(ctx.organization.id, leadId, status as LeadStatus);
   revalidatePath(`/app/leads/${leadId}`);
   revalidatePath("/app/leads");

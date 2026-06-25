@@ -425,21 +425,34 @@ export class SupabaseStore implements DataStore {
   async saveLead(orgId: string, leadId: string, notes?: string | null): Promise<SavedLead> {
     const lead = await this.getLead(orgId, leadId);
     if (!lead) throw new Error("Lead not found");
+    // Only write `notes` when explicitly provided so a re-save doesn't wipe an
+    // existing note (parity with MemoryStore).
+    const payload: Record<string, unknown> = {
+      organization_id: orgId,
+      project_id: lead.project_id,
+      lead_candidate_id: leadId,
+      status: "saved",
+    };
+    if (notes !== undefined) payload.notes = notes;
     const { data, error } = await this.sb
       .from("saved_leads")
-      .upsert(
-        {
-          organization_id: orgId,
-          project_id: lead.project_id,
-          lead_candidate_id: leadId,
-          notes: notes ?? null,
-          status: "saved",
-        },
-        { onConflict: "organization_id,lead_candidate_id" },
-      )
+      .upsert(payload, { onConflict: "organization_id,lead_candidate_id" })
       .select("*")
       .single();
-    return this.orThrow(data as SavedLead, error, "saveLead");
+    const saved = this.orThrow(data as SavedLead, error, "saveLead");
+    // Parity with MemoryStore: saving a brand-new lead promotes it out of the
+    // "new" triage bucket. The status="new" guard keeps this idempotent and
+    // ensures a lead that is already contacted/won/lost is never demoted. The
+    // update stays org-scoped as defense-in-depth on top of RLS.
+    if (lead.status === "new") {
+      await this.sb
+        .from("lead_candidates")
+        .update({ status: "saved", updated_at: new Date().toISOString() })
+        .eq("organization_id", orgId)
+        .eq("id", leadId)
+        .eq("status", "new");
+    }
+    return saved;
   }
 
   async isLeadSaved(orgId: string, leadId: string): Promise<boolean> {

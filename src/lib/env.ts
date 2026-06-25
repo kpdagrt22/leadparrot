@@ -63,6 +63,10 @@ export const env = {
     .map((e) => e.trim().toLowerCase())
     .filter(Boolean),
 
+  // Background jobs + observability
+  cronSecret: str(process.env.CRON_SECRET),
+  errorWebhookUrl: str(process.env.ERROR_WEBHOOK_URL),
+
   // Explicit demo toggle (used by E2E / first-run click-through).
   forceDemo: str(process.env.LEADPARROT_DEMO) === "1",
 };
