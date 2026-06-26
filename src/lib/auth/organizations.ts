@@ -4,7 +4,7 @@ import { getStore } from "@/lib/db";
 /**
  * Centralized authorization helpers for server actions and route handlers.
  *
- * LeadParrot already scopes every data-store getter by `organization_id` (and,
+ * Leads Nest already scopes every data-store getter by `organization_id` (and,
  * in Supabase mode, RLS enforces the same). These helpers give server code one
  * explicit, testable place to assert "this user belongs to this org" and "this
  * object belongs to this org" so a forged client-supplied id is rejected with a

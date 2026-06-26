@@ -1,0 +1,62 @@
+<!-- @dsCard group="App" viewport="1280x840" name="LeadParrot App" subtitle="Dashboard, lead inbox & lead detail — interactive click-through" -->
+<!-- @startingPoint section="App" subtitle="Full LeadParrot app shell — dashboard, inbox, lead detail" viewport="1280x840" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>LeadParrot — App · The Crest</title>
+<link rel="stylesheet" href="../../styles.css" />
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  html, body { margin: 0; height: 100%; }
+  #root { min-height: 100vh; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script src="data.js"></script>
+<script type="text/babel" src="AppShell.jsx"></script>
+<script type="text/babel" src="Dashboard.jsx"></script>
+<script type="text/babel" src="LeadInbox.jsx"></script>
+<script type="text/babel" src="LeadDetail.jsx"></script>
+<script type="text/babel">
+function App() {
+  const [view, setView] = React.useState("dashboard");
+  const [leadId, setLeadId] = React.useState(null);
+
+  React.useEffect(() => {
+    const t = setTimeout(() => window.lucide && window.lucide.createIcons(), 60);
+    return () => clearTimeout(t);
+  }, [view, leadId]);
+
+  const openLead = (id) => { setLeadId(id); setView("lead"); };
+
+  let body;
+  if (view === "lead") {
+    body = <LeadDetail leadId={leadId} onBack={() => setView("inbox")} />;
+  } else if (view === "inbox") {
+    body = <LeadInbox onOpenLead={openLead} />;
+  } else if (view === "dashboard") {
+    body = <Dashboard onOpenLead={openLead} />;
+  } else {
+    body = (
+      <div style={{ maxWidth: 640, margin: "80px auto", textAlign: "center" }}>
+        <span style={{ fontFamily: "var(--font-mono)", fontSize: "12px", letterSpacing: "0.12em", textTransform: "uppercase", color: "var(--ink-3)" }}>Screen not in this kit</span>
+        <h2 style={{ fontFamily: "var(--font-display)", fontWeight: 300, fontSize: "30px", color: "var(--ink)", margin: "14px 0 0" }}>This view is a placeholder</h2>
+        <p style={{ fontFamily: "var(--font-sans)", fontSize: "14px", color: "var(--ink-3)", marginTop: "10px" }}>The Crest kit ships Dashboard, Lead inbox and Lead detail. Use the sidebar to return.</p>
+      </div>
+    );
+  }
+
+  const shellView = view === "lead" ? "inbox" : view;
+  return <AppShell view={shellView} setView={setView}>{body}</AppShell>;
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>

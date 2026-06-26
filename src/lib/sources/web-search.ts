@@ -3,7 +3,7 @@ import type { SourceFetcher, SourceFetchResult } from "@/lib/sources/types";
 import { demoPosts } from "@/lib/sources/demo";
 
 const SETUP_NOTE =
-  "Web search is a placeholder integration. Set WEB_SEARCH_PROVIDER (serpapi | tavily | exa | bing) and WEB_SEARCH_API_KEY to enable it in a future release. LeadParrot does NOT scrape pages — this slot is reserved for official search APIs only.";
+  "Web search is a placeholder integration. Set WEB_SEARCH_PROVIDER (serpapi | tavily | exa | bing) and WEB_SEARCH_API_KEY to enable it in a future release. Leads Nest does NOT scrape pages — this slot is reserved for official search APIs only.";
 
 /**
  * Web search placeholder. We deliberately do NOT implement scraping. This

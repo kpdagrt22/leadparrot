@@ -77,7 +77,7 @@ export function safeRedirectPath(
 }
 
 export const SAFETY_DISCLAIMER =
-  "LeadParrot helps you discover public conversations and draft replies. You are responsible for following each platform's rules before responding.";
+  "Leads Nest helps you discover public conversations and draft replies. You are responsible for following each platform's rules before responding.";
 
 export const COPY_DISCLAIMER =
-  "LeadParrot does not post for you. Review the platform's rules before responding.";
+  "Leads Nest does not post for you. Review the platform's rules before responding.";

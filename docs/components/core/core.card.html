@@ -1,0 +1,62 @@
+<!-- @dsCard group="Components" viewport="700x300" name="Core — Buttons, Badges, Tags" subtitle="Mono-label actions, status badges, chips, avatars" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="../../styles.css" />
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script src="../../_ds_bundle.js"></script>
+<style>
+  body { margin: 0; padding: 28px; }
+  .row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .row:last-child { margin-bottom: 0; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { Button, Badge, Tag, Avatar, Eyebrow, Icon } = window.CrestDesignSystemLeadParrot_bb3a07;
+
+function Demo() {
+  return (
+    <div>
+      <div className="row">
+        <Button variant="primary">Find leads</Button>
+        <Button variant="secondary">Open post</Button>
+        <Button variant="ghost">Skip</Button>
+        <Button variant="danger" size="sm">Not a lead</Button>
+        <Button variant="primary" size="lg" iconRight={<Icon name="arrow-right" size={14} />}>Generate reply</Button>
+      </div>
+      <div className="row">
+        <Badge tone="high">High intent</Badge>
+        <Badge tone="medium">Solution-aware</Badge>
+        <Badge tone="low">Research</Badge>
+        <Badge tone="accent" solid>Reddit</Badge>
+        <Badge tone="info">Hacker News</Badge>
+        <Badge tone="neutral">New</Badge>
+      </div>
+      <div className="row">
+        <Tag>proposal tool</Tag>
+        <Tag tone="accent">budget is flexible</Tag>
+        <Tag tone="muted">negative: research proposal</Tag>
+        <Tag onRemove={() => {}}>Upwork proposal</Tag>
+      </div>
+      <div className="row">
+        <Avatar label="Acme Proposals" tone="accent" />
+        <Avatar label="u/design_freelance" tone="ink" />
+        <Avatar label="HN" tone="soft" />
+        <Avatar label="Acme" shape="pill" tone="accent" />
+        <Eyebrow tone="accent">Live · 3 sources</Eyebrow>
+      </div>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+setTimeout(() => window.lucide && window.lucide.createIcons(), 100);
+</script>
+</body>
+</html>

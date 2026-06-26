@@ -56,7 +56,7 @@ export default async function SettingsPage() {
       <div className="card p-6">
         <SectionTitle>Data &amp; privacy</SectionTitle>
         <p className="text-sm text-ink-600">
-          LeadParrot stores only the minimum needed: public post title, link, excerpt, and AI analysis. We do not
+          Leads Nest stores only the minimum needed: public post title, link, excerpt, and AI analysis. We do not
           collect or store extra personal data about post authors. See the platform-safety and compliance docs in the
           repository for details.
         </p>

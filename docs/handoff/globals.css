@@ -1,0 +1,115 @@
+/* ============================================================
+   THE CREST DESIGN SYSTEM — globals.css for LeadParrot (Next.js)
+   Drop in at src/app/globals.css. Pairs with handoff/tailwind.config.ts.
+   Load the fonts in app/layout.tsx (next/font) OR via the @import below.
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500;6..72,600&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---- Tokens --------------------------------------------------- */
+:root {
+  /* Base — warm paper → ink */
+  --paper: #F4F1E9;
+  --paper-sunk: #ECE8DD;
+  --surface: #FBFAF5;
+  --surface-2: #FFFFFF;
+
+  --ink: #1C1B17;
+  --ink-2: #4A463C;
+  --ink-3: #6F6A5C;
+  --ink-4: #9A9483;
+
+  --line: #DEDACE;
+  --line-2: #CDC8B8;
+  --line-strong: #1C1B17;
+
+  /* Accent — Verdigris (the one owned color) */
+  --accent: #2E5E45;
+  --accent-press: #244B37;
+  --accent-soft: #5A7C66;
+  --accent-tint: #E6EBE3;
+  --accent-line: #BFCDBF;
+  --on-accent: #F4F1E9;
+
+  /* Earthy semantics */
+  --high: #2E5E45;
+  --medium: #9A6A1E;
+  --low: #9C5848;
+  --danger: #8F3F34;
+  --info: #355C6B;
+
+  /* Type families */
+  --font-display: "Newsreader", Georgia, serif;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  /* Premium paper grain — film/print tactility */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+/* ---- Base ----------------------------------------------------- */
+@layer base {
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    /* The subtle grain that makes the page feel like printed paper */
+    background-image: var(--grain);
+    background-repeat: repeat;
+    font-feature-settings: "ss01", "cv05";
+  }
+  h1, h2, h3 { @apply font-display tracking-tightest text-ink; font-weight: 300; }
+  ::selection { background: var(--accent); color: var(--on-accent); }
+  :focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--paper), 0 0 0 3.5px var(--accent);
+  }
+}
+
+/* ---- Component primitives (raw CSS twins of the React kit) ---- */
+@layer components {
+  .container-page { @apply mx-auto w-full max-w-[80rem] px-8; }
+
+  /* Sharp 1px surface — depth from the border, never from shadow */
+  .crest-card { @apply rounded-none border border-line-2 bg-surface; }
+  .crest-card--interactive { @apply transition-colors duration-200 hover:border-ink; }
+
+  /* Mono uppercase action button */
+  .crest-btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-none
+           font-mono text-2xs font-medium uppercase tracking-mono
+           px-[18px] py-[10px] transition-colors duration-150 ease-standard
+           disabled:opacity-45 disabled:pointer-events-none cursor-pointer;
+  }
+  .crest-btn--primary   { @apply bg-accent text-accent-fg border border-accent hover:bg-accent-press hover:border-accent-press; }
+  .crest-btn--secondary { @apply bg-transparent text-ink border border-ink hover:bg-ink hover:text-paper; }
+  .crest-btn--ghost     { @apply bg-transparent text-ink-2 border border-transparent hover:bg-paper-sunk hover:text-ink; }
+  .crest-btn--danger    { @apply bg-transparent text-danger border border-danger hover:bg-danger hover:text-paper; }
+
+  /* Mono micro-label badge (pill) */
+  .crest-badge {
+    @apply inline-flex items-center gap-1 rounded-pill border
+           px-[9px] py-[3px] font-mono text-[10.5px] font-medium uppercase tracking-mono;
+  }
+
+  /* Mono uppercase section kicker */
+  .crest-eyebrow {
+    @apply inline-flex items-center gap-2.5 font-mono text-2xs font-medium
+           uppercase tracking-caps text-ink-3;
+  }
+
+  /* Sharp input, accent focus */
+  .crest-input {
+    @apply w-full rounded-xs border border-line-2 bg-surface-raised
+           px-3 py-2.5 text-sm text-ink outline-none
+           placeholder:text-ink-4
+           focus:border-accent focus:shadow-[inset_0_0_0_1px_var(--accent)];
+  }
+
+  /* Hairline-seam bento grid */
+  .crest-bento { @apply grid gap-px border border-line-2 bg-line-2; }
+  .crest-bento > * { @apply bg-surface; }
+}

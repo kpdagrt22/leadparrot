@@ -1,48 +1,102 @@
+/* ============================================================
+   THE CREST DESIGN SYSTEM — globals for Leads Nest (theleadsnest.com)
+   Tokens once, here. Pairs with tailwind.config.ts. Fonts load via
+   next/font in app/layout.tsx (they set --font-display/-sans/-mono).
+   ============================================================ */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ---- Tokens --------------------------------------------------- */
 :root {
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  /* Base — warm paper → ink */
+  --paper: #F4F1E9;
+  --paper-sunk: #ECE8DD;
+  --surface: #FBFAF5;
+  --surface-2: #FFFFFF;
+
+  --ink: #1C1B17;
+  --ink-2: #4A463C;
+  --ink-3: #6F6A5C;
+  --ink-4: #9A9483;
+
+  --line: #DEDACE;
+  --line-2: #CDC8B8;
+  --line-strong: #1C1B17;
+
+  /* Accent — Verdigris (the one owned color) */
+  --accent: #2E5E45;
+  --accent-press: #244B37;
+  --accent-soft: #5A7C66;
+  --accent-tint: #E6EBE3;
+  --accent-line: #BFCDBF;
+  --on-accent: #F4F1E9;
+
+  /* Earthy semantics */
+  --high: #2E5E45;
+  --medium: #9A6A1E;
+  --low: #9C5848;
+  --danger: #8F3F34;
+  --info: #355C6B;
+
+  /* Premium paper grain — film/print tactility */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
 }
 
-html {
-  scroll-behavior: smooth;
+/* ---- Base ----------------------------------------------------- */
+@layer base {
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    background-image: var(--grain);
+    background-repeat: repeat;
+    font-feature-settings: "ss01", "cv05";
+  }
+  h1, h2, h3 { @apply font-display tracking-tightest text-ink; font-weight: 300; }
+  ::selection { background: var(--accent); color: var(--on-accent); }
+  :focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--paper), 0 0 0 3.5px var(--accent);
+  }
 }
 
-body {
-  @apply bg-ink-50 text-ink-900 antialiased;
-}
-
+/* ---- Components ----------------------------------------------- */
 @layer components {
-  .container-page {
-    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
-  }
-  .card {
-    @apply rounded-xl border border-ink-200 bg-white shadow-card;
-  }
+  .container-page { @apply mx-auto w-full max-w-[80rem] px-4 sm:px-6 lg:px-8; }
+
+  /* Legacy semantic classes, re-skinned to Crest so existing markup adopts the
+     system without per-element edits. Depth = 1px border, never shadow. */
+  .card { @apply rounded-none border border-line-2 bg-surface; }
+
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50;
+    @apply inline-flex items-center justify-center gap-2 rounded-none
+           font-mono text-xs font-medium uppercase tracking-mono
+           px-4 py-2.5 leading-none transition-colors duration-150 ease-standard
+           focus:outline-none disabled:pointer-events-none disabled:opacity-45;
   }
-  .btn-primary {
-    @apply btn bg-brand-600 text-white hover:bg-brand-700;
-  }
-  .btn-secondary {
-    @apply btn border border-ink-300 bg-white text-ink-800 hover:bg-ink-100;
-  }
-  .btn-ghost {
-    @apply btn text-ink-700 hover:bg-ink-100;
-  }
+  .btn-primary   { @apply btn border border-accent bg-accent text-accent-fg hover:bg-accent-press hover:border-accent-press; }
+  .btn-secondary { @apply btn border border-ink bg-transparent text-ink hover:bg-ink hover:text-paper; }
+  .btn-ghost     { @apply btn border border-transparent bg-transparent text-ink-2 hover:bg-paper-sunk hover:text-ink; }
+
   .input {
-    @apply w-full rounded-lg border border-ink-300 bg-white px-3 py-2 text-sm text-ink-900 placeholder:text-ink-400 focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500;
+    @apply w-full rounded-xs border border-line-2 bg-surface-raised px-3 py-2.5 text-sm text-ink
+           outline-none placeholder:text-ink-4
+           focus:border-accent focus:shadow-[inset_0_0_0_1px_var(--accent)];
   }
-  .label {
-    @apply mb-1 block text-sm font-medium text-ink-700;
-  }
-  .hint {
-    @apply mt-1 text-xs text-ink-500;
-  }
+  .label { @apply mb-1.5 block font-mono text-2xs font-medium uppercase tracking-mono text-ink-2; }
+  .hint  { @apply mt-1 text-xs text-ink-3; }
   .badge {
-    @apply inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-xs font-medium;
+    @apply inline-flex items-center gap-1 rounded-pill border px-2.5 py-0.5
+           font-mono text-[10.5px] font-medium uppercase tracking-mono;
   }
+
+  /* Crest twins (new vocabulary) */
+  .crest-card { @apply rounded-none border border-line-2 bg-surface; }
+  .crest-card--interactive { @apply transition-colors duration-200 hover:border-ink; }
+  .crest-eyebrow {
+    @apply inline-flex items-center gap-2.5 font-mono text-2xs font-medium uppercase tracking-caps text-ink-3;
+  }
+  .crest-bento { @apply grid gap-px border border-line-2 bg-line-2; }
+  .crest-bento > * { @apply bg-surface; }
 }

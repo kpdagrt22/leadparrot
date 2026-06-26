@@ -3,6 +3,7 @@
 import { useState, useTransition } from "react";
 import Link from "next/link";
 import { ScoreBadge } from "@/components/score-badge";
+import { BrandMark } from "@/components/crest/brand-mark";
 
 interface DemoResult {
   overall: number;
@@ -89,16 +90,16 @@ export function DemoSearch() {
 
       <div className="card p-5">
         {!result ? (
-          <div className="flex h-full min-h-[260px] flex-col items-center justify-center text-center text-sm text-ink-400">
-            <span className="text-3xl" aria-hidden>🦜</span>
-            <p className="mt-2">Your lead score will appear here.</p>
+          <div className="flex h-full min-h-[260px] flex-col items-center justify-center text-center text-sm text-ink-4">
+            <BrandMark size={36} />
+            <p className="mt-3">Your lead score will appear here.</p>
           </div>
         ) : (
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <div className="flex items-baseline gap-2">
-                <span className="text-4xl font-bold text-ink-900">{result.overall}</span>
-                <span className="text-sm text-ink-500">overall</span>
+                <span className="font-display text-5xl font-light tabular-nums text-ink">{result.overall}</span>
+                <span className="font-mono text-2xs uppercase tracking-mono text-ink-3">overall</span>
               </div>
               <ScoreBadge score={result.overall} />
             </div>

@@ -1,0 +1,43 @@
+/* ============================================================
+   EFFECTS — The Crest
+   Radii (sharp 0 or full pill), 1px borders, near-zero shadow,
+   and a subtle paper-grain noise texture. No blurry drop shadows.
+   ============================================================ */
+
+:root {
+  /* ---- Radii: sharp geometry OR full pill ---------------- */
+  --radius-none: 0;
+  --radius-xs:   2px;   /* used sparingly — inputs/chips        */
+  --radius-sm:   3px;
+  --radius-pill: 999px; /* badges, avatars, toggles            */
+  --radius-card: var(--radius-none); /* cards are sharp        */
+
+  /* ---- Borders ------------------------------------------- */
+  --border-w:        1px;
+  --border-w-strong: 1.5px;
+  --hairline:        var(--border-w) solid var(--line);
+  --rule:            var(--border-w) solid var(--line-2);
+  --rule-ink:        var(--border-w) solid var(--ink);
+
+  /* ---- "Shadows" — flat by default. Replace depth with
+          borders. One restrained lift for overlays only. ---- */
+  --shadow-none:    none;
+  --shadow-inset:   inset 0 0 0 1px var(--line);
+  --shadow-overlay: 0 1px 0 0 var(--line-2), 0 24px 48px -24px rgba(28, 27, 23, 0.28);
+  --shadow-press:   inset 0 1px 2px 0 rgba(28, 27, 23, 0.12);
+
+  /* ---- Motion: quiet, engineered, no bounce -------------- */
+  --ease-standard: cubic-bezier(0.2, 0, 0.1, 1); /* @kind other */
+  --ease-out:      cubic-bezier(0.16, 1, 0.3, 1); /* @kind other */
+  --dur-fast:   120ms; /* @kind other */
+  --dur-base:   180ms; /* @kind other */
+  --dur-slow:   280ms; /* @kind other */
+
+  /* ---- Paper grain (subtle film/print tactility) --------
+     Apply via: background-image: var(--grain); on body or a
+     full-bleed ::before at low opacity. */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.28'/%3E%3C/svg%3E"); /* @kind other */
+
+  /* ---- Focus ring (accessible, accent-tinted) ----------- */
+  --focus-ring: 0 0 0 2px var(--paper), 0 0 0 3.5px var(--accent);
+}

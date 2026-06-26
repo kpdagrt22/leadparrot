@@ -22,7 +22,7 @@ const STAGE_LABELS: Record<string, string> = {
 };
 
 export function StageBadge({ stage }: { stage: string }) {
-  return <span className="badge border-ink-200 bg-white text-ink-600">{STAGE_LABELS[stage] ?? stage}</span>;
+  return <span className="badge border-line-2 bg-surface-raised text-ink-3">{STAGE_LABELS[stage] ?? stage}</span>;
 }
 
 export function ScoreBars({
@@ -43,17 +43,17 @@ export function ScoreBars({
     { label: "Fit", value: fit, weight: "15%" },
   ];
   return (
-    <div className="space-y-2">
+    <div className="space-y-2.5">
       {rows.map((r) => (
         <div key={r.label}>
-          <div className="flex items-center justify-between text-xs text-ink-600">
+          <div className="flex items-center justify-between font-mono text-2xs uppercase tracking-mono text-ink-3">
             <span>
-              {r.label} <span className="text-ink-400">· {r.weight}</span>
+              {r.label} <span className="text-ink-4">· {r.weight}</span>
             </span>
-            <span className="tabular-nums font-medium">{r.value}</span>
+            <span className="tabular-nums text-ink">{r.value}</span>
           </div>
-          <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-ink-100">
-            <div className="h-full rounded-full bg-brand-500" style={{ width: `${Math.max(0, Math.min(100, r.value))}%` }} />
+          <div className="mt-1.5 h-1 w-full overflow-hidden bg-paper-sunk">
+            <div className="h-full bg-accent-soft" style={{ width: `${Math.max(0, Math.min(100, r.value))}%` }} />
           </div>
         </div>
       ))}

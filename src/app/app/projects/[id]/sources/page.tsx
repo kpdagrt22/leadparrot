@@ -32,7 +32,7 @@ export default async function SourcesPage({ params }: { params: Promise<{ id: st
       </div>
 
       <SafetyNotice>
-        LeadParrot uses official APIs and public feeds only. It never scrapes private pages, auto-comments, or DMs.
+        Leads Nest uses official APIs and public feeds only. It never scrapes private pages, auto-comments, or DMs.
         Respect each platform&apos;s rate limits and rules.
       </SafetyNotice>
 

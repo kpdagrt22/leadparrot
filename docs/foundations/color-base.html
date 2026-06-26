@@ -1,0 +1,21 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Base — Paper & Surfaces" subtitle="Warm Cloud-Dancer base; surfaces stack lighter, not whiter" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; padding: 22px; }
+  .row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+  .sw { border: 1px solid var(--line-2); }
+  .chip { height: 76px; }
+  .meta { padding: 9px 11px; font-family: var(--font-mono); font-size: 11px; color: var(--ink-2); display: flex; flex-direction: column; gap: 3px; }
+  .meta b { font-weight: 500; color: var(--ink); letter-spacing: 0.02em; }
+  .meta span { color: var(--ink-4); }
+</style></head>
+<body>
+  <div class="row">
+    <div class="sw"><div class="chip" style="background:var(--paper)"></div><div class="meta"><b>--paper</b><span>#F4F1E9 · Cloud Dancer</span></div></div>
+    <div class="sw"><div class="chip" style="background:var(--paper-sunk)"></div><div class="meta"><b>--paper-sunk</b><span>#ECE8DD · wells</span></div></div>
+    <div class="sw"><div class="chip" style="background:var(--surface)"></div><div class="meta"><b>--surface</b><span>#FBFAF5 · cards</span></div></div>
+    <div class="sw"><div class="chip" style="background:var(--surface-2)"></div><div class="meta"><b>--surface-2</b><span>#FFFFFF · overlays</span></div></div>
+  </div>
+</body></html>

@@ -1,0 +1,66 @@
+/* ============================================================
+   COLORS — The Crest
+   "One-color ownership": a warm monochrome base (Cloud Dancer
+   off-white paper + warm charcoal ink) paired with a single
+   constrained accent — Verdigris, a refined botanical green.
+   Earthy semantic tones only; nothing neon.
+   ============================================================ */
+
+:root {
+  /* ---- Base scale: warm paper → ink ---------------------- */
+  --paper:        #F4F1E9; /* Cloud Dancer — page background      */
+  --paper-sunk:   #ECE8DD; /* recessed wells, track backgrounds   */
+  --surface:      #FBFAF5; /* raised surface / cards              */
+  --surface-2:    #FFFFFF; /* highest surface (dialogs, popovers) */
+
+  --ink:          #1C1B17; /* warm near-black — primary text      */
+  --ink-2:        #4A463C; /* secondary text                      */
+  --ink-3:        #6F6A5C; /* muted / metadata                    */
+  --ink-4:        #9A9483; /* faint / disabled                    */
+
+  /* ---- Borders (1px structure — tactile brutalism) ------- */
+  --line:         #DEDACE; /* hairline / default border           */
+  --line-2:       #CDC8B8; /* stronger structural border          */
+  --line-strong:  #1C1B17; /* emphasis border = ink               */
+
+  /* ---- Accent: Verdigris (the one owned color) ----------- */
+  --accent:       #2E5E45; /* primary actions, brand              */
+  --accent-press: #244B37; /* pressed / darker                    */
+  --accent-soft:  #5A7C66; /* sage — bars, secondary accent       */
+  --accent-tint:  #E6EBE3; /* accent surface wash                 */
+  --accent-line:  #BFCDBF; /* accent-tinted border                */
+  --on-accent:    #F4F1E9; /* text on accent (= paper)            */
+
+  /* ---- Earthy semantics (scoring + status) --------------- */
+  --high:         #2E5E45; /* high intent  (= accent green)       */
+  --high-tint:    #E6EBE3;
+  --medium:       #9A6A1E; /* medium — refined ochre              */
+  --medium-tint:  #F0E8D6;
+  --low:          #9C5848; /* low — muted clay                    */
+  --low-tint:     #F0E2DC;
+  --danger:       #8F3F34; /* destructive — deep brick            */
+  --danger-tint:  #F0DED9;
+  --info:         #355C6B; /* info — slate teal                   */
+  --info-tint:    #DEE7E9;
+
+  /* ---- Semantic aliases (use these in components) -------- */
+  --bg-page:        var(--paper);
+  --bg-sunk:        var(--paper-sunk);
+  --surface-card:   var(--surface);
+  --surface-raised: var(--surface-2);
+
+  --text-strong:  var(--ink);
+  --text-body:    var(--ink-2);
+  --text-muted:   var(--ink-3);
+  --text-faint:   var(--ink-4);
+  --text-on-accent: var(--on-accent);
+
+  --border:        var(--line);
+  --border-strong: var(--line-2);
+  --border-emph:   var(--line-strong);
+
+  --brand:        var(--accent);
+  --brand-press:  var(--accent-press);
+  --brand-soft:   var(--accent-soft);
+  --brand-tint:   var(--accent-tint);
+}

@@ -1,0 +1,42 @@
+/* ============================================================
+   INTERACTIONS — The Crest
+   Hover / active / focus states for components. Components set
+   layout via inline style tokens; interaction states live here
+   (keyed to crest-* class names) so they ship to consumers.
+   Quiet, engineered motion. No bounce, no glow.
+   ============================================================ */
+
+/* ---- Buttons ------------------------------------------------ */
+.crest-btn--primary:hover:not(:disabled)   { background: var(--accent-press) !important; border-color: var(--accent-press) !important; }
+.crest-btn--primary:active:not(:disabled)  { box-shadow: var(--shadow-press); }
+
+.crest-btn--secondary:hover:not(:disabled) { background: var(--ink) !important; color: var(--paper) !important; }
+.crest-btn--secondary:active:not(:disabled){ box-shadow: var(--shadow-press); }
+
+.crest-btn--ghost:hover:not(:disabled)     { background: var(--paper-sunk) !important; color: var(--ink) !important; }
+
+.crest-btn--danger:hover:not(:disabled)    { background: var(--danger) !important; color: var(--paper) !important; }
+
+/* ---- Cards: hairline → ink edge on interactive cards -------- */
+.crest-card--interactive { transition: border-color var(--dur-base) var(--ease-standard), background var(--dur-base) var(--ease-standard); }
+.crest-card--interactive:hover { border-color: var(--ink) !important; }
+
+/* ---- Inputs ------------------------------------------------- */
+.crest-input:hover    { border-color: var(--line-2) !important; }
+.crest-input:focus    { border-color: var(--accent) !important; outline: none; box-shadow: inset 0 0 0 1px var(--accent); }
+
+/* ---- Tabs --------------------------------------------------- */
+.crest-tab { transition: color var(--dur-fast) var(--ease-standard), border-color var(--dur-fast) var(--ease-standard); }
+.crest-tab:hover { color: var(--ink) !important; }
+
+/* ---- Links -------------------------------------------------- */
+.crest-link { text-decoration: none; background-image: linear-gradient(var(--accent), var(--accent)); background-size: 0% 1px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size var(--dur-base) var(--ease-out), color var(--dur-fast) var(--ease-standard); }
+.crest-link:hover { background-size: 100% 1px; color: var(--accent); }
+
+/* ---- Switch ------------------------------------------------- */
+.crest-switch { transition: background var(--dur-base) var(--ease-standard); }
+.crest-switch > span { transition: transform var(--dur-base) var(--ease-out); }
+
+/* ---- Row hover (inbox / lists) ------------------------------ */
+.crest-row { transition: background var(--dur-fast) var(--ease-standard); }
+.crest-row:hover { background: var(--paper-sunk) !important; }

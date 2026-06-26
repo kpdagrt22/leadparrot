@@ -1,0 +1,55 @@
+/* ============================================================
+   TYPOGRAPHY — The Crest
+   Text is the primary interface architecture.
+   · Display  : Newsreader (neo-serif) — hero & section heads
+   · Sans     : IBM Plex Sans — body, paragraphs, UI
+   · Mono     : IBM Plex Mono — labels, metadata, buttons, data
+   ============================================================ */
+
+:root {
+  /* ---- Families ------------------------------------------ */
+  --font-display: "Newsreader", "Iowan Old Style", Georgia, serif;
+  --font-sans:    "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono:    "IBM Plex Mono", ui-monospace, "SF Mono", "Menlo", monospace;
+
+  /* ---- Type scale (px) ----------------------------------- */
+  --text-3xs: 0.6875rem; /* 11 — micro mono labels             */
+  --text-2xs: 0.75rem;   /* 12 — eyebrows, meta                 */
+  --text-xs:  0.8125rem; /* 13 — captions, dense UI            */
+  --text-sm:  0.875rem;  /* 14 — secondary body / UI default   */
+  --text-base:1rem;      /* 16 — body                          */
+  --text-md:  1.125rem;  /* 18 — lead paragraph                */
+  --text-lg:  1.375rem;  /* 22 — card titles                   */
+  --text-xl:  1.75rem;   /* 28 — sub-headlines                 */
+  --text-2xl: 2.25rem;   /* 36 — section headlines             */
+  --text-3xl: 3rem;      /* 48 — page titles                   */
+  --text-4xl: 4rem;      /* 64 — hero                          */
+  --text-5xl: 5.25rem;   /* 84 — editorial hero / big numbers  */
+
+  /* ---- Weights ------------------------------------------- */
+  --weight-light:   300;
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-semibold:600;
+  --weight-bold:    700;
+
+  /* ---- Line heights -------------------------------------- */
+  --leading-tight:  1.04; /* display headlines                 */
+  --leading-snug:   1.18;
+  --leading-normal: 1.5;  /* body                              */
+  --leading-relaxed:1.65;
+
+  /* ---- Tracking ------------------------------------------ */
+  --tracking-tight:  -0.02em; /* large serif display           */
+  --tracking-normal: 0;
+  --tracking-wide:   0.04em;
+  --tracking-mono:   0.08em;  /* mono eyebrows / buttons        */
+  --tracking-caps:   0.14em;  /* uppercase micro-labels         */
+
+  /* ---- Semantic roles ------------------------------------ */
+  --role-hero:    var(--weight-light)   var(--text-4xl)/var(--leading-tight)  var(--font-display);
+  --role-title:   var(--weight-regular) var(--text-2xl)/var(--leading-snug)   var(--font-display);
+  --role-eyebrow: var(--weight-500)     var(--text-2xs)/1 var(--font-mono);
+  --role-body:    var(--weight-regular) var(--text-base)/var(--leading-normal) var(--font-sans);
+  --role-label:   var(--weight-medium)  var(--text-3xs)/1 var(--font-mono);
+}

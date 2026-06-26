@@ -89,7 +89,7 @@ export function AuthForm({ mode, demo }: { mode: "login" | "signup"; demo: boole
         {mode === "signup" ? (
           <>Already have an account? <Link href="/login" className="text-brand-700 hover:underline">Log in</Link></>
         ) : (
-          <>New to LeadParrot? <Link href="/signup" className="text-brand-700 hover:underline">Sign up</Link></>
+          <>New to Leads Nest? <Link href="/signup" className="text-brand-700 hover:underline">Sign up</Link></>
         )}
       </p>
     </form>

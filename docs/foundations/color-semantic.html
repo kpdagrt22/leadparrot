@@ -1,0 +1,22 @@
+<!-- @dsCard group="Colors" viewport="700x160" name="Semantics — Score Tiers" subtitle="Earthy, never neon: green / ochre / clay map to intent tiers" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; padding: 22px; }
+  .row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .sw { border: 1px solid var(--line-2); }
+  .chip { height: 60px; display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; }
+  .meta { padding: 8px 10px; font-family: var(--font-mono); font-size: 10.5px; display: flex; flex-direction: column; gap: 2px; }
+  .meta b { font-weight: 500; color: var(--ink); }
+  .meta em { color: var(--ink-4); font-style: normal; }
+</style></head>
+<body>
+  <div class="row">
+    <div class="sw"><div class="chip" style="background:var(--high);color:var(--paper)">High ≥70</div><div class="meta"><b>--high</b><em>#2E5E45</em></div></div>
+    <div class="sw"><div class="chip" style="background:var(--medium);color:var(--paper)">Medium 40–69</div><div class="meta"><b>--medium</b><em>#9A6A1E ochre</em></div></div>
+    <div class="sw"><div class="chip" style="background:var(--low);color:var(--paper)">Low &lt;40</div><div class="meta"><b>--low</b><em>#9C5848 clay</em></div></div>
+    <div class="sw"><div class="chip" style="background:var(--danger);color:var(--paper)">Danger</div><div class="meta"><b>--danger</b><em>#8F3F34 brick</em></div></div>
+    <div class="sw"><div class="chip" style="background:var(--info);color:var(--paper)">Info</div><div class="meta"><b>--info</b><em>#355C6B slate</em></div></div>
+  </div>
+</body></html>

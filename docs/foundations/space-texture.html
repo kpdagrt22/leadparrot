@@ -1,0 +1,21 @@
+<!-- @dsCard group="Spacing" viewport="700x150" name="Texture & Depth" subtitle="Paper grain replaces shadow; depth comes from borders" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; padding: 24px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+  .cell { height: 84px; border: 1px solid var(--line-2); display: flex; align-items: flex-end; padding: 10px; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-3); }
+  .grain { position: relative; background: var(--paper-sunk); }
+  .grain::before { content:""; position:absolute; inset:0; background-image: var(--grain); opacity:0.7; mix-blend-mode: multiply; }
+  .grain span { position: relative; }
+  .overlay { box-shadow: var(--shadow-overlay); background: var(--surface-2); }
+  .flat { background: var(--surface); }
+</style></head>
+<body>
+  <div class="row">
+    <div class="cell grain"><span>Paper grain</span></div>
+    <div class="cell flat"><span>Flat · 1px border</span></div>
+    <div class="cell overlay"><span>Overlay lift only</span></div>
+  </div>
+</body></html>

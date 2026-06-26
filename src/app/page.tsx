@@ -19,10 +19,10 @@ const STEPS = [
 ];
 
 const FAQS = [
-  { q: "Does LeadParrot auto-post?", a: "No. LeadParrot never posts, comments, or DMs for you. It drafts a reply you copy and post yourself, manually." },
+  { q: "Does Leads Nest auto-post?", a: "No. Leads Nest never posts, comments, or DMs for you. It drafts a reply you copy and post yourself, manually." },
   { q: "Does it scrape private communities?", a: "No. We only use official APIs and public RSS/search endpoints, and we respect platform rules and rate limits." },
   { q: "Can I use it for Reddit?", a: "Yes — through Reddit's official read-only API and manual replies only. We do not auto-comment or scrape logged-in pages." },
-  { q: "Is this a CRM?", a: "No. LeadParrot is a lead-discovery and reply-assist tool, not a CRM or outreach-automation system." },
+  { q: "Is this a CRM?", a: "No. Leads Nest is a lead-discovery and reply-assist tool, not a CRM or outreach-automation system." },
   { q: "Can I cancel anytime?", a: "Yes. Plans are month-to-month and you can cancel whenever you like." },
 ];
 
@@ -32,23 +32,24 @@ export default function LandingPage() {
       <MarketingNav />
 
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-ink-200 bg-gradient-to-b from-brand-50/60 to-white">
-        <div className="container-page py-20 text-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-white px-3 py-1 text-xs font-medium text-brand-700">
-            🦜 Lead discovery + reply drafts · No auto-posting
+      <section className="relative overflow-hidden border-b border-line-2 bg-gradient-to-b from-accent-tint to-paper">
+        <div className="container-page py-24 text-center">
+          <span className="crest-eyebrow justify-center">
+            <span aria-hidden className="h-px w-[18px] bg-current opacity-60" />
+            Lead discovery + reply drafts · No auto-posting
           </span>
-          <h1 className="mx-auto mt-6 max-w-3xl text-4xl font-bold tracking-tight text-ink-900 sm:text-5xl">
+          <h1 className="mx-auto mt-6 max-w-3xl font-display text-4xl font-light tracking-tightest text-ink sm:text-5xl lg:text-hero">
             Find customers already asking for what you sell.
           </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-lg text-ink-600">
-            LeadParrot monitors public conversations, scores buyer intent, and drafts helpful replies — so you can show up at the right moment.
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-normal text-ink-2">
+            Leads Nest monitors public conversations, scores buyer intent, and drafts helpful replies — so you can show up at the right moment.
           </p>
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Link href="/signup" className="btn-primary px-6 py-3 text-base">Start Finding Leads</Link>
-            <Link href="/demo" className="btn-secondary px-6 py-3 text-base">Try Demo Search</Link>
+          <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Link href="/signup" className="btn-primary px-6 py-3.5">Start finding leads</Link>
+            <Link href="/demo" className="btn-secondary px-6 py-3.5">Try demo search</Link>
           </div>
-          <p className="mt-4 text-sm text-ink-500">
-            Get a useful reply draft before your competitors even see the thread.
+          <p className="mt-5 font-mono text-2xs uppercase tracking-mono text-ink-3">
+            A reply draft before your competitors even see the thread.
           </p>
         </div>
       </section>
@@ -127,7 +128,7 @@ export default function LandingPage() {
         <div className="card mx-auto max-w-3xl border-brand-200 bg-brand-50/50 p-8 text-center">
           <h2 className="text-2xl font-bold text-ink-900">No auto-posting. No auto-DMs. You stay in control.</h2>
           <p className="mt-3 text-ink-700">
-            LeadParrot is a discovery and drafting tool — not an automation bot. We use official APIs and public feeds,
+            Leads Nest is a discovery and drafting tool — not an automation bot. We use official APIs and public feeds,
             respect platform rules and rate limits, and never message anyone on your behalf. Every reply is reviewed and
             posted by you.
           </p>
@@ -139,7 +140,7 @@ export default function LandingPage() {
         <div className="container-page">
           <div className="text-center">
             <h2 className="text-2xl font-bold text-ink-900">Simple, founder-friendly pricing</h2>
-            <p className="mt-2 text-ink-600">Start free. Upgrade when LeadParrot is finding you real opportunities.</p>
+            <p className="mt-2 text-ink-600">Start free. Upgrade when Leads Nest is finding you real opportunities.</p>
           </div>
           <div className="mt-10">
             <PricingCards />
@@ -159,7 +160,7 @@ export default function LandingPage() {
           ))}
         </div>
         <div className="mt-10 text-center">
-          <Link href="/signup" className="btn-primary px-6 py-3 text-base">Start Finding Leads</Link>
+          <Link href="/signup" className="btn-primary px-6 py-3.5">Start finding leads</Link>
         </div>
       </section>
 

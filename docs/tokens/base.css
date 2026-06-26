@@ -1,0 +1,55 @@
+/* ============================================================
+   BASE — The Crest
+   Document reset + the paper-grain background + selection.
+   Only global element resets live here. Components style
+   themselves via the tokens above.
+   ============================================================ */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  font: var(--weight-regular) var(--text-base)/var(--leading-normal) var(--font-sans);
+  color: var(--text-strong);
+  background-color: var(--paper);
+  background-image: var(--grain);
+  background-repeat: repeat;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01", "cv05";
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+a { color: inherit; }
+
+/* Editorial serif numerals default to lining + tabular where used */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-regular);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-strong);
+  margin: 0;
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* Utility: paper-grain overlay element for full-bleed sections */
+.crest-grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain);
+  opacity: 0.6;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}

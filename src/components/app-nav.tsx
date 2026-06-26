@@ -25,8 +25,10 @@ export function AppNav({ isAdmin }: { isAdmin: boolean }) {
             key={item.href}
             href={item.href}
             className={cn(
-              "block rounded-lg px-3 py-2 text-sm font-medium transition-colors",
-              active ? "bg-brand-50 text-brand-700" : "text-ink-600 hover:bg-ink-100 hover:text-ink-900",
+              "block px-3 py-2 font-mono text-2xs uppercase tracking-mono transition-colors",
+              active
+                ? "border-l-2 border-accent bg-accent-tint text-accent"
+                : "border-l-2 border-transparent text-ink-3 hover:bg-paper-sunk hover:text-ink",
             )}
           >
             {item.label}

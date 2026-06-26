@@ -61,7 +61,7 @@ export default async function NewProjectPage({
         <Field name="target_geography" label="Target geography" placeholder="US, Canada, UK" />
 
         <SafetyNotice>
-          LeadParrot only monitors public/allowed sources and never posts on your behalf. You decide whether to reply.
+          Leads Nest only monitors public/allowed sources and never posts on your behalf. You decide whether to reply.
         </SafetyNotice>
 
         <div className="flex items-center gap-3">

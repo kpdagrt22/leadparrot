@@ -1,7 +1,7 @@
 import { MarketingNav, MarketingFooter } from "@/components/marketing-nav";
 import { DemoSearch } from "@/components/demo-search";
 
-export const metadata = { title: "Demo search — LeadParrot" };
+export const metadata = { title: "Demo search — Leads Nest" };
 
 export default function DemoPage() {
   return (
@@ -11,7 +11,7 @@ export default function DemoPage() {
         <div className="mx-auto max-w-3xl">
           <h1 className="text-3xl font-bold text-ink-900">Try a demo lead score</h1>
           <p className="mt-2 text-ink-600">
-            Describe what you sell, paste a public post, and see how LeadParrot scores it. Nothing is saved, no signup
+            Describe what you sell, paste a public post, and see how Leads Nest scores it. Nothing is saved, no signup
             required. (Runs on the mock AI provider unless a real key is configured.)
           </p>
           <div className="mt-8">

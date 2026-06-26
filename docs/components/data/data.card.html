@@ -1,0 +1,47 @@
+<!-- @dsCard group="Components" viewport="700x300" name="Data — Score & Meters" subtitle="Editorial lead score, weighted breakdown, usage meters" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="../../styles.css" />
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="../../_ds_bundle.js"></script>
+<style> body { margin: 0; padding: 28px; } </style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const { ScoreBadge, ScoreBars, Meter, Card, Eyebrow } = window.CrestDesignSystemLeadParrot_bb3a07;
+
+function Demo() {
+  return (
+    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "24px", alignItems: "start" }}>
+      <Card pad="md">
+        <Eyebrow>Lead score</Eyebrow>
+        <div style={{ display: "flex", flexDirection: "column", gap: "18px", marginTop: "16px" }}>
+          <ScoreBadge score={81} size="lg" />
+          <ScoreBadge score={63} />
+          <ScoreBadge score={32} />
+          <div style={{ marginTop: "4px" }}>
+            <ScoreBars relevance={88} intent={82} urgency={75} fit={70} />
+          </div>
+        </div>
+      </Card>
+      <Card pad="md">
+        <Eyebrow>Monthly usage</Eyebrow>
+        <div style={{ display: "flex", flexDirection: "column", gap: "20px", marginTop: "16px" }}>
+          <Meter label="Posts scanned" value={342} max={500} />
+          <Meter label="Reply drafts" value={88} max={100} />
+          <Meter label="Projects" value={2} max={3} />
+        </div>
+      </Card>
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<Demo />);
+</script>
+</body>
+</html>

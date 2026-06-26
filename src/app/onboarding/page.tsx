@@ -20,11 +20,11 @@ export default async function OnboardingPage() {
   if (ctx) redirect("/app");
 
   return (
-    <div className="min-h-screen bg-ink-50 py-10">
+    <div className="min-h-screen bg-paper py-10">
       <div className="mx-auto max-w-2xl px-4">
         <div className="mb-6 text-center">
-          <h1 className="text-2xl font-bold text-ink-900">Welcome to LeadParrot 🦜</h1>
-          <p className="mt-1 text-sm text-ink-500">Tell us about your business so we can find the right conversations.</p>
+          <h1 className="font-display text-3xl font-light tracking-tightest text-ink">Welcome to Leads Nest</h1>
+          <p className="mt-2 text-sm text-ink-3">Tell us about your business so we can find the right conversations.</p>
         </div>
 
         <form action={completeOnboardingAction} className="card space-y-6 p-6">

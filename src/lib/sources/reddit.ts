@@ -3,7 +3,7 @@ import type { SourceFetcher, SourceFetchOptions, SourceFetchResult, FetchedPost 
 import { demoPosts } from "@/lib/sources/demo";
 
 const REDDIT_SETUP_NOTE =
-  "Reddit is not configured. Create a 'script' app at https://www.reddit.com/prefs/apps, then set REDDIT_CLIENT_ID, REDDIT_CLIENT_SECRET and REDDIT_USER_AGENT. LeadParrot uses Reddit's official read-only API and never auto-comments or scrapes private pages.";
+  "Reddit is not configured. Create a 'script' app at https://www.reddit.com/prefs/apps, then set REDDIT_CLIENT_ID, REDDIT_CLIENT_SECRET and REDDIT_USER_AGENT. Leads Nest uses Reddit's official read-only API and never auto-comments or scrapes private pages.";
 
 /**
  * Reddit source — SAFE implementation.

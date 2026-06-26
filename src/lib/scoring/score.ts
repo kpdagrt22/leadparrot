@@ -1,7 +1,7 @@
 import type { ScoreTier } from "@/lib/types";
 
 /**
- * Weighted scoring model for LeadParrot.
+ * Weighted scoring model for Leads Nest.
  *
  * overall = relevance*0.35 + intent*0.30 + urgency*0.20 + fit*0.15
  *
@@ -67,11 +67,11 @@ export function isHighIntent(overall: number): boolean {
 export function tierMeta(tier: ScoreTier): { label: string; classes: string } {
   switch (tier) {
     case "high":
-      return { label: "High intent", classes: "bg-brand-100 text-brand-800 border-brand-200" };
+      return { label: "High intent", classes: "border-accent-line bg-accent-tint text-accent" };
     case "medium":
-      return { label: "Medium", classes: "bg-amber-100 text-amber-800 border-amber-200" };
+      return { label: "Medium", classes: "border-[#DCC79C] bg-[#F2E8D4] text-medium" };
     case "low":
     default:
-      return { label: "Low", classes: "bg-ink-100 text-ink-600 border-ink-200" };
+      return { label: "Low", classes: "border-line-2 bg-paper-sunk text-low" };
   }
 }

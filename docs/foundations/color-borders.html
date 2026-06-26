@@ -1,0 +1,21 @@
+<!-- @dsCard group="Colors" viewport="700x140" name="Borders & Lines" subtitle="1px structure carries the system in place of shadow" -->
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8" />
+<link rel="stylesheet" href="../styles.css" />
+<style>
+  body { margin: 0; padding: 22px; }
+  .row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .demo { background: var(--surface); padding: 18px; height: 56px; display: flex; align-items: center; font-family: var(--font-mono); font-size: 11px; color: var(--ink-2); letter-spacing: 0.02em; }
+  .a { border: 1px solid var(--line); }
+  .b { border: 1px solid var(--line-2); }
+  .c { border: 1px solid var(--line-strong); }
+  .meta { margin-top: 9px; font-family: var(--font-mono); font-size: 11px; color: var(--ink); }
+  .meta em { color: var(--ink-4); font-style: normal; }
+</style></head>
+<body>
+  <div class="row">
+    <div><div class="demo a">Hairline</div><div class="meta">--line <em>#DEDACE</em></div></div>
+    <div><div class="demo b">Structural</div><div class="meta">--line-2 <em>#CDC8B8</em></div></div>
+    <div><div class="demo c">Emphasis</div><div class="meta">--line-strong <em>= ink</em></div></div>
+  </div>
+</body></html>
