@@ -20,8 +20,8 @@ export default async function DashboardPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-ink-900">Dashboard</h1>
-          <p className="text-sm text-ink-500">Welcome back to {ctx.organization.name}.</p>
+          <h1 className="font-display text-3xl font-light tracking-tightest text-ink">Dashboard</h1>
+          <p className="text-sm text-ink-3">Welcome back to {ctx.organization.name}.</p>
         </div>
         <div className="flex flex-wrap gap-2">
           <LinkButton href="/app/projects/new" variant="primary">Create project</LinkButton>
@@ -57,14 +57,14 @@ export default async function DashboardPage() {
             { label: "Projects", m: meters.projects },
           ].map(({ label, m }) => (
             <div key={label}>
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-ink-600">{label}</span>
-                <span className="tabular-nums text-ink-800">
+              <div className="flex items-center justify-between font-mono text-2xs uppercase tracking-mono">
+                <span className="text-ink-3">{label}</span>
+                <span className="tabular-nums text-ink">
                   {m.used} / {m.limit}
                 </span>
               </div>
-              <div className="mt-1 h-2 w-full overflow-hidden rounded-full bg-ink-100">
-                <div className="h-full rounded-full bg-brand-500" style={{ width: `${m.pct}%` }} />
+              <div className="mt-1.5 h-1.5 w-full overflow-hidden bg-paper-sunk">
+                <div className="h-full bg-accent-soft" style={{ width: `${m.pct}%` }} />
               </div>
             </div>
           ))}
@@ -75,7 +75,7 @@ export default async function DashboardPage() {
       <div>
         <div className="mb-3 flex items-center justify-between">
           <SectionTitle>Recent high-intent leads</SectionTitle>
-          <Link href="/app/leads?tier=high" className="text-sm text-brand-700 hover:underline">View all →</Link>
+          <Link href="/app/leads?tier=high" className="font-mono text-2xs uppercase tracking-mono text-accent hover:text-accent-press">View all →</Link>
         </div>
         {stats.recentHighIntent.length === 0 ? (
           projects.length === 0 ? (
@@ -94,16 +94,16 @@ export default async function DashboardPage() {
         ) : (
           <div className="space-y-3">
             {stats.recentHighIntent.map((lead) => (
-              <Link key={lead.id} href={`/app/leads/${lead.id}`} className="card block p-4 transition hover:border-brand-300">
+              <Link key={lead.id} href={`/app/leads/${lead.id}`} className="card block p-4 transition-colors hover:border-ink">
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-2">
                       <ScoreBadge score={lead.overall_score} />
                       <StageBadge stage={lead.lead_stage} />
-                      <span className="text-xs text-ink-400">{lead.source_type} · {formatRelativeDate(lead.posted_at)}</span>
+                      <span className="font-mono text-2xs uppercase tracking-mono text-ink-4">{lead.source_type} · {formatRelativeDate(lead.posted_at)}</span>
                     </div>
-                    <h3 className="mt-2 truncate font-medium text-ink-900">{lead.title}</h3>
-                    <p className="mt-0.5 text-sm text-ink-500">{truncate(lead.reason, 160)}</p>
+                    <h3 className="mt-2 truncate font-display text-lg font-normal tracking-tightest text-ink">{lead.title}</h3>
+                    <p className="mt-0.5 text-sm text-ink-3">{truncate(lead.reason, 160)}</p>
                   </div>
                 </div>
               </Link>

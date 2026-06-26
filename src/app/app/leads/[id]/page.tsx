@@ -27,14 +27,14 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
   return (
     <div className="space-y-6">
       <div>
-        <Link href="/app/leads" className="text-sm text-ink-500 hover:text-ink-900">← Lead inbox</Link>
-        <div className="mt-1 flex flex-wrap items-center gap-2">
+        <Link href="/app/leads" className="font-mono text-2xs uppercase tracking-mono text-ink-3 hover:text-ink">← Lead inbox</Link>
+        <div className="mt-2 flex flex-wrap items-center gap-2">
           <ScoreBadge score={lead.overall_score} />
           <StageBadge stage={lead.lead_stage} />
           <Badge>{lead.source_type}</Badge>
-          <span className="text-xs text-ink-400">Posted {formatRelativeDate(lead.posted_at)}</span>
+          <span className="font-mono text-2xs uppercase tracking-mono text-ink-4">Posted {formatRelativeDate(lead.posted_at)}</span>
         </div>
-        <h1 className="mt-2 text-2xl font-bold text-ink-900">{lead.title}</h1>
+        <h1 className="mt-3 font-display text-3xl font-light tracking-tightest text-ink">{lead.title}</h1>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-3">
@@ -63,25 +63,25 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
 
             {draft ? (
               <div className="space-y-4">
-                <div className="rounded-lg border border-ink-200 bg-ink-50 p-4">
-                  <p className="whitespace-pre-wrap text-sm text-ink-800">{draft.draft_text}</p>
+                <div className="border border-line-2 bg-paper-sunk p-4">
+                  <p className="whitespace-pre-wrap text-sm text-ink-2">{draft.draft_text}</p>
                 </div>
                 <div className="flex flex-wrap items-center gap-2">
                   <CopyReplyButton replyId={draft.id} text={draft.draft_text} />
-                  {draft.status === "copied" && <span className="text-xs text-brand-700">Copied {formatRelativeDate(draft.copied_at)}</span>}
-                  <span className="text-xs text-ink-400">Confidence {(draft.confidence * 100).toFixed(0)}%</span>
+                  {draft.status === "copied" && <span className="font-mono text-2xs uppercase tracking-mono text-accent">Copied {formatRelativeDate(draft.copied_at)}</span>}
+                  <span className="font-mono text-2xs uppercase tracking-mono text-ink-4">Confidence {(draft.confidence * 100).toFixed(0)}%</span>
                 </div>
 
-                <div className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-800">
+                <div className="border-l-2 border-accent bg-accent-tint px-3 py-2 text-xs text-ink-2">
                   {COPY_DISCLAIMER}
                 </div>
 
                 {draft.why_this_reply && (
-                  <p className="text-xs text-ink-500"><span className="font-medium text-ink-700">Why this reply:</span> {draft.why_this_reply}</p>
+                  <p className="text-xs text-ink-3"><span className="font-medium text-ink-2">Why this reply:</span> {draft.why_this_reply}</p>
                 )}
                 {draft.suggested_disclosure && (
-                  <div className="rounded-lg bg-brand-50 px-3 py-2 text-xs text-brand-800">
-                    <span className="font-medium">Suggested disclosure:</span> {draft.suggested_disclosure}
+                  <div className="border border-accent-line bg-accent-tint px-3 py-2 text-xs text-ink-2">
+                    <span className="font-medium text-accent">Suggested disclosure:</span> {draft.suggested_disclosure}
                   </div>
                 )}
                 {draft.safety_notes.length > 0 && (
@@ -106,8 +106,8 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
           <div className="card p-5">
             <SectionTitle>AI scores</SectionTitle>
             <div className="mb-3 flex items-baseline gap-2">
-              <span className="text-3xl font-bold text-ink-900">{lead.overall_score}</span>
-              <span className="text-sm text-ink-500">overall · {(lead.confidence * 100).toFixed(0)}% conf.</span>
+              <span className="font-display text-5xl font-light tabular-nums text-accent">{lead.overall_score}</span>
+              <span className="font-mono text-2xs uppercase tracking-mono text-ink-3">overall · {(lead.confidence * 100).toFixed(0)}% conf.</span>
             </div>
             <ScoreBars
               relevance={lead.relevance_score}
@@ -154,18 +154,18 @@ function ListBlock({ title, items, tone }: { title: string; items: string[]; ton
   if (items.length === 0) return null;
   const cls =
     tone === "brand"
-      ? "bg-brand-50 text-brand-700"
+      ? "border-accent-line bg-accent-tint text-accent"
       : tone === "red"
-        ? "bg-red-50 text-red-700"
+        ? "border-[#DBC2B8] text-low"
         : tone === "amber"
-          ? "bg-amber-50 text-amber-700"
-          : "bg-ink-100 text-ink-600";
+          ? "border-[#DCC79C] text-medium"
+          : "border-line-2 text-ink-2";
   return (
     <div>
-      <h4 className="text-sm font-semibold text-ink-800">{title}</h4>
-      <div className="mt-1 flex flex-wrap gap-1">
+      <h4 className="font-mono text-2xs font-medium uppercase tracking-caps text-ink-3">{title}</h4>
+      <div className="mt-1.5 flex flex-wrap gap-1.5">
         {items.map((it) => (
-          <span key={it} className={`rounded px-2 py-0.5 text-xs ${cls}`}>{it}</span>
+          <span key={it} className={`border px-2 py-0.5 text-xs ${cls}`}>{it}</span>
         ))}
       </div>
     </div>
