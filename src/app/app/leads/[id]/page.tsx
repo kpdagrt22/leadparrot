@@ -94,7 +94,7 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
               </div>
             ) : (
               <p className="text-sm text-ink-500">
-                No draft yet. Generate a helpful, transparent reply you can review and copy. Leads Nest never posts for
+                No draft yet. Generate a helpful, transparent reply you can review and copy. The Leads Nest never posts for
                 you.
               </p>
             )}

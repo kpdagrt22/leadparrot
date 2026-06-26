@@ -14,7 +14,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
       <div className="flex">
         {/* Sidebar */}
         <aside className="sticky top-0 hidden h-screen w-60 shrink-0 flex-col border-r border-line-2 bg-surface p-4 lg:flex">
-          <Link href="/app" className="mb-6 px-2" aria-label="Leads Nest home">
+          <Link href="/app" className="mb-6 px-2" aria-label="The Leads Nest home">
             <Wordmark />
           </Link>
           <AppNav isAdmin={ctx.isAdmin} />
@@ -36,7 +36,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         <div className="flex min-h-screen w-full flex-col">
           {/* Mobile top bar */}
           <header className="flex items-center justify-between border-b border-line-2 bg-surface px-4 py-3 lg:hidden">
-            <Link href="/app" aria-label="Leads Nest home">
+            <Link href="/app" aria-label="The Leads Nest home">
               <Wordmark size={20} />
             </Link>
             <Link href="/app/projects/new" className="btn-primary text-xs">New project</Link>

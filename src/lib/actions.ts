@@ -152,6 +152,46 @@ export async function runScanAction(sourceId: string): Promise<ActionResult> {
   return { ok: true, message: parts.join(" · ") };
 }
 
+/**
+ * Progressive-enhancement variant of addManualPostAction for `useActionState`:
+ * works before hydration (native POST to the server action), redirects to the
+ * new lead on success, and returns a result for inline feedback otherwise.
+ */
+export async function scoreManualPostFormAction(
+  _prev: ActionResult | null,
+  formData: FormData,
+): Promise<ActionResult> {
+  const ctx = await requireContext();
+  const store = await getStore();
+  const projectId = str(formData.get("project_id"));
+  if (!projectId) return { ok: false, message: "Missing project" };
+  const project = await store.getProject(ctx.organization.id, projectId);
+  if (!project) return { ok: false, message: "Project not found" };
+
+  const sources = await store.listSources(ctx.organization.id, projectId);
+  const manual = sources.find((s) => s.source_type === "manual");
+
+  const { lead, limitReached, error } = await scoreManualPost(
+    store,
+    ctx.organization.id,
+    ctx.subscription.plan,
+    project,
+    manual?.id ?? null,
+    {
+      title: str(formData.get("title")),
+      body: str(formData.get("body")),
+      url: str(formData.get("url")),
+    },
+  );
+
+  revalidatePath("/app/leads");
+  revalidatePath("/app");
+  if (limitReached) return { ok: false, message: "Monthly scan limit reached. Upgrade to scan more posts." };
+  if (error) return { ok: false, message: error };
+  if (lead) redirect(`/app/leads/${lead.id}`);
+  return { ok: true, message: "Post scored." };
+}
+
 export async function addManualPostAction(formData: FormData): Promise<ActionResult> {
   const ctx = await requireContext();
   const store = await getStore();

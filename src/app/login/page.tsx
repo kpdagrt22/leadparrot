@@ -14,7 +14,7 @@ export default async function LoginPage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-paper px-4">
       <div className="w-full max-w-md">
-        <Link href="/" className="mb-8 flex justify-center" aria-label="Leads Nest home">
+        <Link href="/" className="mb-8 flex justify-center" aria-label="The Leads Nest home">
           <Wordmark />
         </Link>
         <div className="card p-8">

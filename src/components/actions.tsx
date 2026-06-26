@@ -1,11 +1,12 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useActionState, useState, useTransition } from "react";
+import { useFormStatus } from "react-dom";
 import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import {
   runScanAction,
-  addManualPostAction,
+  scoreManualPostFormAction,
   generateReplyAction,
   copyReplyAction,
   saveLeadAction,
@@ -163,25 +164,23 @@ export function MarkNotRelevantButton({ leadId }: { leadId: string }) {
   );
 }
 
-export function ManualPostForm({ projectId }: { projectId: string }) {
-  const [pending, start] = useTransition();
-  const [result, setResult] = useState<ActionResult | null>(null);
-  const router = useRouter();
+function ScoreSubmitButton() {
+  const { pending } = useFormStatus();
   return (
-    <form
-      className="space-y-3"
-      onSubmit={(e) => {
-        e.preventDefault();
-        const formData = new FormData(e.currentTarget);
-        formData.set("project_id", projectId);
-        start(async () => {
-          const r = await addManualPostAction(formData);
-          setResult(r);
-          if (r.ok && r.redirectTo) router.push(r.redirectTo);
-          else router.refresh();
-        });
-      }}
-    >
+    <button className="btn-primary" disabled={pending} type="submit">
+      {pending ? "Scoring…" : "Score this post"}
+    </button>
+  );
+}
+
+export function ManualPostForm({ projectId }: { projectId: string }) {
+  // Server-action form: works before hydration (native POST → redirect on
+  // success), so there is no client-only submit race. useActionState surfaces
+  // limit/error feedback inline; success redirects to the new lead.
+  const [result, formAction] = useActionState(scoreManualPostFormAction, null);
+  return (
+    <form action={formAction} className="space-y-3">
+      <input type="hidden" name="project_id" value={projectId} />
       <div>
         <label className="label" htmlFor="mp-title">Post title</label>
         <input id="mp-title" name="title" className="input" placeholder="Looking for a proposal tool…" />
@@ -195,9 +194,7 @@ export function ManualPostForm({ projectId }: { projectId: string }) {
         <input id="mp-url" name="url" className="input" placeholder="https://www.reddit.com/r/…" />
       </div>
       <div className="flex items-center gap-3">
-        <button className="btn-primary" disabled={pending} type="submit">
-          {pending ? "Scoring…" : "Score this post"}
-        </button>
+        <ScoreSubmitButton />
         <Feedback result={result} />
       </div>
     </form>

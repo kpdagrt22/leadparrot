@@ -1,7 +1,7 @@
 import type { ScoreTier } from "@/lib/types";
 
 /**
- * Weighted scoring model for Leads Nest.
+ * Weighted scoring model for The Leads Nest.
  *
  * overall = relevance*0.35 + intent*0.30 + urgency*0.20 + fit*0.15
  *

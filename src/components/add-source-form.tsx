@@ -39,7 +39,7 @@ export function AddSourceForm({ projectId }: { projectId: string }) {
       </div>
 
       {type === "reddit" && (
-        <div className="space-y-3 rounded-lg bg-ink-50 p-3">
+        <div className="space-y-3 border border-line-2 bg-surface p-3">
           <div>
             <label className="label" htmlFor="subreddits">Subreddits</label>
             <input id="subreddits" name="subreddits" className="input" placeholder="freelance, Upwork, smallbusiness" />
@@ -72,7 +72,7 @@ export function AddSourceForm({ projectId }: { projectId: string }) {
       )}
 
       {type === "hackernews" && (
-        <div className="rounded-lg bg-ink-50 p-3">
+        <div className="border border-line-2 bg-surface p-3">
           <label className="label" htmlFor="query">Search query</label>
           <input id="query" name="query" className="input" placeholder="proposal software" />
           <p className="hint">Searches HN stories + comments via the public Algolia API.</p>
@@ -80,7 +80,7 @@ export function AddSourceForm({ projectId }: { projectId: string }) {
       )}
 
       {type === "rss" && (
-        <div className="rounded-lg bg-ink-50 p-3">
+        <div className="border border-line-2 bg-surface p-3">
           <label className="label" htmlFor="url">Feed URL</label>
           <input id="url" name="url" className="input" placeholder="https://example.com/feed.xml" />
           <p className="hint">Any public RSS/Atom feed.</p>
@@ -88,13 +88,13 @@ export function AddSourceForm({ projectId }: { projectId: string }) {
       )}
 
       {type === "manual" && (
-        <p className="rounded-lg bg-ink-50 p-3 text-sm text-ink-600">
+        <p className="border border-line-2 bg-surface p-3 text-sm text-ink-600">
           Manual sources let you paste public posts to score on demand — there&apos;s nothing to configure.
         </p>
       )}
 
       {type === "web_search_placeholder" && (
-        <p className="rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-800">
+        <p className="border-l-2 border-accent bg-accent-tint p-3 text-sm text-ink-2">
           Web search is a placeholder for a future SerpAPI / Tavily / Exa / Bing integration. It requires API keys and
           never scrapes pages.
         </p>

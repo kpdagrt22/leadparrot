@@ -1,7 +1,7 @@
 /**
  * Centralized environment access + feature detection.
  *
- * Leads Nest is "validation-first": every integration is optional and the app
+ * The Leads Nest is "validation-first": every integration is optional and the app
  * must run end-to-end with zero secrets. These helpers let the rest of the code
  * branch cleanly on what is actually configured instead of throwing at startup.
  */
@@ -34,7 +34,7 @@ export const env = {
   digestFromEmail:
     str(process.env.FROM_EMAIL) ??
     str(process.env.DIGEST_FROM_EMAIL) ??
-    "Leads Nest <digest@theleadsnest.com>",
+    "The Leads Nest <digest@theleadsnest.com>",
 
   // Stripe — public price ids preferred (used client-side at checkout); fall
   // back to the legacy server-only names.

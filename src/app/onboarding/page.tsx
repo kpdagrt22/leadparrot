@@ -23,7 +23,7 @@ export default async function OnboardingPage() {
     <div className="min-h-screen bg-paper py-10">
       <div className="mx-auto max-w-2xl px-4">
         <div className="mb-6 text-center">
-          <h1 className="font-display text-3xl font-light tracking-tightest text-ink">Welcome to Leads Nest</h1>
+          <h1 className="font-display text-3xl font-light tracking-tightest text-ink">Welcome to The Leads Nest</h1>
           <p className="mt-2 text-sm text-ink-3">Tell us about your business so we can find the right conversations.</p>
         </div>
 

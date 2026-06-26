@@ -7,7 +7,7 @@ export function MarketingNav() {
   return (
     <header className="sticky top-0 z-30 border-b border-line-2 bg-paper/85 backdrop-blur">
       <div className="container-page flex h-16 items-center justify-between">
-        <Link href="/" aria-label="Leads Nest home">
+        <Link href="/" aria-label="The Leads Nest home">
           <Wordmark />
         </Link>
         <nav className="hidden items-center gap-7 md:flex">
@@ -31,7 +31,7 @@ export function MarketingFooter() {
       <div className="container-page flex flex-col items-center justify-between gap-4 py-8 text-sm text-ink-3 sm:flex-row">
         <div className="flex items-center gap-2">
           <BrandMark size={18} />
-          <span>© {new Date().getFullYear()} Leads Nest</span>
+          <span>© {new Date().getFullYear()} The Leads Nest</span>
         </div>
         <div className="flex flex-wrap items-center justify-center gap-5 font-mono text-2xs uppercase tracking-mono">
           <Link href="/pricing" className="text-ink-3 hover:text-ink">Pricing</Link>

@@ -57,7 +57,7 @@ export function renderDigestHtml(d: DigestData): string {
     <p style="color:#64748b;font-size:14px;">Top opportunities for ${escapeHtml(d.orgName)}.</p>
     <table style="width:100%;border-collapse:collapse;">${rows}</table>
     <p style="margin-top:16px;"><a href="${escapeHtml(d.dashboardUrl)}" style="background:#059669;color:#fff;padding:10px 16px;border-radius:8px;text-decoration:none;font-size:14px;">Open dashboard</a></p>
-    <p style="color:#94a3b8;font-size:11px;margin-top:24px;">Leads Nest helps you discover public conversations and draft replies. You are responsible for following each platform's rules before responding. You're receiving this because daily digests are enabled.</p>
+    <p style="color:#94a3b8;font-size:11px;margin-top:24px;">The Leads Nest helps you discover public conversations and draft replies. You are responsible for following each platform's rules before responding. You're receiving this because daily digests are enabled.</p>
   </div>`;
 }
 

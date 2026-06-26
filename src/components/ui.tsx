@@ -60,7 +60,7 @@ export function SafetyNotice({ children, className }: { children?: ReactNode; cl
       </span>
       <span>
         {children ??
-          "Leads Nest helps you discover public conversations and draft replies. You are responsible for following each platform's rules before responding."}
+          "The Leads Nest helps you discover public conversations and draft replies. You are responsible for following each platform's rules before responding."}
       </span>
     </div>
   );

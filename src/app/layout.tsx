@@ -25,12 +25,12 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Leads Nest — Find customers already asking for what you sell",
+  title: "The Leads Nest — Find customers already asking for what you sell",
   description:
-    "Leads Nest monitors public conversations, scores buyer intent, and drafts helpful replies — so you can show up at the right moment. No auto-posting. No auto-DMs.",
+    "The Leads Nest monitors public conversations, scores buyer intent, and drafts helpful replies — so you can show up at the right moment. No auto-posting. No auto-DMs.",
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? "https://theleadsnest.com"),
   openGraph: {
-    title: "Leads Nest",
+    title: "The Leads Nest",
     description:
       "Find people already asking for what you sell — and get a useful reply draft before your competitors see the thread. No auto-posting. No auto-DMs.",
     type: "website",

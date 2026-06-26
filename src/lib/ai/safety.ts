@@ -9,7 +9,7 @@ const DISCLOSURE_REMINDER = "Disclose your affiliation before mentioning your pr
  * can ignore it (the schema only requires the FIELD to exist, not that it has
  * meaningful content). This guarantees that every persisted/shown draft carries
  * a non-empty disclosure and that the safety notes remind the user to disclose
- * before they mention their product — so Leads Nest never produces a silently
+ * before they mention their product — so The Leads Nest never produces a silently
  * self-promotional reply.
  */
 export function enforceReplySafety(

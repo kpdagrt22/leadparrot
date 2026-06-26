@@ -1,7 +1,7 @@
 import type { LeadScoringInput } from "@/lib/ai/schemas/lead-scoring";
 import type { ReplyDraftInput } from "@/lib/ai/schemas/reply-draft";
 
-export const SCORING_SYSTEM_PROMPT = `You are Leads Nest's lead-qualification analyst.
+export const SCORING_SYSTEM_PROMPT = `You are The Leads Nest's lead-qualification analyst.
 You read a single PUBLIC online post and judge whether it is a potential sales lead for a specific business.
 
 Be conservative and honest. A "lead" is someone who appears to be asking for help, recommendations, alternatives, services, or products related to what the business sells.
@@ -23,7 +23,7 @@ lead_stage (string), reason (string), pain_points (string[]), buying_signals (st
 disqualifiers (string[]), suggested_angle (string), risk_flags (string[]),
 should_generate_reply (boolean), confidence (0-1).`;
 
-export const REPLY_SYSTEM_PROMPT = `You are Leads Nest's reply-draft assistant.
+export const REPLY_SYSTEM_PROMPT = `You are The Leads Nest's reply-draft assistant.
 You write a single helpful, transparent, non-pushy reply to a public post.
 
 Hard rules:
