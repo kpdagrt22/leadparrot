@@ -40,13 +40,26 @@
   --danger: #8F3F34;
   --info: #355C6B;
 
+  /* Semantic tints — consumed by ported app.css/.mobile.css notices + score
+     wells. --high-tint mirrors --accent-tint (same Verdigris family). */
+  --high-tint: #E6EBE3;
+  --medium-tint: #F0E8D6;
+  --low-tint: #F0E2DC;
+  --danger-tint: #F0DED9;
+  --info-tint: #DEE7E9;
+
   /* Motion + overlay depth */
   --ease-standard: cubic-bezier(0.2, 0, 0.1, 1);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 120ms;
+  --dur-base: 180ms;
+  --dur-slow: 280ms;
   --shadow-overlay: 0 1px 0 0 var(--line-2), 0 24px 48px -24px rgb(28 27 23 / 0.28);
+  --shadow-press: inset 0 1px 2px 0 rgb(28 27 23 / 0.12);
+  --shadow-inset: inset 0 0 0 1px var(--line);
 
   /* Premium paper grain — film/print tactility */
-  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.28'/%3E%3C/svg%3E");
 }
 
 /* ---- Base ----------------------------------------------------- */

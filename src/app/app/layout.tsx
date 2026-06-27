@@ -4,6 +4,7 @@ import { AppNav } from "@/components/app-nav";
 import { getPlan } from "@/lib/plans";
 import { SignOutButton } from "@/components/sign-out";
 import { Wordmark } from "@/components/crest/brand-mark";
+import { MobileTabBar } from "@/components/mobile/mobile-tab-bar";
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
   const ctx = await requireContext();
@@ -41,9 +42,10 @@ export default async function AppLayout({ children }: { children: React.ReactNod
             </Link>
             <Link href="/app/projects/new" className="btn-primary text-xs">New project</Link>
           </header>
-          <main className="container-page flex-1 py-8">{children}</main>
+          <main className="container-page flex-1 pt-8 pb-24 lg:pb-8">{children}</main>
         </div>
       </div>
+      <MobileTabBar />
     </div>
   );
 }

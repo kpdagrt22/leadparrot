@@ -26,7 +26,7 @@ export function Stat({ label, value, hint }: { label: string; value: ReactNode; 
 }
 
 export function Badge({ children, className }: { children: ReactNode; className?: string }) {
-  return <span className={cn("badge border-ink-200 bg-ink-100 text-ink-700", className)}>{children}</span>;
+  return <span className={cn("badge border-line-2 bg-paper-sunk text-ink-2", className)}>{children}</span>;
 }
 
 export function EmptyState({

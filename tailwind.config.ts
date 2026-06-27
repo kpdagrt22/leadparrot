@@ -80,6 +80,12 @@ const config: Config = {
         low: "var(--low)",
         danger: "var(--danger)",
         info: "var(--info)",
+        // Semantic tints — surfaces for tier wells + notices (replace bracket-hex).
+        "high-tint": "var(--high-tint)",
+        "medium-tint": "var(--medium-tint)",
+        "low-tint": "var(--low-tint)",
+        "danger-tint": "var(--danger-tint)",
+        "info-tint": "var(--info-tint)",
       },
       fontFamily: {
         display: ["var(--font-display)", "Georgia", "serif"],

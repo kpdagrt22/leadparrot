@@ -36,8 +36,8 @@ export default async function LeadsPage({
     <div className="space-y-5">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-ink-900">Lead inbox</h1>
-          <p className="text-sm text-ink-500">{leads.length} lead{leads.length === 1 ? "" : "s"} match your filters.</p>
+          <h1 className="text-2xl font-bold text-ink">Lead inbox</h1>
+          <p className="text-sm text-ink-3">{leads.length} lead{leads.length === 1 ? "" : "s"} match your filters.</p>
         </div>
         <LinkButton href="/app/projects" variant="secondary">Run a scan</LinkButton>
       </div>

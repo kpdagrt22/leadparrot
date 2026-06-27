@@ -14,11 +14,11 @@ export function AuthForm({ mode, demo }: { mode: "login" | "signup"; demo: boole
   if (demo) {
     return (
       <div className="space-y-4 text-center">
-        <p className="text-sm text-ink-600">
+        <p className="text-sm text-ink-2">
           You&apos;re in <strong>demo mode</strong> — no account needed. Jump straight into a seeded workspace.
         </p>
         <Link href="/app" className="btn-primary w-full">Enter demo workspace →</Link>
-        <p className="text-xs text-ink-400">
+        <p className="text-xs text-ink-4">
           To enable real accounts, configure Supabase keys in <code>.env.local</code>.
         </p>
       </div>
@@ -78,18 +78,18 @@ export function AuthForm({ mode, demo }: { mode: "login" | "signup"; demo: boole
         <input id="password" name="password" type="password" className="input" placeholder="••••••••" minLength={6} required />
       </div>
 
-      {error && <p className="text-sm text-red-600">{error}</p>}
-      {notice && <p className="text-sm text-brand-700">{notice}</p>}
+      {error && <p className="text-sm text-danger">{error}</p>}
+      {notice && <p className="text-sm text-accent">{notice}</p>}
 
       <button type="submit" className="btn-primary w-full" disabled={pending}>
         {pending ? "Please wait…" : mode === "signup" ? "Create account" : "Log in"}
       </button>
 
-      <p className="text-center text-sm text-ink-500">
+      <p className="text-center text-sm text-ink-3">
         {mode === "signup" ? (
-          <>Already have an account? <Link href="/login" className="text-brand-700 hover:underline">Log in</Link></>
+          <>Already have an account? <Link href="/login" className="text-accent hover:underline">Log in</Link></>
         ) : (
-          <>New to The Leads Nest? <Link href="/signup" className="text-brand-700 hover:underline">Sign up</Link></>
+          <>New to The Leads Nest? <Link href="/signup" className="text-accent hover:underline">Sign up</Link></>
         )}
       </p>
     </form>

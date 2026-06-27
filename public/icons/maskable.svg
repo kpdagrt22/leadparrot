@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 48 48" fill="none">
+  <!-- Full-bleed Verdigris ground = safe under any mask. Mark sits in the inner 60%. -->
+  <rect width="48" height="48" fill="#2E5E45"/>
+  <path d="M16 27.5L24 18L32 27.5" stroke="#F4F1E9" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
+  <path d="M20 31.5L24 26.5L28 31.5" stroke="#F4F1E9" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" opacity="0.55"/>
+</svg>

@@ -17,7 +17,7 @@ import {
 function Feedback({ result }: { result: ActionResult | null }) {
   if (!result?.message) return null;
   return (
-    <span className={cn("text-xs", result.ok ? "text-brand-700" : "text-red-600")}>{result.message}</span>
+    <span className={cn("text-xs", result.ok ? "text-accent" : "text-danger")}>{result.message}</span>
   );
 }
 
@@ -150,7 +150,7 @@ export function MarkNotRelevantButton({ leadId }: { leadId: string }) {
   const router = useRouter();
   return (
     <button
-      className="btn-ghost text-red-600 hover:bg-red-50"
+      className="btn-ghost text-danger hover:bg-danger-tint"
       disabled={pending}
       onClick={() =>
         start(async () => {

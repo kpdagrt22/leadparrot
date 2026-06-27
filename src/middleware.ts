@@ -7,8 +7,9 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    // Run on app pages; skip static assets, Next internals, and the bearer-only
-    // extension API (those requests carry no session cookie — no refresh needed).
-    "/((?!api/extension|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+    // Run on app pages; skip static assets, Next internals, the bearer-only
+    // extension API (no session cookie), and the PWA service worker + manifest
+    // (root-scoped statics that must bypass the Supabase session refresh).
+    "/((?!api/extension|_next/static|_next/image|favicon.ico|sw.js|manifest.webmanifest|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
   ],
 };

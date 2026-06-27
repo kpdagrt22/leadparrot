@@ -38,26 +38,29 @@ export function buildDigest(orgName: string, leads: LeadCandidate[]): DigestData
   };
 }
 
+// Crest palette — inline hex (email clients can't read CSS custom properties).
+// token: --ink #1C1B17 · --ink-2 #4A463C · --ink-3 #6F6A5C · --ink-4 #9A9483
+//        --line #DEDACE · --accent #2E5E45 · --paper #F4F1E9 · --on-accent #F4F1E9
 export function renderDigestHtml(d: DigestData): string {
   const rows = d.leads
     .map(
       (l) => `
-      <tr><td style="padding:12px 0;border-bottom:1px solid #e2e8f0;">
-        <div style="font-weight:600;color:#0f172a;">${escapeHtml(l.title)}</div>
-        <div style="font-size:12px;color:#64748b;margin:2px 0;">${escapeHtml(l.source)} · score ${l.score} (${l.tier})</div>
-        <div style="font-size:13px;color:#334155;">${escapeHtml(l.reason)}</div>
-        <div style="font-size:13px;color:#047857;margin-top:4px;">Angle: ${escapeHtml(l.suggested_angle)}</div>
-        ${l.url ? `<a href="${escapeHtml(l.url)}" style="font-size:12px;color:#2563eb;">View post →</a>` : ""}
+      <tr><td style="padding:12px 0;border-bottom:1px solid #DEDACE;">
+        <div style="font-weight:600;color:#1C1B17;">${escapeHtml(l.title)}</div>
+        <div style="font-size:12px;color:#6F6A5C;margin:2px 0;">${escapeHtml(l.source)} · score ${l.score} (${l.tier})</div>
+        <div style="font-size:13px;color:#4A463C;">${escapeHtml(l.reason)}</div>
+        <div style="font-size:13px;color:#2E5E45;margin-top:4px;">Angle: ${escapeHtml(l.suggested_angle)}</div>
+        ${l.url ? `<a href="${escapeHtml(l.url)}" style="font-size:12px;color:#2E5E45;">View post →</a>` : ""}
       </td></tr>`,
     )
     .join("");
 
-  return `<div style="font-family:system-ui,sans-serif;max-width:560px;margin:0 auto;">
-    <h2 style="color:#0f172a;">${escapeHtml(d.subject)}</h2>
-    <p style="color:#64748b;font-size:14px;">Top opportunities for ${escapeHtml(d.orgName)}.</p>
+  return `<div style="font-family:system-ui,sans-serif;max-width:560px;margin:0 auto;background:#F4F1E9;padding:24px;">
+    <h2 style="color:#1C1B17;">${escapeHtml(d.subject)}</h2>
+    <p style="color:#6F6A5C;font-size:14px;">Top opportunities for ${escapeHtml(d.orgName)}.</p>
     <table style="width:100%;border-collapse:collapse;">${rows}</table>
-    <p style="margin-top:16px;"><a href="${escapeHtml(d.dashboardUrl)}" style="background:#059669;color:#fff;padding:10px 16px;border-radius:8px;text-decoration:none;font-size:14px;">Open dashboard</a></p>
-    <p style="color:#94a3b8;font-size:11px;margin-top:24px;">The Leads Nest helps you discover public conversations and draft replies. You are responsible for following each platform's rules before responding. You're receiving this because daily digests are enabled.</p>
+    <p style="margin-top:16px;"><a href="${escapeHtml(d.dashboardUrl)}" style="background:#2E5E45;color:#F4F1E9;padding:10px 16px;border-radius:0;text-decoration:none;font-size:14px;">Open dashboard</a></p>
+    <p style="color:#9A9483;font-size:11px;margin-top:24px;">The Leads Nest helps you discover public conversations and draft replies. You are responsible for following each platform's rules before responding. You're receiving this because daily digests are enabled.</p>
   </div>`;
 }
 

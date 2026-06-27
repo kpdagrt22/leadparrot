@@ -50,7 +50,7 @@ export function UpgradeButton({
       >
         {pending ? "Starting checkout…" : label}
       </button>
-      {msg && <p className="mt-2 text-center text-xs text-amber-700">{msg}</p>}
+      {msg && <p className="mt-2 text-center text-xs text-medium">{msg}</p>}
     </div>
   );
 }

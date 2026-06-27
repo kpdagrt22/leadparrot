@@ -14,13 +14,13 @@ export default async function NewProjectPage({
   return (
     <div className="mx-auto max-w-2xl space-y-6">
       <div>
-        <Link href="/app/projects" className="text-sm text-ink-500 hover:text-ink-900">← Projects</Link>
-        <h1 className="mt-1 text-2xl font-bold text-ink-900">New project</h1>
-        <p className="text-sm text-ink-500">Describe what you sell so the AI can score conversations accurately.</p>
+        <Link href="/app/projects" className="text-sm text-ink-3 hover:text-ink">← Projects</Link>
+        <h1 className="mt-1 text-2xl font-bold text-ink">New project</h1>
+        <p className="text-sm text-ink-3">Describe what you sell so the AI can score conversations accurately.</p>
       </div>
 
       {error && (
-        <div className="rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700">{error}</div>
+        <div className="rounded-none border border-line-2 bg-danger-tint px-3 py-2 text-sm text-danger">{error}</div>
       )}
 
       <form action={createProjectAction} className="card space-y-5 p-6">
@@ -91,7 +91,7 @@ function Field({
   return (
     <div>
       <label className="label" htmlFor={name}>
-        {label} {required && <span className="text-red-500">*</span>}
+        {label} {required && <span className="text-danger">*</span>}
       </label>
       {textarea ? (
         <textarea id={name} name={name} className="input min-h-[90px]" placeholder={placeholder} required={required} />

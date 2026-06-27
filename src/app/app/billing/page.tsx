@@ -23,22 +23,22 @@ export default async function BillingPage({
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold text-ink-900">Billing &amp; plans</h1>
-        <p className="text-sm text-ink-500">You&apos;re on the {currentPlan.name} plan.</p>
+        <h1 className="text-2xl font-bold text-ink">Billing &amp; plans</h1>
+        <p className="text-sm text-ink-3">You&apos;re on the {currentPlan.name} plan.</p>
       </div>
 
       {status === "success" && (
-        <div className="rounded-lg border border-brand-200 bg-brand-50 px-4 py-3 text-sm text-brand-800">
+        <div className="border border-accent-line bg-accent-tint px-4 py-3 text-sm text-accent">
           Checkout complete — your subscription will update shortly.
         </div>
       )}
       {status === "cancelled" && (
-        <div className="rounded-lg border border-ink-200 bg-ink-50 px-4 py-3 text-sm text-ink-600">
+        <div className="border border-line bg-paper-sunk px-4 py-3 text-sm text-ink-2">
           Checkout cancelled. No changes were made.
         </div>
       )}
       {!stripeReady && (
-        <div className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+        <div className="border border-line-2 bg-medium-tint px-4 py-3 text-sm text-medium">
           <strong>Billing not configured.</strong> Add <code>STRIPE_SECRET_KEY</code>,{" "}
           <code>NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY</code>, and per-plan price IDs to enable checkout. Plans below are
           shown for reference.
@@ -55,11 +55,11 @@ export default async function BillingPage({
           ].map(({ label, m }) => (
             <div key={label}>
               <div className="flex items-center justify-between text-sm">
-                <span className="text-ink-600">{label}</span>
-                <span className="tabular-nums text-ink-800">{m.used} / {m.limit}</span>
+                <span className="text-ink-2">{label}</span>
+                <span className="tabular-nums text-ink">{m.used} / {m.limit}</span>
               </div>
-              <div className="mt-1 h-2 w-full overflow-hidden rounded-full bg-ink-100">
-                <div className="h-full rounded-full bg-brand-500" style={{ width: `${m.pct}%` }} />
+              <div className="mt-1 h-2 w-full overflow-hidden rounded-full bg-paper-sunk">
+                <div className="h-full rounded-full bg-accent" style={{ width: `${m.pct}%` }} />
               </div>
             </div>
           ))}
@@ -73,17 +73,17 @@ export default async function BillingPage({
           return (
             <div
               key={id}
-              className={cn("card flex flex-col p-6", plan.highlighted && "border-brand-500 ring-1 ring-brand-500")}
+              className={cn("card flex flex-col p-6", plan.highlighted && "border-accent ring-1 ring-accent")}
             >
-              <h3 className="text-lg font-semibold text-ink-900">{plan.name}</h3>
+              <h3 className="text-lg font-semibold text-ink">{plan.name}</h3>
               <div className="mt-2 flex items-baseline gap-1">
-                <span className="text-3xl font-bold text-ink-900">${plan.priceMonthly}</span>
-                <span className="text-sm text-ink-500">/mo</span>
+                <span className="text-3xl font-bold text-ink">${plan.priceMonthly}</span>
+                <span className="text-sm text-ink-3">/mo</span>
               </div>
-              <ul className="mt-4 flex-1 space-y-2 text-sm text-ink-700">
+              <ul className="mt-4 flex-1 space-y-2 text-sm text-ink-2">
                 {plan.features.map((f) => (
                   <li key={f} className="flex items-start gap-2">
-                    <span className="mt-0.5 text-brand-600" aria-hidden>✓</span>
+                    <span className="mt-0.5 text-accent" aria-hidden>✓</span>
                     <span>{f}</span>
                   </li>
                 ))}
