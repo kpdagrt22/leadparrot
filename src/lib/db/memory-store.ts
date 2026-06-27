@@ -459,6 +459,10 @@ export class MemoryStore implements DataStore {
     return state().leads.find((l) => l.organization_id === orgId && l.id === leadId) ?? null;
   }
 
+  async getLeadByRawPost(orgId: string, rawPostId: string): Promise<LeadCandidate | null> {
+    return state().leads.find((l) => l.organization_id === orgId && l.raw_post_id === rawPostId) ?? null;
+  }
+
   async updateLeadStatus(orgId: string, leadId: string, status: LeadStatus): Promise<LeadCandidate> {
     const lead = state().leads.find((l) => l.organization_id === orgId && l.id === leadId);
     if (!lead) throw new Error("Lead not found");

@@ -222,6 +222,8 @@ export interface DataStore {
   createLead(orgId: string, input: CreateLeadInput): Promise<LeadCandidate>;
   listLeads(orgId: string, filters?: LeadFilters): Promise<LeadCandidate[]>;
   getLead(orgId: string, leadId: string): Promise<LeadCandidate | null>;
+  /** The lead for a raw post, if one was already created (idempotent re-capture). */
+  getLeadByRawPost(orgId: string, rawPostId: string): Promise<LeadCandidate | null>;
   updateLeadStatus(orgId: string, leadId: string, status: LeadStatus): Promise<LeadCandidate>;
 
   // reply drafts

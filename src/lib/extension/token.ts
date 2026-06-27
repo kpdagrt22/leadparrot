@@ -27,3 +27,11 @@ export function bearerToken(req: Request): string | null {
   const m = /^Bearer\s+(.+)$/i.exec(h.trim());
   return m ? m[1].trim() : null;
 }
+
+/**
+ * Cheap shape check applied BEFORE any DB lookup — bounded length + the `tln_`
+ * prefix and a base64url body. Rejects junk without touching the store.
+ */
+export function isValidTokenShape(token: string): boolean {
+  return typeof token === "string" && token.length >= 16 && token.length <= 200 && /^tln_[A-Za-z0-9_-]+$/.test(token);
+}

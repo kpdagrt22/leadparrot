@@ -1,7 +1,8 @@
 import { describe, it, expect, beforeEach } from "vitest";
-import { generateApiToken, hashApiToken, bearerToken } from "@/lib/extension/token";
+import { generateApiToken, hashApiToken, bearerToken, isValidTokenShape } from "@/lib/extension/token";
 import { MemoryStore, __resetMemoryStore } from "@/lib/db/memory-store";
 import { DEMO_ORG_ID } from "@/lib/db/seed";
+import { scoreManualPost } from "@/lib/scan";
 
 describe("extension token util", () => {
   it("generates a prefixed token whose stored hash is not the token", () => {
@@ -24,6 +25,36 @@ describe("extension token util", () => {
     expect(bearerToken(req("bearer xyz"))).toBe("xyz");
     expect(bearerToken(req())).toBe(null);
     expect(bearerToken(req("Basic foo"))).toBe(null);
+  });
+
+  it("validates token shape before any lookup", () => {
+    expect(isValidTokenShape(generateApiToken().token)).toBe(true);
+    expect(isValidTokenShape("tln_" + "a".repeat(40))).toBe(true);
+    expect(isValidTokenShape("nope")).toBe(false);
+    expect(isValidTokenShape("Bearer x")).toBe(false);
+    expect(isValidTokenShape("tln_" + "a".repeat(400))).toBe(false);
+    expect(isValidTokenShape("tln_bad token!")).toBe(false);
+  });
+});
+
+describe("scoreManualPost idempotent re-capture (extension)", () => {
+  it("a stable external id returns the same lead, not a duplicate", async () => {
+    __resetMemoryStore();
+    const store = new MemoryStore();
+    const project = (await store.listProjects(DEMO_ORG_ID))[0];
+    const input = {
+      title: "Proposal tool?",
+      body: "Looking for a proposal tool with e-signatures.",
+      url: "https://example.test/r/p/1",
+      externalId: "manual_ext_fixedhash",
+    };
+    const a = await scoreManualPost(store, DEMO_ORG_ID, "free", project, null, input);
+    const b = await scoreManualPost(store, DEMO_ORG_ID, "free", project, null, input);
+    expect(a.lead).toBeTruthy();
+    expect(b.lead?.id).toBe(a.lead?.id);
+    // Only one lead exists for that org+post (no duplicate).
+    const leads = await store.listLeads(DEMO_ORG_ID);
+    expect(leads.filter((l) => l.id === a.lead?.id)).toHaveLength(1);
   });
 });
 

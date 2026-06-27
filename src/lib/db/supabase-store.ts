@@ -433,6 +433,18 @@ export class SupabaseStore implements DataStore {
     return (data as LeadCandidate) ?? null;
   }
 
+  async getLeadByRawPost(orgId: string, rawPostId: string): Promise<LeadCandidate | null> {
+    const { data } = await this.sb
+      .from("lead_candidates")
+      .select("*")
+      .eq("organization_id", orgId)
+      .eq("raw_post_id", rawPostId)
+      .order("created_at", { ascending: false })
+      .limit(1)
+      .maybeSingle();
+    return (data as LeadCandidate) ?? null;
+  }
+
   async updateLeadStatus(orgId: string, leadId: string, status: LeadStatus): Promise<LeadCandidate> {
     const { data, error } = await this.sb
       .from("lead_candidates")

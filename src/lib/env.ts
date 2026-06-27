@@ -85,6 +85,12 @@ export const env = {
   cronSecret: str(process.env.CRON_SECRET),
   errorWebhookUrl: str(process.env.ERROR_WEBHOOK_URL),
 
+  // Extension CORS allowlist (published chrome-extension:// / moz-extension:// ids).
+  extensionAllowedOrigins: (str(process.env.EXTENSION_ALLOWED_ORIGINS) ?? "")
+    .split(",")
+    .map((o) => o.trim())
+    .filter(Boolean),
+
   // Explicit demo toggle (used by E2E / first-run click-through).
   forceDemo: str(process.env.LEADPARROT_DEMO) === "1",
 };

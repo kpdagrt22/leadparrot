@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { resolveExtensionAuth, corsHeaders } from "@/lib/extension/auth";
+import { resolveExtensionAuth, corsHeaders, rateKey } from "@/lib/extension/auth";
 import { rateLimit } from "@/lib/ratelimit";
 import { generateReplyForLead } from "@/lib/scan";
 import { COPY_DISCLAIMER } from "@/lib/utils";
@@ -14,16 +14,16 @@ export const dynamic = "force-dynamic";
  */
 const schema = z.object({ lead_id: z.string().min(1).max(100) });
 
-export async function OPTIONS() {
-  return new NextResponse(null, { status: 204, headers: corsHeaders() });
+export async function OPTIONS(req: Request) {
+  return new NextResponse(null, { status: 204, headers: corsHeaders(req) });
 }
 
 export async function POST(req: Request) {
-  const cors = corsHeaders();
+  const cors = corsHeaders(req);
   const auth = await resolveExtensionAuth(req);
   if (!auth) return NextResponse.json({ error: "Unauthorized" }, { status: 401, headers: cors });
 
-  const rl = rateLimit(`ext-draft:${auth.tokenKey}`, { limit: 20, windowMs: 60_000 });
+  const rl = rateLimit(rateKey("ext-draft", auth, req), { limit: 20, windowMs: 60_000 });
   if (!rl.allowed) {
     return NextResponse.json({ error: "Too many requests" }, { status: 429, headers: { ...cors, "Retry-After": "60" } });
   }

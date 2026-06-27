@@ -155,14 +155,17 @@ export async function scoreManualPost(
   plan: string,
   project: Project,
   sourceId: string | null,
-  input: { title?: string; body?: string; url?: string; author_display?: string },
+  input: { title?: string; body?: string; url?: string; author_display?: string; externalId?: string },
 ): Promise<{ lead: LeadCandidate | null; limitReached: boolean; error?: string }> {
   const usage = await store.getUsageSnapshot(orgId);
   const check = checkUsage(plan, "posts_scanned", usage);
   if (!check.allowed) return { lead: null, limitReached: true };
 
-  const externalId = `manual_${(input.url || input.title || "post").slice(0, 80)}_${Date.now()}`;
-  const { post } = await store.upsertRawPost(orgId, {
+  // A caller may pass a STABLE external id (e.g. the extension hashes the post
+  // url) so re-capturing the same post is idempotent — no duplicate lead, no
+  // extra credit. The in-app paste path keeps a time-unique id.
+  const externalId = input.externalId ?? `manual_${(input.url || input.title || "post").slice(0, 80)}_${Date.now()}`;
+  const { post, created } = await store.upsertRawPost(orgId, {
     project_id: project.id,
     source_id: sourceId,
     source_type: "manual",
@@ -175,6 +178,13 @@ export async function scoreManualPost(
     posted_at: new Date().toISOString(),
     raw_json: { manual: true },
   });
+
+  // Idempotent re-capture: the post already existed → return its existing lead
+  // instead of scoring again (which would duplicate the lead and burn a credit).
+  if (!created) {
+    const existing = await store.getLeadByRawPost(orgId, post.id);
+    if (existing) return { lead: existing, limitReached: false };
+  }
 
   const lead = await scoreAndPersist(store, orgId, project, "manual", post.id, {
     external_id: externalId,
