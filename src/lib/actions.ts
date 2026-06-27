@@ -13,6 +13,7 @@ import {
   assertReplyDraftBelongsToOrg,
 } from "@/lib/auth/organizations";
 import { notify, testPayload, type NotifyChannel } from "@/lib/notify";
+import { generateApiToken } from "@/lib/extension/token";
 import type { BusinessType, LeadStatus, ReplyTone, SourceType } from "@/lib/types";
 
 export interface ActionResult {
@@ -352,7 +353,7 @@ export async function sendTestAlertAction(channel: NotifyChannel): Promise<Actio
   if (r?.status === "preview") {
     return { ok: false, message: "This channel isn't configured on the server yet (preview only). Add its keys to send for real." };
   }
-  return { ok: false, message: `Couldn't send: ${r?.detail ?? "channel not configured"}` };
+  return { ok: false, message: "Couldn't send a test on this channel. Check that it's configured and your address/number is correct." };
 }
 
 function clampInt(v: FormDataEntryValue | null, fallback: number, min: number, max: number): number {
@@ -364,6 +365,32 @@ function optHour(v: FormDataEntryValue | null): number | null {
   if (typeof v !== "string" || v.trim() === "") return null;
   const n = parseInt(v, 10);
   return Number.isNaN(n) ? null : Math.max(0, Math.min(23, n));
+}
+
+// ---------------------------------------------------------------------------
+// Browser-extension API tokens (per-user, revocable, hashed)
+// ---------------------------------------------------------------------------
+export async function createExtensionTokenAction(): Promise<{ ok: boolean; token?: string; message?: string }> {
+  const ctx = await requireContext();
+  const store = await getStore();
+  const { token, hash, prefix } = generateApiToken();
+  await store.createApiToken(ctx.organization.id, {
+    user_id: ctx.user.id,
+    name: "Browser extension",
+    token_hash: hash,
+    token_prefix: prefix,
+  });
+  revalidatePath("/app/settings");
+  // The plaintext is returned ONCE here and never stored.
+  return { ok: true, token };
+}
+
+export async function revokeExtensionTokenAction(tokenId: string): Promise<ActionResult> {
+  const ctx = await requireContext();
+  const store = await getStore();
+  await store.revokeApiToken(ctx.organization.id, tokenId);
+  revalidatePath("/app/settings");
+  return { ok: true, message: "Token revoked." };
 }
 
 function str(v: FormDataEntryValue | null): string | undefined {

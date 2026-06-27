@@ -36,11 +36,11 @@ async function metaSend(to: string, payload: NotifyPayload): Promise<SendOutcome
       }),
     });
     if (!res.ok) {
-      const detail = await res.text().catch(() => "");
-      return { ok: false, detail: `meta ${res.status}: ${detail.slice(0, 160)}` };
+      // Do not echo Meta's response body (may include request details).
+      return { ok: false, detail: `meta error ${res.status}` };
     }
     return { ok: true, detail: "meta" };
-  } catch (err) {
-    return { ok: false, detail: err instanceof Error ? err.message : "whatsapp send failed" };
+  } catch {
+    return { ok: false, detail: "whatsapp send failed" };
   }
 }

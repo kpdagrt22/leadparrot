@@ -12,6 +12,7 @@ import type {
   Subscription,
   LeadStatus,
   UsageEvent,
+  ApiToken,
 } from "@/lib/types";
 import { scoreTier, isHighIntent } from "@/lib/scoring/score";
 import type { UsageSnapshot } from "@/lib/usage/limits";
@@ -29,7 +30,24 @@ import type {
   AdminStats,
   AiLogInput,
   RecordNotificationInput,
+  CreateApiTokenInput,
 } from "@/lib/db/store";
+
+/** Internal token record (keeps the hash; ApiToken returned to callers omits it). */
+type StoredApiToken = ApiToken & { token_hash: string };
+
+function publicToken(t: StoredApiToken): ApiToken {
+  return {
+    id: t.id,
+    organization_id: t.organization_id,
+    user_id: t.user_id,
+    name: t.name,
+    token_prefix: t.token_prefix,
+    last_used_at: t.last_used_at,
+    revoked_at: t.revoked_at,
+    created_at: t.created_at,
+  };
+}
 
 interface State {
   profiles: Profile[];
@@ -53,6 +71,7 @@ interface State {
     detail: string | null;
     created_at: string;
   }>;
+  apiTokens: StoredApiToken[];
 }
 
 // Module-level singleton so all requests in a dev/demo session share data.
@@ -74,6 +93,7 @@ function freshState(): State {
     usageEvents: [],
     aiLogs: [],
     notifications: [],
+    apiTokens: [],
   };
 }
 
@@ -189,6 +209,41 @@ export class MemoryStore implements DataStore {
       .notifications.filter((n) => n.organization_id === orgId && n.event === event && n.status === "sent")
       .sort((a, b) => b.created_at.localeCompare(a.created_at));
     return rows[0]?.created_at ?? null;
+  }
+
+  async createApiToken(orgId: string, input: CreateApiTokenInput): Promise<ApiToken> {
+    const token: StoredApiToken = {
+      id: randomUUID(),
+      organization_id: orgId,
+      user_id: input.user_id ?? null,
+      name: input.name ?? "Browser extension",
+      token_prefix: input.token_prefix,
+      token_hash: input.token_hash,
+      last_used_at: null,
+      revoked_at: null,
+      created_at: nowIso(),
+    };
+    state().apiTokens.push(token);
+    return publicToken(token);
+  }
+
+  async listApiTokens(orgId: string): Promise<ApiToken[]> {
+    return state()
+      .apiTokens.filter((t) => t.organization_id === orgId)
+      .sort((a, b) => b.created_at.localeCompare(a.created_at))
+      .map(publicToken);
+  }
+
+  async revokeApiToken(orgId: string, tokenId: string): Promise<void> {
+    const t = state().apiTokens.find((x) => x.organization_id === orgId && x.id === tokenId);
+    if (t && !t.revoked_at) t.revoked_at = nowIso();
+  }
+
+  async getApiTokenByHash(hash: string): Promise<{ id: string; organization_id: string } | null> {
+    const t = state().apiTokens.find((x) => x.token_hash === hash && !x.revoked_at);
+    if (!t) return null;
+    t.last_used_at = nowIso();
+    return { id: t.id, organization_id: t.organization_id };
   }
 
   async getSubscription(orgId: string): Promise<Subscription> {

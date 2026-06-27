@@ -38,8 +38,8 @@ async function sendSmtp(to: string, payload: NotifyPayload): Promise<SendOutcome
       html: payload.html,
     });
     return { ok: true, detail: "smtp" };
-  } catch (err) {
-    return { ok: false, detail: err instanceof Error ? err.message : "smtp send failed" };
+  } catch {
+    return { ok: false, detail: "smtp send failed" };
   }
 }
 
@@ -57,11 +57,11 @@ async function sendResend(to: string, payload: NotifyPayload): Promise<SendOutco
       }),
     });
     if (!res.ok) {
-      const detail = await res.text().catch(() => "");
-      return { ok: false, detail: `resend ${res.status}: ${detail.slice(0, 160)}` };
+      // Do not echo the provider's response body (may contain request details).
+      return { ok: false, detail: `resend error ${res.status}` };
     }
     return { ok: true, detail: "resend" };
-  } catch (err) {
-    return { ok: false, detail: err instanceof Error ? err.message : "resend send failed" };
+  } catch {
+    return { ok: false, detail: "resend send failed" };
   }
 }

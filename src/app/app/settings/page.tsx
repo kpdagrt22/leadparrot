@@ -1,8 +1,11 @@
 import { requireContext } from "@/lib/auth";
+import { getStore } from "@/lib/db";
 import { updateSettingsAction } from "@/lib/actions";
 import { SectionTitle } from "@/components/ui";
 import { TestAlertButtons } from "@/components/notification-settings";
+import { ExtensionTokens } from "@/components/extension-tokens";
 import {
+  env,
   isEmailChannelConfigured,
   isTwilioSmsConfigured,
   isWhatsAppConfigured,
@@ -21,6 +24,8 @@ function VerifiedBadge({ verified }: { verified: boolean }) {
 export default async function SettingsPage() {
   const ctx = await requireContext();
   const org = ctx.organization;
+  const store = await getStore();
+  const tokens = await store.listApiTokens(org.id);
   const emailLive = isEmailChannelConfigured();
   const smsLive = isTwilioSmsConfigured();
   const waLive = isWhatsAppConfigured();
@@ -140,6 +145,22 @@ export default async function SettingsPage() {
       <div className="card space-y-3 p-6">
         <SectionTitle subtitle="Save first, then send a test to confirm a channel before it goes live.">Verify your channels</SectionTitle>
         <TestAlertButtons />
+      </div>
+
+      <div className="card space-y-3 p-6">
+        <SectionTitle subtitle="Capture a public post you're viewing, score it, and copy a disclosed reply — from your browser.">
+          Browser extension
+        </SectionTitle>
+        <ol className="list-decimal space-y-1 pl-5 text-sm text-ink-2">
+          <li>Generate a token below and copy it.</li>
+          <li>Load the <code className="font-mono text-xs">extension/</code> folder (chrome://extensions → Load unpacked) and open its Options.</li>
+          <li>Paste the token and set the API base URL to <code className="font-mono text-xs">{env.appUrl}</code>.</li>
+        </ol>
+        <ExtensionTokens tokens={tokens} />
+        <p className="hint">
+          Tokens are per-device and revocable. The extension only captures the single post you click on — it never
+          scrapes feeds or posts anything.
+        </p>
       </div>
 
       <div className="card p-6">

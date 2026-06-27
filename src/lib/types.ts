@@ -231,6 +231,18 @@ export interface UsageEvent {
   created_at: string;
 }
 
+/** Per-user revocable API token for the browser extension (hash never exposed). */
+export interface ApiToken {
+  id: string;
+  organization_id: string;
+  user_id: string | null;
+  name: string;
+  token_prefix: string;
+  last_used_at: string | null;
+  revoked_at: string | null;
+  created_at: string;
+}
+
 /** Joined view used by the lead inbox / detail pages. */
 export interface LeadWithRelations extends LeadCandidate {
   project_name?: string;

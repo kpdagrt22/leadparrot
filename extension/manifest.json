@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "The Leads Nest — Capture",
+  "version": "0.1.0",
+  "description": "Capture a public post you're viewing, see its lead score, and copy a disclosed reply draft. Discovery only — never posts, DMs, or scrapes.",
+  "permissions": ["activeTab", "scripting", "storage"],
+  "host_permissions": ["https://theleadsnest.com/*"],
+  "action": {
+    "default_title": "Capture this post",
+    "default_popup": "popup.html"
+  },
+  "options_page": "options.html",
+  "background": {
+    "service_worker": "background.js"
+  }
+}

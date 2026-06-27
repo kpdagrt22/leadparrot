@@ -15,6 +15,7 @@ import type {
   ReplyTone,
   BusinessType,
   ScoreTier,
+  ApiToken,
 } from "@/lib/types";
 import type { UsageSnapshot } from "@/lib/usage/limits";
 
@@ -46,6 +47,13 @@ export interface RecordNotificationInput {
   status: "sent" | "skipped" | "error" | "preview";
   target?: string | null;
   detail?: string | null;
+}
+
+export interface CreateApiTokenInput {
+  user_id?: string | null;
+  name?: string;
+  token_hash: string;
+  token_prefix: string;
 }
 
 export interface CreateProjectInput {
@@ -180,6 +188,14 @@ export interface DataStore {
   // notifications (account-owner alerts: delivery log + dedupe)
   recordNotification(orgId: string, input: RecordNotificationInput): Promise<void>;
   getLastNotificationAt(orgId: string, event: string): Promise<string | null>;
+
+  // extension API tokens (per-user, revocable, hashed)
+  createApiToken(orgId: string, input: CreateApiTokenInput): Promise<ApiToken>;
+  listApiTokens(orgId: string): Promise<ApiToken[]>;
+  revokeApiToken(orgId: string, tokenId: string): Promise<void>;
+  /** Unscoped lookup by hash (used by the extension route via admin client);
+   *  returns the owning org for a non-revoked token and touches last_used_at. */
+  getApiTokenByHash(hash: string): Promise<{ id: string; organization_id: string } | null>;
 
   // projects
   listProjects(orgId: string): Promise<Project[]>;

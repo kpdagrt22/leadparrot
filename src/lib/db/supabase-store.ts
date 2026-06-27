@@ -11,6 +11,7 @@ import type {
   SavedLead,
   Subscription,
   LeadStatus,
+  ApiToken,
 } from "@/lib/types";
 import { scoreTier, isHighIntent, HIGH_INTENT_THRESHOLD } from "@/lib/scoring/score";
 import type { UsageSnapshot } from "@/lib/usage/limits";
@@ -27,7 +28,10 @@ import type {
   AdminStats,
   AiLogInput,
   RecordNotificationInput,
+  CreateApiTokenInput,
 } from "@/lib/db/store";
+
+const API_TOKEN_COLS = "id, organization_id, user_id, name, token_prefix, last_used_at, revoked_at, created_at";
 
 /**
  * Supabase-backed DataStore. Org scoping is enforced both by explicit filters
@@ -132,6 +136,52 @@ export class SupabaseStore implements DataStore {
       .limit(1)
       .maybeSingle();
     return (data as { created_at: string } | null)?.created_at ?? null;
+  }
+
+  async createApiToken(orgId: string, input: CreateApiTokenInput): Promise<ApiToken> {
+    const { data, error } = await this.sb
+      .from("api_tokens")
+      .insert({
+        organization_id: orgId,
+        user_id: input.user_id ?? null,
+        name: input.name ?? "Browser extension",
+        token_hash: input.token_hash,
+        token_prefix: input.token_prefix,
+      })
+      .select(API_TOKEN_COLS)
+      .single();
+    return this.orThrow(data as ApiToken, error, "createApiToken");
+  }
+
+  async listApiTokens(orgId: string): Promise<ApiToken[]> {
+    const { data } = await this.sb
+      .from("api_tokens")
+      .select(API_TOKEN_COLS)
+      .eq("organization_id", orgId)
+      .order("created_at", { ascending: false });
+    return (data as ApiToken[]) ?? [];
+  }
+
+  async revokeApiToken(orgId: string, tokenId: string): Promise<void> {
+    await this.sb
+      .from("api_tokens")
+      .update({ revoked_at: new Date().toISOString() })
+      .eq("organization_id", orgId)
+      .eq("id", tokenId)
+      .is("revoked_at", null);
+  }
+
+  async getApiTokenByHash(hash: string): Promise<{ id: string; organization_id: string } | null> {
+    const { data } = await this.sb
+      .from("api_tokens")
+      .select("id, organization_id")
+      .eq("token_hash", hash)
+      .is("revoked_at", null)
+      .maybeSingle();
+    if (!data) return null;
+    const row = data as { id: string; organization_id: string };
+    await this.sb.from("api_tokens").update({ last_used_at: new Date().toISOString() }).eq("id", row.id);
+    return row;
   }
 
   async getSubscription(orgId: string): Promise<Subscription> {

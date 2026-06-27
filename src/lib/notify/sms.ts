@@ -23,11 +23,11 @@ export async function twilioSend(opts: { from: string; to: string; body: string 
       body: form.toString(),
     });
     if (!res.ok) {
-      const detail = await res.text().catch(() => "");
-      return { ok: false, detail: `twilio ${res.status}: ${detail.slice(0, 160)}` };
+      // Do not echo Twilio's response body (may include request details).
+      return { ok: false, detail: `twilio error ${res.status}` };
     }
     return { ok: true, detail: "twilio" };
-  } catch (err) {
-    return { ok: false, detail: err instanceof Error ? err.message : "twilio send failed" };
+  } catch {
+    return { ok: false, detail: "twilio send failed" };
   }
 }
