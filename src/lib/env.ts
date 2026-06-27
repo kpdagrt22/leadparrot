@@ -63,6 +63,24 @@ export const env = {
     .map((e) => e.trim().toLowerCase())
     .filter(Boolean),
 
+  // Notifications — Email channel (SMTP preferred, then Resend, then console).
+  emailProvider: str(process.env.EMAIL_PROVIDER)?.toLowerCase(),
+  smtpHost: str(process.env.SMTP_HOST),
+  smtpPort: Number(str(process.env.SMTP_PORT) ?? "587"),
+  smtpSecure: str(process.env.SMTP_SECURE) === "true",
+  smtpUser: str(process.env.SMTP_USER),
+  smtpPass: str(process.env.SMTP_PASS),
+  smtpFrom: str(process.env.SMTP_FROM) ?? "The Leads Nest <alerts@theleadsnest.com>",
+  // Notifications — SMS (Twilio) to the account owner's verified number.
+  twilioAccountSid: str(process.env.TWILIO_ACCOUNT_SID),
+  twilioAuthToken: str(process.env.TWILIO_AUTH_TOKEN),
+  twilioSmsFrom: str(process.env.TWILIO_SMS_FROM),
+  // Notifications — WhatsApp (Twilio WhatsApp OR Meta Cloud API).
+  twilioWhatsappFrom: str(process.env.TWILIO_WHATSAPP_FROM),
+  whatsappToken: str(process.env.WHATSAPP_TOKEN),
+  whatsappPhoneNumberId: str(process.env.WHATSAPP_PHONE_NUMBER_ID),
+  whatsappTemplateNamespace: str(process.env.WHATSAPP_TEMPLATE_NAMESPACE),
+
   // Background jobs + observability
   cronSecret: str(process.env.CRON_SECRET),
   errorWebhookUrl: str(process.env.ERROR_WEBHOOK_URL),
@@ -96,6 +114,38 @@ export function isStripeConfigured(): boolean {
 
 export function isResendConfigured(): boolean {
   return Boolean(env.resendApiKey);
+}
+
+export function isSmtpConfigured(): boolean {
+  return Boolean(env.smtpHost && env.smtpUser && env.smtpPass);
+}
+
+/** Email alerts can be delivered for real (SMTP or Resend). */
+export function isEmailChannelConfigured(): boolean {
+  return isSmtpConfigured() || isResendConfigured();
+}
+
+/** Resolve the effective email transport, honoring EMAIL_PROVIDER then config. */
+export function resolvedEmailProvider(): "smtp" | "resend" | "console" {
+  const p = env.emailProvider;
+  if (p === "smtp") return isSmtpConfigured() ? "smtp" : isResendConfigured() ? "resend" : "console";
+  if (p === "resend") return isResendConfigured() ? "resend" : isSmtpConfigured() ? "smtp" : "console";
+  if (p === "console") return "console";
+  if (isSmtpConfigured()) return "smtp";
+  if (isResendConfigured()) return "resend";
+  return "console";
+}
+
+export function isTwilioSmsConfigured(): boolean {
+  return Boolean(env.twilioAccountSid && env.twilioAuthToken && env.twilioSmsFrom);
+}
+
+export function isWhatsAppConfigured(): boolean {
+  // Either Twilio WhatsApp (needs Twilio creds + a whatsapp: from) OR Meta Cloud.
+  return Boolean(
+    (env.twilioWhatsappFrom && env.twilioAccountSid && env.twilioAuthToken) ||
+      (env.whatsappToken && env.whatsappPhoneNumberId),
+  );
 }
 
 export function isRedditConfigured(): boolean {

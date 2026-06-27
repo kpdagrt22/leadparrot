@@ -26,6 +26,7 @@ import type {
   DashboardStats,
   AdminStats,
   AiLogInput,
+  RecordNotificationInput,
 } from "@/lib/db/store";
 
 /**
@@ -69,6 +70,11 @@ export class SupabaseStore implements DataStore {
     return org ?? null;
   }
 
+  async getOrganizationById(orgId: string): Promise<Organization | null> {
+    const { data } = await this.sb.from("organizations").select("*").eq("id", orgId).maybeSingle();
+    return (data as Organization) ?? null;
+  }
+
   async createOrganization(input: CreateOrganizationInput): Promise<Organization> {
     const { data, error } = await this.sb
       .from("organizations")
@@ -102,6 +108,30 @@ export class SupabaseStore implements DataStore {
       .select("*")
       .single();
     return this.orThrow(data as Organization, error, "updateOrganization");
+  }
+
+  async recordNotification(orgId: string, input: RecordNotificationInput): Promise<void> {
+    await this.sb.from("notifications").insert({
+      organization_id: orgId,
+      channel: input.channel,
+      event: input.event,
+      status: input.status,
+      target: input.target ?? null,
+      detail: input.detail ?? null,
+    });
+  }
+
+  async getLastNotificationAt(orgId: string, event: string): Promise<string | null> {
+    const { data } = await this.sb
+      .from("notifications")
+      .select("created_at")
+      .eq("organization_id", orgId)
+      .eq("event", event)
+      .eq("status", "sent")
+      .order("created_at", { ascending: false })
+      .limit(1)
+      .maybeSingle();
+    return (data as { created_at: string } | null)?.created_at ?? null;
   }
 
   async getSubscription(orgId: string): Promise<Subscription> {

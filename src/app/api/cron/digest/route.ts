@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { env, isResendConfigured } from "@/lib/env";
 import { createAdminSupabase } from "@/lib/supabase/admin";
-import { buildDigest, sendDigest } from "@/lib/email/digest";
+import { buildDigest, renderDigestHtml } from "@/lib/email/digest";
+import { emailAdapter } from "@/lib/notify";
 import { captureError } from "@/lib/observability";
 import type { LeadCandidate, Organization } from "@/lib/types";
 
@@ -84,20 +85,26 @@ async function run(req: Request) {
 
         const digest = buildDigest(org.name, top);
         const to = org.notification_email as string;
-        const result = await sendDigest(to, digest);
+        // Deliver through the notify email adapter (SMTP → Resend → console).
+        const result = await emailAdapter.send(to, {
+          subject: digest.subject,
+          text: `Your top ${top.length} lead opportunities for ${org.name}. Open ${digest.dashboardUrl}`,
+          html: renderDigestHtml(digest),
+        });
+        const status = result.ok ? (result.preview ? "preview" : "sent") : "error";
 
         await sb.from("digest_emails").insert({
           organization_id: org.id,
           subject: digest.subject,
           sent_to: to,
           lead_count: top.length,
-          status: result.sent ? "sent" : result.previewOnly ? "preview" : "error",
-          sent_at: result.sent ? new Date().toISOString() : null,
+          status,
+          sent_at: status === "sent" ? new Date().toISOString() : null,
         });
 
         summary.processed += 1;
-        if (result.sent) summary.sent += 1;
-        else if (result.previewOnly) summary.previews += 1;
+        if (status === "sent") summary.sent += 1;
+        else if (status === "preview") summary.previews += 1;
         else summary.errors += 1;
       } catch (err) {
         summary.errors += 1;

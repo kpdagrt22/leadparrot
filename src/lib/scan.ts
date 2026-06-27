@@ -4,12 +4,14 @@ import { getFetcher } from "@/lib/sources";
 import type { FetchedPost } from "@/lib/sources/types";
 import { transition } from "@/lib/sources/status";
 import { filterPost } from "@/lib/scoring/keywords";
-import { computeOverallScore, clampScore, clamp01 } from "@/lib/scoring/score";
+import { computeOverallScore, clampScore, clamp01, HIGH_INTENT_THRESHOLD } from "@/lib/scoring/score";
 import { scoreLead, draftReply } from "@/lib/ai/service";
 import { enforceReplySafety } from "@/lib/ai/safety";
 import { checkUsage } from "@/lib/usage/limits";
 import { truncate } from "@/lib/utils";
 import { captureError } from "@/lib/observability";
+import { env } from "@/lib/env";
+import { notify, leadAlertPayload } from "@/lib/notify";
 
 export interface ScanSummary {
   runId: string | null;
@@ -47,6 +49,11 @@ export async function runSourceScan(
     limitReached: false,
     usedMock: false,
   };
+
+  // Owner-alert context: count leads at/above the org's high-intent threshold.
+  const org = await store.getOrganizationById(orgId).catch(() => null);
+  const threshold = org?.high_intent_threshold ?? HIGH_INTENT_THRESHOLD;
+  let highIntentCreated = 0;
 
   try {
     await store.updateSourceRun(orgId, run.id, {
@@ -100,9 +107,10 @@ export async function runSourceScan(
         continue;
       }
 
-      await scoreAndPersist(store, orgId, project, source.source_type, rawPost.id, post);
+      const lead = await scoreAndPersist(store, orgId, project, source.source_type, rawPost.id, post);
       summary.scored += 1;
       summary.leadsCreated += 1;
+      if (lead.overall_score >= threshold) highIntentCreated += 1;
     }
 
     await store.updateSourceRun(orgId, run.id, {
@@ -119,6 +127,22 @@ export async function runSourceScan(
       finished_at: new Date().toISOString(),
       error_message: summary.error,
     });
+  }
+
+  // Owner alert: new high-intent leads. Best-effort, never affects scan status;
+  // notify() handles enabled channels + dedupe + quiet hours + degrade-safe.
+  if (!summary.error && highIntentCreated > 0) {
+    try {
+      await notify(
+        store,
+        orgId,
+        "new_high_intent_lead",
+        leadAlertPayload(project.name, highIntentCreated, env.appUrl),
+        { dedupeWindowMinutes: 55, respectQuietHours: true },
+      );
+    } catch (err) {
+      captureError(err, { scope: "notify-scan", orgId, projectId: project.id });
+    }
   }
 
   return summary;

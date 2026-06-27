@@ -28,6 +28,7 @@ import type {
   DashboardStats,
   AdminStats,
   AiLogInput,
+  RecordNotificationInput,
 } from "@/lib/db/store";
 
 interface State {
@@ -43,6 +44,15 @@ interface State {
   subscriptions: Subscription[];
   usageEvents: UsageEvent[];
   aiLogs: Array<{ status: string; source_type?: string; created_at: string; organization_id: string }>;
+  notifications: Array<{
+    organization_id: string;
+    channel: string;
+    event: string;
+    status: string;
+    target: string | null;
+    detail: string | null;
+    created_at: string;
+  }>;
 }
 
 // Module-level singleton so all requests in a dev/demo session share data.
@@ -63,6 +73,7 @@ function freshState(): State {
     subscriptions: seed.subscriptions,
     usageEvents: [],
     aiLogs: [],
+    notifications: [],
   };
 }
 
@@ -109,6 +120,10 @@ export class MemoryStore implements DataStore {
     return state().organizations.find((o) => o.owner_id === userId) ?? null;
   }
 
+  async getOrganizationById(orgId: string): Promise<Organization | null> {
+    return state().organizations.find((o) => o.id === orgId) ?? null;
+  }
+
   async createOrganization(input: CreateOrganizationInput): Promise<Organization> {
     const s = state();
     const org: Organization = {
@@ -122,6 +137,16 @@ export class MemoryStore implements DataStore {
       reply_tone: input.reply_tone ?? "helpful",
       notification_email: input.notification_email ?? null,
       daily_digest_enabled: input.daily_digest_enabled ?? true,
+      notify_email_enabled: input.notify_email_enabled ?? false,
+      notify_sms_enabled: input.notify_sms_enabled ?? false,
+      notify_whatsapp_enabled: input.notify_whatsapp_enabled ?? false,
+      notify_phone: input.notify_phone ?? null,
+      notify_email_verified: input.notify_email_verified ?? false,
+      notify_phone_verified: input.notify_phone_verified ?? false,
+      high_intent_threshold: input.high_intent_threshold ?? 70,
+      quiet_hours_start: input.quiet_hours_start ?? null,
+      quiet_hours_end: input.quiet_hours_end ?? null,
+      digest_hour: input.digest_hour ?? 13,
       created_at: nowIso(),
       updated_at: nowIso(),
     };
@@ -145,6 +170,25 @@ export class MemoryStore implements DataStore {
     if (!org) throw new Error("Organization not found");
     Object.assign(org, patch, { updated_at: nowIso() });
     return org;
+  }
+
+  async recordNotification(orgId: string, input: RecordNotificationInput): Promise<void> {
+    state().notifications.push({
+      organization_id: orgId,
+      channel: input.channel,
+      event: input.event,
+      status: input.status,
+      target: input.target ?? null,
+      detail: input.detail ?? null,
+      created_at: nowIso(),
+    });
+  }
+
+  async getLastNotificationAt(orgId: string, event: string): Promise<string | null> {
+    const rows = state()
+      .notifications.filter((n) => n.organization_id === orgId && n.event === event && n.status === "sent")
+      .sort((a, b) => b.created_at.localeCompare(a.created_at));
+    return rows[0]?.created_at ?? null;
   }
 
   async getSubscription(orgId: string): Promise<Subscription> {

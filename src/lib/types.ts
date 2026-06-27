@@ -72,6 +72,17 @@ export interface Organization {
   reply_tone: ReplyTone;
   notification_email: string | null;
   daily_digest_enabled: boolean;
+  // Account-owner alert settings (alerts go to the owner only, never to a lead).
+  notify_email_enabled: boolean;
+  notify_sms_enabled: boolean;
+  notify_whatsapp_enabled: boolean;
+  notify_phone: string | null;
+  notify_email_verified: boolean;
+  notify_phone_verified: boolean;
+  high_intent_threshold: number;
+  quiet_hours_start: number | null;
+  quiet_hours_end: number | null;
+  digest_hour: number;
   created_at: string;
   updated_at: string;
 }
