@@ -12,6 +12,11 @@ import type {
   Subscription,
   LeadStatus,
   ApiToken,
+  FeedbackTicket,
+  TicketMessage,
+  TicketStatus,
+  TicketWithMessages,
+  AdminTicketRow,
 } from "@/lib/types";
 import { scoreTier, isHighIntent, HIGH_INTENT_THRESHOLD } from "@/lib/scoring/score";
 import type { UsageSnapshot } from "@/lib/usage/limits";
@@ -29,9 +34,21 @@ import type {
   AiLogInput,
   RecordNotificationInput,
   CreateApiTokenInput,
+  CreateTicketInput,
+  AddTicketMessageInput,
+  TicketFilters,
 } from "@/lib/db/store";
 
 const API_TOKEN_COLS = "id, organization_id, user_id, name, token_prefix, last_used_at, revoked_at, created_at";
+
+/**
+ * Strip PostgREST filter metacharacters so a `search` term can never break out
+ * of the `.or(...ilike...)` filter tree (defense-in-depth, parity with the
+ * plain `includes` used by MemoryStore). Caps length as an abuse guard.
+ */
+function safeIlike(s: string): string {
+  return s.replace(/[,()*\\%]/g, " ").replace(/\s+/g, " ").trim().slice(0, 100);
+}
 
 /**
  * Supabase-backed DataStore. Org scoping is enforced both by explicit filters
@@ -651,6 +668,139 @@ export class SupabaseStore implements DataStore {
       lastRun: runs[0] ?? null,
       recentHighIntent: high.slice(0, 5),
     };
+  }
+
+  // ---- feedback / support tickets (org-scoped via explicit .eq + RLS) ----
+  async createTicket(orgId: string, input: CreateTicketInput): Promise<FeedbackTicket> {
+    const { data, error } = await this.sb
+      .from("feedback_tickets")
+      .insert({
+        organization_id: orgId,
+        created_by: input.created_by,
+        type: input.type,
+        subject: input.subject,
+        body: input.body,
+        page_context: {
+          route: input.page_context?.route ?? null,
+          url: input.page_context?.url ?? null,
+          user_agent: input.page_context?.user_agent ?? null,
+        },
+        severity: input.severity ?? "normal",
+      })
+      .select("*")
+      .single();
+    return this.orThrow(data as FeedbackTicket, error, "createTicket");
+  }
+
+  async listTickets(orgId: string, filters: TicketFilters = {}): Promise<FeedbackTicket[]> {
+    let q = this.sb.from("feedback_tickets").select("*").eq("organization_id", orgId);
+    if (filters.status) q = q.eq("status", filters.status);
+    if (filters.type) q = q.eq("type", filters.type);
+    if (filters.created_by) q = q.eq("created_by", filters.created_by);
+    if (filters.search) {
+      const s = safeIlike(filters.search);
+      if (s) q = q.or(`subject.ilike.%${s}%,body.ilike.%${s}%`);
+    }
+    q =
+      filters.sort === "updated"
+        ? q.order("updated_at", { ascending: false })
+        : q.order("created_at", { ascending: false });
+    if (filters.limit) q = q.limit(filters.limit);
+    const { data } = await q;
+    return (data as FeedbackTicket[]) ?? [];
+  }
+
+  async getTicket(orgId: string, ticketId: string): Promise<TicketWithMessages | null> {
+    const { data } = await this.sb
+      .from("feedback_tickets")
+      .select("*")
+      .eq("organization_id", orgId)
+      .eq("id", ticketId)
+      .maybeSingle();
+    if (!data) return null;
+    const { data: msgs } = await this.sb
+      .from("ticket_messages")
+      .select("*")
+      .eq("organization_id", orgId)
+      .eq("ticket_id", ticketId)
+      .order("created_at", { ascending: true });
+    // creator_name is own-row-only under user-scoped RLS → null here (the
+    // service-role triage path resolves it). See store.ts parity caveat.
+    return { ...(data as FeedbackTicket), messages: (msgs as TicketMessage[]) ?? [], creator_name: null };
+  }
+
+  async updateTicketStatus(orgId: string, ticketId: string, status: TicketStatus): Promise<FeedbackTicket> {
+    const { data, error } = await this.sb
+      .from("feedback_tickets")
+      .update({ status, updated_at: new Date().toISOString() })
+      .eq("organization_id", orgId)
+      .eq("id", ticketId)
+      .select("*")
+      .single();
+    return this.orThrow(data as FeedbackTicket, error, "updateTicketStatus");
+  }
+
+  async addTicketMessage(orgId: string, ticketId: string, input: AddTicketMessageInput): Promise<TicketMessage> {
+    const { data, error } = await this.sb
+      .from("ticket_messages")
+      .insert({
+        organization_id: orgId,
+        ticket_id: ticketId,
+        author_id: input.author_id,
+        author_role: input.author_role ?? "user",
+        body: input.body,
+      })
+      .select("*")
+      .single();
+    const msg = this.orThrow(data as TicketMessage, error, "addTicketMessage");
+    // A child insert does NOT fire the parent's set_updated_at trigger — bump it
+    // explicitly so "newest activity" sort matches MemoryStore.
+    await this.sb
+      .from("feedback_tickets")
+      .update({ updated_at: new Date().toISOString() })
+      .eq("organization_id", orgId)
+      .eq("id", ticketId);
+    return msg;
+  }
+
+  async listAllTickets(filters: TicketFilters = {}): Promise<AdminTicketRow[]> {
+    let q = this.sb.from("feedback_tickets").select("*, organizations(name)");
+    if (filters.status) q = q.eq("status", filters.status);
+    if (filters.type) q = q.eq("type", filters.type);
+    if (filters.search) {
+      const s = safeIlike(filters.search);
+      if (s) q = q.or(`subject.ilike.%${s}%,body.ilike.%${s}%`);
+    }
+    q =
+      filters.sort === "updated"
+        ? q.order("updated_at", { ascending: false })
+        : q.order("created_at", { ascending: false });
+    if (filters.limit) q = q.limit(filters.limit);
+    const { data } = await q;
+    const rows = (data as Array<FeedbackTicket & { organizations?: { name: string } | null }>) ?? [];
+    return rows.map(({ organizations, ...t }) => ({ ...t, organization_name: organizations?.name ?? null }));
+  }
+
+  async getTicketAnyOrg(ticketId: string): Promise<TicketWithMessages | null> {
+    const { data } = await this.sb.from("feedback_tickets").select("*").eq("id", ticketId).maybeSingle();
+    if (!data) return null;
+    const ticket = data as FeedbackTicket;
+    const { data: msgs } = await this.sb
+      .from("ticket_messages")
+      .select("*")
+      .eq("ticket_id", ticketId)
+      .order("created_at", { ascending: true });
+    let creator_name: string | null = null;
+    if (ticket.created_by) {
+      // service-role client (admin triage) can read the creator's profile.
+      const { data: prof } = await this.sb
+        .from("profiles")
+        .select("full_name")
+        .eq("id", ticket.created_by)
+        .maybeSingle();
+      creator_name = (prof as { full_name: string | null } | null)?.full_name ?? null;
+    }
+    return { ...ticket, messages: (msgs as TicketMessage[]) ?? [], creator_name };
   }
 
   async getAdminStats(): Promise<AdminStats> {

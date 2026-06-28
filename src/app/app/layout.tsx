@@ -5,6 +5,7 @@ import { getPlan } from "@/lib/plans";
 import { SignOutButton } from "@/components/sign-out";
 import { Wordmark } from "@/components/crest/brand-mark";
 import { MobileTabBar } from "@/components/mobile/mobile-tab-bar";
+import { FeedbackLauncher } from "@/components/feedback/feedback-launcher";
 
 export default async function AppLayout({ children }: { children: React.ReactNode }) {
   const ctx = await requireContext();
@@ -46,6 +47,7 @@ export default async function AppLayout({ children }: { children: React.ReactNod
         </div>
       </div>
       <MobileTabBar />
+      <FeedbackLauncher isAdmin={ctx.isAdmin} demo={ctx.demo} />
     </div>
   );
 }

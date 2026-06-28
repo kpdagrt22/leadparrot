@@ -1,12 +1,15 @@
+import Link from "next/link";
 import { requireAdmin } from "@/lib/auth";
 import { getAdminStore } from "@/lib/db";
 import { Stat, SectionTitle } from "@/components/ui";
+import { StatusBadge, TypeBadge, SeverityBadge } from "@/components/feedback/ticket-badges";
 import { formatRelativeDate } from "@/lib/utils";
 
 export default async function AdminPage() {
   await requireAdmin();
   const store = getAdminStore();
   const stats = await store.getAdminStats();
+  const supportQueue = await store.listAllTickets({ sort: "updated", limit: 50 });
 
   return (
     <div className="space-y-6">
@@ -20,6 +23,36 @@ export default async function AdminPage() {
         <Stat label="Projects" value={stats.totalProjects} />
         <Stat label="Source runs" value={stats.totalSourceRuns} />
         <Stat label="AI errors" value={stats.aiErrors} />
+      </div>
+
+      <div className="card p-5">
+        <SectionTitle subtitle="Cross-org tickets feeding the support-feedback backlog. Internal support only — never a lead channel.">
+          Support queue
+        </SectionTitle>
+        {supportQueue.length === 0 ? (
+          <p className="text-sm text-ink-3">No tickets yet.</p>
+        ) : (
+          <div className="divide-y divide-line-2">
+            {supportQueue.map((t) => (
+              <Link
+                key={t.id}
+                href={`/app/admin/feedback/${t.id}`}
+                className="flex flex-wrap items-center gap-2 py-3 transition-colors hover:bg-paper-sunk"
+              >
+                <StatusBadge status={t.status} />
+                <TypeBadge type={t.type} />
+                <SeverityBadge severity={t.severity} />
+                <span className="min-w-0 flex-1 truncate text-sm text-ink">{t.subject}</span>
+                <span className="font-mono text-3xs uppercase tracking-mono text-ink-4">
+                  {t.organization_name ?? "—"}
+                </span>
+                <span className="font-mono text-3xs uppercase tracking-mono text-ink-4">
+                  {formatRelativeDate(t.updated_at)}
+                </span>
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">

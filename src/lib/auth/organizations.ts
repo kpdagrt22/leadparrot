@@ -87,3 +87,8 @@ export async function assertSavedLeadBelongsToOrg(savedLeadId: string, orgId: st
   const store = await getStore();
   await assertExists(await store.getSavedLeadById(orgId, savedLeadId), "Saved lead");
 }
+
+export async function assertTicketBelongsToOrg(ticketId: string, orgId: string): Promise<void> {
+  const store = await getStore();
+  await assertExists(await store.getTicket(orgId, ticketId), "Ticket");
+}

@@ -36,6 +36,7 @@ export function MarketingFooter() {
         <div className="flex flex-wrap items-center justify-center gap-5 font-mono text-2xs uppercase tracking-mono">
           <Link href="/pricing" className="text-ink-3 hover:text-ink">Pricing</Link>
           <Link href="/demo" className="text-ink-3 hover:text-ink">Demo search</Link>
+          <Link href="/login?next=/app/feedback" className="text-ink-3 hover:text-ink" title="Sign in to raise a ticket and track its status.">Support</Link>
           <Link href="/login" className="text-ink-3 hover:text-ink">Log in</Link>
           <span className="text-ink-4">No auto-posting · No auto-DMs</span>
         </div>

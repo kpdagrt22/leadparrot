@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from "vitest";
+import { describe, it, expect, beforeEach, vi, afterEach } from "vitest";
 import { MemoryStore, __resetMemoryStore } from "@/lib/db/memory-store";
 import { DEMO_ORG_ID, DEMO_PROJECT_ID } from "@/lib/db/seed";
 import { runSourceScan, scoreManualPost, generateReplyForLead } from "@/lib/scan";
@@ -89,4 +89,62 @@ describe("scan flow (memory store)", () => {
     const { limitReached } = await generateReplyForLead(store, DEMO_ORG_ID, "free", leads[0].id, "helpful");
     expect(limitReached).toBe(true);
   });
+
+  // P5 — the platform-safety guarantee must survive persistence, and the
+  // copy-only pipeline must never reach out to post anywhere.
+  it("persists a reply draft that always carries a disclosure + a disclose reminder", async () => {
+    const leads = await store.listLeads(DEMO_ORG_ID, { sort: "score" });
+    const { draft } = await generateReplyForLead(store, DEMO_ORG_ID, "pro", leads[0].id, "helpful");
+    expect(draft).not.toBeNull();
+
+    // Re-read from the store — prove the guarantee is on the PERSISTED row, not
+    // just the return value of the pure helper.
+    const persisted = await store.getReplyDraftForLead(DEMO_ORG_ID, leads[0].id);
+    expect(persisted).not.toBeNull();
+    if (!persisted) throw new Error("reply draft was not persisted");
+    expect(persisted.suggested_disclosure?.trim().length ?? 0).toBeGreaterThan(0);
+    expect(persisted.safety_notes.join(" ")).toMatch(/disclos/i);
+  });
+
+  it("copy-only pipeline makes NO outbound network call (no auto-post)", async () => {
+    const fetchSpy = vi.spyOn(globalThis, "fetch");
+    const project = await store.getProject(DEMO_ORG_ID, DEMO_PROJECT_ID);
+    const { lead } = await scoreManualPost(store, DEMO_ORG_ID, "pro", project!, null, {
+      title: "Need a client proposal tool",
+      body: "Looking for something better than Word for proposals.",
+    });
+    await generateReplyForLead(store, DEMO_ORG_ID, "pro", lead!.id, "helpful");
+
+    // Mock provider + in-memory store never touch the network; there is no
+    // submit/post endpoint in the draft path — the user copies and posts it.
+    expect(fetchSpy).not.toHaveBeenCalled();
+  });
+
+  it("skips already-seen posts on a second scan (per-org dedupe, no double credit)", async () => {
+    const project = await store.getProject(DEMO_ORG_ID, DEMO_PROJECT_ID);
+    const sources = await store.listSources(DEMO_ORG_ID, DEMO_PROJECT_ID);
+    const reddit = sources.find((s) => s.source_type === "reddit")!;
+
+    await runSourceScan(store, DEMO_ORG_ID, "pro", reddit, project!);
+    const second = await runSourceScan(store, DEMO_ORG_ID, "pro", reddit, project!);
+
+    // Same demo posts → all duplicates on the second pass; no new leads, no spend.
+    expect(second.skippedDuplicate).toBeGreaterThan(0);
+    expect(second.leadsCreated).toBe(0);
+  });
+
+  it("records a failed source run (never throws) when a store write blows up mid-scan", async () => {
+    const project = await store.getProject(DEMO_ORG_ID, DEMO_PROJECT_ID);
+    const sources = await store.listSources(DEMO_ORG_ID, DEMO_PROJECT_ID);
+    const reddit = sources.find((s) => s.source_type === "reddit")!;
+    vi.spyOn(store, "upsertRawPost").mockRejectedValue(new Error("db write failed"));
+
+    const summary = await runSourceScan(store, DEMO_ORG_ID, "pro", reddit, project!);
+    expect(summary.error).toBeTruthy();
+
+    const runs = await store.listSourceRuns(DEMO_ORG_ID, { limit: 1 });
+    expect(runs[0]?.status).toBe("error");
+  });
 });
+
+afterEach(() => vi.restoreAllMocks());
