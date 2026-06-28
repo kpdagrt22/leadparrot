@@ -85,7 +85,7 @@ export function DemoSearch() {
         <button type="submit" className="btn-primary w-full" disabled={pending}>
           {pending ? "Scoring…" : "Score this post"}
         </button>
-        {error && <p className="text-sm text-red-600">{error}</p>}
+        {error && <p className="text-sm text-danger">{error}</p>}
       </form>
 
       <div className="card p-5">
@@ -105,27 +105,27 @@ export function DemoSearch() {
             </div>
             <div className="grid grid-cols-2 gap-2 text-sm">
               {Object.entries(result.scores).map(([k, v]) => (
-                <div key={k} className="flex items-center justify-between rounded bg-ink-50 px-2 py-1">
-                  <span className="capitalize text-ink-600">{k}</span>
+                <div key={k} className="flex items-center justify-between bg-paper-sunk px-2 py-1">
+                  <span className="capitalize text-ink-2">{k}</span>
                   <span className="tabular-nums font-medium">{v}</span>
                 </div>
               ))}
             </div>
             <div>
-              <h4 className="text-sm font-semibold text-ink-800">Stage</h4>
-              <p className="text-sm text-ink-600">{result.lead_stage}</p>
+              <h4 className="text-sm font-semibold text-ink">Stage</h4>
+              <p className="text-sm text-ink-2">{result.lead_stage}</p>
             </div>
             <div>
-              <h4 className="text-sm font-semibold text-ink-800">Why</h4>
-              <p className="text-sm text-ink-600">{result.reason}</p>
+              <h4 className="text-sm font-semibold text-ink">Why</h4>
+              <p className="text-sm text-ink-2">{result.reason}</p>
             </div>
             {result.suggested_angle && (
               <div>
-                <h4 className="text-sm font-semibold text-ink-800">Suggested angle</h4>
-                <p className="text-sm text-brand-700">{result.suggested_angle}</p>
+                <h4 className="text-sm font-semibold text-ink">Suggested angle</h4>
+                <p className="text-sm text-accent">{result.suggested_angle}</p>
               </div>
             )}
-            <div className="rounded-lg bg-brand-50 px-3 py-2 text-center text-sm text-brand-800">
+            <div className="bg-accent-tint px-3 py-2 text-center text-sm text-ink-2">
               Want this for real conversations?{" "}
               <Link href="/signup" className="font-medium underline">Start free →</Link>
             </div>

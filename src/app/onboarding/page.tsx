@@ -29,7 +29,7 @@ export default async function OnboardingPage() {
 
         <form action={completeOnboardingAction} className="card space-y-6 p-6">
           <fieldset className="space-y-4">
-            <legend className="text-sm font-semibold text-ink-800">About you</legend>
+            <legend className="text-sm font-semibold text-ink">About you</legend>
             <Field name="full_name" label="Your name" defaultValue={user.full_name ?? ""} placeholder="Jane Founder" />
             <Field name="business_name" label="Business name" required placeholder="Acme Proposals" />
             <Field name="website" label="Website" placeholder="https://acme.com" />
@@ -45,9 +45,9 @@ export default async function OnboardingPage() {
             <Field name="target_geography" label="Target geography" placeholder="US, Canada, UK" />
           </fieldset>
 
-          <fieldset className="space-y-4 border-t border-ink-100 pt-5">
-            <legend className="text-sm font-semibold text-ink-800">Your first project (optional)</legend>
-            <p className="text-xs text-ink-500">Fill this in to start finding leads immediately. You can add more later.</p>
+          <fieldset className="space-y-4 border-t border-line-2 pt-5">
+            <legend className="text-sm font-semibold text-ink">Your first project (optional)</legend>
+            <p className="text-xs text-ink-3">Fill this in to start finding leads immediately. You can add more later.</p>
             <Field name="project_name" label="Project name" placeholder="Proposal tool — Reddit + HN" />
             <Field name="product_description" label="Product / service description" textarea placeholder="AI proposal generator for freelancers with templates and e-signatures." />
             <Field name="ideal_customer_profile" label="Ideal customer profile" placeholder="Freelancers sending 5+ proposals/month" />
@@ -56,8 +56,8 @@ export default async function OnboardingPage() {
             <Field name="negative_keywords" label="Negative keywords" placeholder="marriage proposal, research proposal" hint="Comma separated" />
           </fieldset>
 
-          <fieldset className="space-y-4 border-t border-ink-100 pt-5">
-            <legend className="text-sm font-semibold text-ink-800">Preferences</legend>
+          <fieldset className="space-y-4 border-t border-line-2 pt-5">
+            <legend className="text-sm font-semibold text-ink">Preferences</legend>
             <div>
               <label className="label" htmlFor="reply_tone">Reply tone</label>
               <select id="reply_tone" name="reply_tone" className="input" defaultValue="helpful">
@@ -67,8 +67,8 @@ export default async function OnboardingPage() {
               </select>
             </div>
             <Field name="notification_email" label="Notification email" defaultValue={user.email ?? ""} />
-            <label className="flex items-center gap-2 text-sm text-ink-700">
-              <input type="checkbox" name="daily_digest" defaultChecked className="h-4 w-4 rounded border-ink-300" />
+            <label className="flex items-center gap-2 text-sm text-ink-2">
+              <input type="checkbox" name="daily_digest" defaultChecked className="h-4 w-4 rounded-none border-line" />
               Send me a daily digest of top leads
             </label>
           </fieldset>
@@ -102,7 +102,7 @@ function Field({
   return (
     <div>
       <label className="label" htmlFor={name}>
-        {label} {required && <span className="text-red-500">*</span>}
+        {label} {required && <span className="text-danger">*</span>}
       </label>
       {textarea ? (
         <textarea id={name} name={name} className="input min-h-[80px]" placeholder={placeholder} defaultValue={defaultValue} required={required} />

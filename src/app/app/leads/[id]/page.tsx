@@ -43,12 +43,12 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
           <div className="card p-5">
             <SectionTitle>Original post</SectionTitle>
             {lead.body_excerpt ? (
-              <p className="whitespace-pre-wrap text-sm text-ink-700">{lead.body_excerpt}</p>
+              <p className="whitespace-pre-wrap text-sm text-ink-2">{lead.body_excerpt}</p>
             ) : (
-              <p className="text-sm text-ink-400">No body text captured.</p>
+              <p className="text-sm text-ink-4">No body text captured.</p>
             )}
             {lead.url && (
-              <a href={lead.url} target="_blank" rel="noopener noreferrer" className="mt-3 inline-block text-sm text-brand-700 hover:underline">
+              <a href={lead.url} target="_blank" rel="noopener noreferrer" className="mt-3 inline-block text-sm text-accent hover:underline">
                 View original post ↗
               </a>
             )}
@@ -85,7 +85,7 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
                   </div>
                 )}
                 {draft.safety_notes.length > 0 && (
-                  <ul className="list-disc space-y-1 pl-5 text-xs text-ink-500">
+                  <ul className="list-disc space-y-1 pl-5 text-xs text-ink-3">
                     {draft.safety_notes.map((n) => (
                       <li key={n}>{n}</li>
                     ))}
@@ -93,7 +93,7 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
                 )}
               </div>
             ) : (
-              <p className="text-sm text-ink-500">
+              <p className="text-sm text-ink-3">
                 No draft yet. Generate a helpful, transparent reply you can review and copy. The Leads Nest never posts for
                 you.
               </p>
@@ -120,14 +120,14 @@ export default async function LeadDetailPage({ params }: { params: Promise<{ id:
           <div className="card space-y-4 p-5">
             {lead.reason && (
               <div>
-                <h4 className="text-sm font-semibold text-ink-800">Why it&apos;s a lead</h4>
-                <p className="mt-1 text-sm text-ink-600">{lead.reason}</p>
+                <h4 className="text-sm font-semibold text-ink">Why it&apos;s a lead</h4>
+                <p className="mt-1 text-sm text-ink-2">{lead.reason}</p>
               </div>
             )}
             {lead.suggested_angle && (
               <div>
-                <h4 className="text-sm font-semibold text-ink-800">Suggested angle</h4>
-                <p className="mt-1 text-sm text-ink-600">{lead.suggested_angle}</p>
+                <h4 className="text-sm font-semibold text-ink">Suggested angle</h4>
+                <p className="mt-1 text-sm text-ink-2">{lead.suggested_angle}</p>
               </div>
             )}
             <ListBlock title="Buying signals" items={lead.buying_signals} tone="brand" />
@@ -156,9 +156,9 @@ function ListBlock({ title, items, tone }: { title: string; items: string[]; ton
     tone === "brand"
       ? "border-accent-line bg-accent-tint text-accent"
       : tone === "red"
-        ? "border-[#DBC2B8] text-low"
+        ? "border-line-2 text-low"
         : tone === "amber"
-          ? "border-[#DCC79C] text-medium"
+          ? "border-line-2 text-medium"
           : "border-line-2 text-ink-2";
   return (
     <div>

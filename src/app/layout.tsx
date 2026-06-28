@@ -1,5 +1,6 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Newsreader, IBM_Plex_Sans, IBM_Plex_Mono } from "next/font/google";
+import { PwaRegister } from "@/components/pwa-register";
 import "./globals.css";
 
 // The Crest type system: Newsreader (display serif), IBM Plex Sans (body),
@@ -35,12 +36,28 @@ export const metadata: Metadata = {
       "Find people already asking for what you sell — and get a useful reply draft before your competitors see the thread. No auto-posting. No auto-DMs.",
     type: "website",
   },
+  applicationName: "The Leads Nest",
+  appleWebApp: { capable: true, statusBarStyle: "default", title: "Leads Nest" },
+  icons: {
+    icon: [{ url: "/icons/icon.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/icons/icon.svg" }],
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#2E5E45",
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${display.variable} ${sans.variable} ${mono.variable}`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        <PwaRegister />
+      </body>
     </html>
   );
 }

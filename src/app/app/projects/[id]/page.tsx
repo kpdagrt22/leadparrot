@@ -21,9 +21,9 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
   return (
     <div className="space-y-6">
       <div>
-        <Link href="/app/projects" className="text-sm text-ink-500 hover:text-ink-900">← Projects</Link>
+        <Link href="/app/projects" className="text-sm text-ink-3 hover:text-ink">← Projects</Link>
         <div className="mt-1 flex flex-wrap items-center justify-between gap-3">
-          <h1 className="text-2xl font-bold text-ink-900">{project.name}</h1>
+          <h1 className="text-2xl font-bold text-ink">{project.name}</h1>
           <div className="flex gap-2">
             <LinkButton href={`/app/projects/${id}/sources`} variant="secondary">Manage sources</LinkButton>
             <LinkButton href={`/app/leads?project=${id}`} variant="primary">View leads</LinkButton>
@@ -35,10 +35,10 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
         <div className="space-y-4 lg:col-span-2">
           <div className="card p-5">
             <SectionTitle>Product / service</SectionTitle>
-            <p className="text-sm text-ink-700">{project.product_description}</p>
+            <p className="text-sm text-ink-2">{project.product_description}</p>
             {project.ideal_customer_profile && (
-              <p className="mt-3 text-sm text-ink-600">
-                <span className="font-medium text-ink-800">ICP:</span> {project.ideal_customer_profile}
+              <p className="mt-3 text-sm text-ink-2">
+                <span className="font-medium text-ink">ICP:</span> {project.ideal_customer_profile}
               </p>
             )}
           </div>
@@ -46,14 +46,14 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           <div className="card p-5">
             <SectionTitle>Top leads</SectionTitle>
             {leads.length === 0 ? (
-              <p className="text-sm text-ink-500">No leads yet. Add a source and run a scan.</p>
+              <p className="text-sm text-ink-3">No leads yet. Add a source and run a scan.</p>
             ) : (
               <div className="space-y-2">
                 {leads.map((l) => (
-                  <Link key={l.id} href={`/app/leads/${l.id}`} className="flex items-center gap-3 rounded-lg border border-ink-100 px-3 py-2 hover:border-brand-300">
+                  <Link key={l.id} href={`/app/leads/${l.id}`} className="flex items-center gap-3 border border-line-2 px-3 py-2 hover:border-accent-line">
                     <ScoreBadge score={l.overall_score} />
-                    <span className="min-w-0 flex-1 truncate text-sm text-ink-800">{l.title}</span>
-                    <span className="hidden text-xs text-ink-400 sm:inline">{formatRelativeDate(l.posted_at)}</span>
+                    <span className="min-w-0 flex-1 truncate text-sm text-ink">{l.title}</span>
+                    <span className="hidden text-xs text-ink-4 sm:inline">{formatRelativeDate(l.posted_at)}</span>
                   </Link>
                 ))}
               </div>
@@ -65,9 +65,9 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           <div className="card p-5">
             <SectionTitle>Keywords</SectionTitle>
             <Chips items={project.keywords} empty="No keywords" />
-            <h4 className="mt-4 text-sm font-medium text-ink-700">Negative keywords</h4>
+            <h4 className="mt-4 text-sm font-medium text-ink-2">Negative keywords</h4>
             <Chips items={project.negative_keywords} empty="None" className="mt-1" tone="red" />
-            <h4 className="mt-4 text-sm font-medium text-ink-700">Competitors</h4>
+            <h4 className="mt-4 text-sm font-medium text-ink-2">Competitors</h4>
             <Chips items={project.competitors} empty="None" className="mt-1" tone="amber" />
           </div>
 
@@ -76,8 +76,8 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
             <ul className="space-y-1 text-sm">
               {sources.map((s) => (
                 <li key={s.id} className="flex items-center justify-between">
-                  <span className="text-ink-700">{s.name || s.source_type}</span>
-                  <span className="text-xs text-ink-400">{s.source_type}</span>
+                  <span className="text-ink-2">{s.name || s.source_type}</span>
+                  <span className="text-xs text-ink-4">{s.source_type}</span>
                 </li>
               ))}
             </ul>
@@ -103,12 +103,12 @@ function Chips({
   tone?: "ink" | "red" | "amber";
 }) {
   const toneCls =
-    tone === "red" ? "bg-red-50 text-red-700" : tone === "amber" ? "bg-amber-50 text-amber-700" : "bg-ink-100 text-ink-600";
-  if (items.length === 0) return <p className={`text-sm text-ink-400 ${className ?? ""}`}>{empty}</p>;
+    tone === "red" ? "bg-danger-tint text-danger" : tone === "amber" ? "bg-medium-tint text-medium" : "bg-paper-sunk text-ink-2";
+  if (items.length === 0) return <p className={`text-sm text-ink-4 ${className ?? ""}`}>{empty}</p>;
   return (
     <div className={`flex flex-wrap gap-1 ${className ?? ""}`}>
       {items.map((k) => (
-        <span key={k} className={`rounded px-2 py-0.5 text-xs ${toneCls}`}>{k}</span>
+        <span key={k} className={`px-2 py-0.5 text-xs ${toneCls}`}>{k}</span>
       ))}
     </div>
   );

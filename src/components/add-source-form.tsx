@@ -88,7 +88,7 @@ export function AddSourceForm({ projectId }: { projectId: string }) {
       )}
 
       {type === "manual" && (
-        <p className="border border-line-2 bg-surface p-3 text-sm text-ink-600">
+        <p className="border border-line-2 bg-surface p-3 text-sm text-ink-2">
           Manual sources let you paste public posts to score on demand — there&apos;s nothing to configure.
         </p>
       )}

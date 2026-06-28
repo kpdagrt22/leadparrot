@@ -8,6 +8,19 @@ const nextConfig = {
       bodySizeLimit: "2mb",
     },
   },
+  async headers() {
+    return [
+      {
+        // Allow the service worker to control the whole origin from /sw.js, and
+        // keep the worker itself uncached so updates ship immediately.
+        source: "/sw.js",
+        headers: [
+          { key: "Service-Worker-Allowed", value: "/" },
+          { key: "Cache-Control", value: "no-cache, no-store, must-revalidate" },
+        ],
+      },
+    ];
+  },
 };
 
 export default nextConfig;

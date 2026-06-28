@@ -11,12 +11,12 @@ const FAQS = [
 
 export default function PricingPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-surface-raised">
       <MarketingNav />
-      <section className="border-b border-ink-200 bg-gradient-to-b from-brand-50/60 to-white py-16">
+      <section className="border-b border-line bg-gradient-to-b from-accent-tint/60 to-surface-raised py-16">
         <div className="container-page text-center">
-          <h1 className="text-3xl font-bold text-ink-900 sm:text-4xl">Simple, founder-friendly pricing</h1>
-          <p className="mx-auto mt-3 max-w-xl text-ink-600">
+          <h1 className="text-3xl font-bold text-ink sm:text-4xl">Simple, founder-friendly pricing</h1>
+          <p className="mx-auto mt-3 max-w-xl text-ink-2">
             Start free. Upgrade when The Leads Nest is finding you real opportunities. No contracts, cancel anytime.
           </p>
         </div>
@@ -26,14 +26,14 @@ export default function PricingPage() {
         <PricingCards />
       </section>
 
-      <section className="border-t border-ink-200 bg-ink-50/60 py-16">
+      <section className="border-t border-line bg-paper-sunk/60 py-16">
         <div className="container-page mx-auto max-w-2xl">
-          <h2 className="text-center text-2xl font-bold text-ink-900">Pricing FAQ</h2>
-          <div className="mt-8 divide-y divide-ink-200">
+          <h2 className="text-center text-2xl font-bold text-ink">Pricing FAQ</h2>
+          <div className="mt-8 divide-y divide-line">
             {FAQS.map((f) => (
               <div key={f.q} className="py-5">
-                <h3 className="font-semibold text-ink-900">{f.q}</h3>
-                <p className="mt-1 text-sm text-ink-600">{f.a}</p>
+                <h3 className="font-semibold text-ink">{f.q}</h3>
+                <p className="mt-1 text-sm text-ink-2">{f.a}</p>
               </div>
             ))}
           </div>

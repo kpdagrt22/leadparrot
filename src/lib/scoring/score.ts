@@ -69,7 +69,7 @@ export function tierMeta(tier: ScoreTier): { label: string; classes: string } {
     case "high":
       return { label: "High intent", classes: "border-accent-line bg-accent-tint text-accent" };
     case "medium":
-      return { label: "Medium", classes: "border-[#DCC79C] bg-[#F2E8D4] text-medium" };
+      return { label: "Medium", classes: "border-line-2 bg-medium-tint text-medium" };
     case "low":
     default:
       return { label: "Low", classes: "border-line-2 bg-paper-sunk text-low" };

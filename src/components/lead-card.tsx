@@ -10,31 +10,31 @@ export function LeadCard({ lead, saved }: { lead: LeadCandidate; saved: boolean 
       <div className="flex flex-wrap items-center gap-2">
         <ScoreBadge score={lead.overall_score} />
         <StageBadge stage={lead.lead_stage} />
-        <span className="badge border-ink-200 bg-white text-ink-500">{lead.source_type}</span>
-        <span className="badge border-ink-200 bg-white capitalize text-ink-500">{lead.status.replace("_", " ")}</span>
-        <span className="ml-auto text-xs text-ink-400">{formatRelativeDate(lead.posted_at)}</span>
+        <span className="badge border-line bg-surface-raised text-ink-3">{lead.source_type}</span>
+        <span className="badge border-line bg-surface-raised capitalize text-ink-3">{lead.status.replace("_", " ")}</span>
+        <span className="ml-auto text-xs text-ink-4">{formatRelativeDate(lead.posted_at)}</span>
       </div>
 
       <Link href={`/app/leads/${lead.id}`} className="mt-2 block">
-        <h3 className="font-medium text-ink-900 hover:text-brand-700">{lead.title}</h3>
+        <h3 className="font-medium text-ink hover:text-accent">{lead.title}</h3>
       </Link>
-      <p className="mt-1 text-sm text-ink-600">{truncate(lead.body_excerpt, 200)}</p>
+      <p className="mt-1 text-sm text-ink-2">{truncate(lead.body_excerpt, 200)}</p>
 
       {lead.reason && (
-        <p className="mt-2 text-xs text-ink-500">
-          <span className="font-medium text-ink-700">Why:</span> {truncate(lead.reason, 180)}
+        <p className="mt-2 text-xs text-ink-3">
+          <span className="font-medium text-ink-2">Why:</span> {truncate(lead.reason, 180)}
         </p>
       )}
 
       {lead.pain_points.length > 0 && (
         <div className="mt-2 flex flex-wrap gap-1">
           {lead.pain_points.slice(0, 3).map((p) => (
-            <span key={p} className="rounded bg-ink-100 px-2 py-0.5 text-xs text-ink-600">{p}</span>
+            <span key={p} className="bg-paper-sunk px-2 py-0.5 text-xs text-ink-2">{p}</span>
           ))}
         </div>
       )}
 
-      <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-ink-100 pt-3">
+      <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-line-2 pt-3">
         <Link href={`/app/leads/${lead.id}`} className="btn-primary text-xs">View &amp; reply</Link>
         <SaveLeadButton leadId={lead.id} saved={saved} />
         <MarkNotRelevantButton leadId={lead.id} />
