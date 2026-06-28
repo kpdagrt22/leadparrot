@@ -13,6 +13,11 @@ import type {
   LeadStatus,
   UsageEvent,
   ApiToken,
+  FeedbackTicket,
+  TicketMessage,
+  TicketStatus,
+  TicketWithMessages,
+  AdminTicketRow,
 } from "@/lib/types";
 import { scoreTier, isHighIntent } from "@/lib/scoring/score";
 import type { UsageSnapshot } from "@/lib/usage/limits";
@@ -31,6 +36,9 @@ import type {
   AiLogInput,
   RecordNotificationInput,
   CreateApiTokenInput,
+  CreateTicketInput,
+  AddTicketMessageInput,
+  TicketFilters,
 } from "@/lib/db/store";
 
 /** Internal token record (keeps the hash; ApiToken returned to callers omits it). */
@@ -72,6 +80,8 @@ interface State {
     created_at: string;
   }>;
   apiTokens: StoredApiToken[];
+  tickets: FeedbackTicket[];
+  ticketMessages: TicketMessage[];
 }
 
 // Module-level singleton so all requests in a dev/demo session share data.
@@ -94,6 +104,8 @@ function freshState(): State {
     aiLogs: [],
     notifications: [],
     apiTokens: [],
+    tickets: seed.tickets ?? [],
+    ticketMessages: seed.ticketMessages ?? [],
   };
 }
 
@@ -244,6 +256,101 @@ export class MemoryStore implements DataStore {
     if (!t) return null;
     t.last_used_at = nowIso();
     return { id: t.id, organization_id: t.organization_id };
+  }
+
+  // ---- feedback / support tickets (internal support — never messages a lead) ----
+  async createTicket(orgId: string, input: CreateTicketInput): Promise<FeedbackTicket> {
+    const ticket: FeedbackTicket = {
+      id: randomUUID(),
+      organization_id: orgId,
+      created_by: input.created_by ?? null,
+      type: input.type,
+      subject: input.subject,
+      body: input.body,
+      page_context: {
+        route: input.page_context?.route ?? null,
+        url: input.page_context?.url ?? null,
+        user_agent: input.page_context?.user_agent ?? null,
+      },
+      severity: input.severity ?? "normal",
+      status: "open",
+      created_at: nowIso(),
+      updated_at: nowIso(),
+    };
+    state().tickets.push(ticket);
+    return ticket;
+  }
+
+  async listTickets(orgId: string, filters: TicketFilters = {}): Promise<FeedbackTicket[]> {
+    let t = state().tickets.filter((x) => x.organization_id === orgId);
+    if (filters.status) t = t.filter((x) => x.status === filters.status);
+    if (filters.type) t = t.filter((x) => x.type === filters.type);
+    if (filters.created_by) t = t.filter((x) => x.created_by === filters.created_by);
+    if (filters.search) {
+      const q = filters.search.toLowerCase();
+      t = t.filter((x) => x.subject.toLowerCase().includes(q) || x.body.toLowerCase().includes(q));
+    }
+    t = sortTickets(t, filters.sort);
+    return filters.limit ? t.slice(0, filters.limit) : t;
+  }
+
+  async getTicket(orgId: string, ticketId: string): Promise<TicketWithMessages | null> {
+    const ticket = state().tickets.find((x) => x.organization_id === orgId && x.id === ticketId);
+    return ticket ? this.attachMessages(ticket) : null;
+  }
+
+  async updateTicketStatus(orgId: string, ticketId: string, status: TicketStatus): Promise<FeedbackTicket> {
+    const ticket = state().tickets.find((x) => x.organization_id === orgId && x.id === ticketId);
+    if (!ticket) throw new Error("Ticket not found");
+    ticket.status = status;
+    ticket.updated_at = nowIso();
+    return ticket;
+  }
+
+  async addTicketMessage(orgId: string, ticketId: string, input: AddTicketMessageInput): Promise<TicketMessage> {
+    const ticket = state().tickets.find((x) => x.organization_id === orgId && x.id === ticketId);
+    if (!ticket) throw new Error("Ticket not found");
+    const msg: TicketMessage = {
+      id: randomUUID(),
+      organization_id: orgId,
+      ticket_id: ticketId,
+      author_id: input.author_id ?? null,
+      author_role: input.author_role ?? "user",
+      body: input.body,
+      created_at: nowIso(),
+    };
+    state().ticketMessages.push(msg);
+    ticket.updated_at = nowIso(); // bump parent so "newest activity" sort matches
+    return msg;
+  }
+
+  async listAllTickets(filters: TicketFilters = {}): Promise<AdminTicketRow[]> {
+    let t = state().tickets.slice();
+    if (filters.status) t = t.filter((x) => x.status === filters.status);
+    if (filters.type) t = t.filter((x) => x.type === filters.type);
+    if (filters.search) {
+      const q = filters.search.toLowerCase();
+      t = t.filter((x) => x.subject.toLowerCase().includes(q) || x.body.toLowerCase().includes(q));
+    }
+    t = sortTickets(t, filters.sort);
+    const rows = filters.limit ? t.slice(0, filters.limit) : t;
+    return rows.map((x) => ({
+      ...x,
+      organization_name: state().organizations.find((o) => o.id === x.organization_id)?.name ?? null,
+    }));
+  }
+
+  async getTicketAnyOrg(ticketId: string): Promise<TicketWithMessages | null> {
+    const ticket = state().tickets.find((x) => x.id === ticketId);
+    return ticket ? this.attachMessages(ticket) : null;
+  }
+
+  private attachMessages(ticket: FeedbackTicket): TicketWithMessages {
+    const messages = state()
+      .ticketMessages.filter((m) => m.organization_id === ticket.organization_id && m.ticket_id === ticket.id)
+      .sort((a, b) => a.created_at.localeCompare(b.created_at));
+    const creator = ticket.created_by ? state().profiles.find((p) => p.id === ticket.created_by) : null;
+    return { ...ticket, messages, creator_name: creator?.full_name ?? null };
   }
 
   async getSubscription(orgId: string): Promise<Subscription> {
@@ -643,6 +750,12 @@ export class MemoryStore implements DataStore {
 function startOfMonthIso(): string {
   const d = new Date();
   return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), 1)).toISOString();
+}
+
+function sortTickets(tickets: FeedbackTicket[], sort?: "newest" | "updated"): FeedbackTicket[] {
+  return sort === "updated"
+    ? tickets.sort((a, b) => b.updated_at.localeCompare(a.updated_at))
+    : tickets.sort((a, b) => b.created_at.localeCompare(a.created_at));
 }
 
 export const DEMO_ORG = DEMO_ORG_ID;

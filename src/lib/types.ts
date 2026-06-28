@@ -249,3 +249,52 @@ export interface LeadWithRelations extends LeadCandidate {
   reply_draft?: ReplyDraft | null;
   saved?: boolean;
 }
+
+// ---------------------------------------------------------------------------
+// Feedback / support tickets (internal support only — never messages a lead).
+// page_context carries route/url/user_agent ONLY: no body, email, or lead data.
+// ---------------------------------------------------------------------------
+export type TicketType = "bug" | "feature" | "question" | "feedback";
+export type TicketSeverity = "low" | "normal" | "high" | "critical";
+export type TicketStatus = "open" | "in_progress" | "resolved" | "closed";
+export type TicketAuthorRole = "user" | "admin";
+
+export interface TicketPageContext {
+  route: string | null;
+  url: string | null;
+  user_agent: string | null;
+}
+
+export interface FeedbackTicket {
+  id: string;
+  organization_id: string;
+  created_by: string | null;
+  type: TicketType;
+  subject: string;
+  body: string;
+  page_context: TicketPageContext;
+  severity: TicketSeverity;
+  status: TicketStatus;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface TicketMessage {
+  id: string;
+  organization_id: string;
+  ticket_id: string;
+  author_id: string | null;
+  author_role: TicketAuthorRole;
+  body: string;
+  created_at: string;
+}
+
+export interface TicketWithMessages extends FeedbackTicket {
+  messages: TicketMessage[];
+  creator_name?: string | null;
+}
+
+/** Cross-org row for the admin triage queue (service-role only). */
+export interface AdminTicketRow extends FeedbackTicket {
+  organization_name: string | null;
+}

@@ -16,6 +16,15 @@ import type {
   BusinessType,
   ScoreTier,
   ApiToken,
+  FeedbackTicket,
+  TicketMessage,
+  TicketWithMessages,
+  TicketType,
+  TicketSeverity,
+  TicketStatus,
+  TicketAuthorRole,
+  TicketPageContext,
+  AdminTicketRow,
 } from "@/lib/types";
 import type { UsageSnapshot } from "@/lib/usage/limits";
 
@@ -54,6 +63,30 @@ export interface CreateApiTokenInput {
   name?: string;
   token_hash: string;
   token_prefix: string;
+}
+
+export interface CreateTicketInput {
+  created_by: string | null; // session-resolved, never from client
+  type: TicketType;
+  subject: string;
+  body: string;
+  page_context?: Partial<TicketPageContext>;
+  severity?: TicketSeverity; // default "normal"
+}
+
+export interface AddTicketMessageInput {
+  author_id: string | null; // session-resolved
+  author_role?: TicketAuthorRole; // default "user"
+  body: string;
+}
+
+export interface TicketFilters {
+  status?: TicketStatus;
+  type?: TicketType;
+  created_by?: string; // "my tickets"
+  search?: string;
+  sort?: "newest" | "updated";
+  limit?: number;
 }
 
 export interface CreateProjectInput {
@@ -242,6 +275,16 @@ export interface DataStore {
   recordUsageEvent(orgId: string, eventType: string, metadata?: Record<string, unknown>, projectId?: string | null): Promise<void>;
   getUsageSnapshot(orgId: string): Promise<UsageSnapshot>;
   recordAiLog(orgId: string, input: AiLogInput): Promise<void>;
+
+  // feedback / support tickets (internal support — NEVER messages a lead)
+  createTicket(orgId: string, input: CreateTicketInput): Promise<FeedbackTicket>;
+  listTickets(orgId: string, filters?: TicketFilters): Promise<FeedbackTicket[]>;
+  getTicket(orgId: string, ticketId: string): Promise<TicketWithMessages | null>;
+  updateTicketStatus(orgId: string, ticketId: string, status: TicketStatus): Promise<FeedbackTicket>;
+  addTicketMessage(orgId: string, ticketId: string, input: AddTicketMessageInput): Promise<TicketMessage>;
+  /** Admin triage — cross-org, service-role only (RLS bypass; gate on ctx.isAdmin). */
+  listAllTickets(filters?: TicketFilters): Promise<AdminTicketRow[]>;
+  getTicketAnyOrg(ticketId: string): Promise<TicketWithMessages | null>;
 
   // dashboard + admin + digest
   getDashboardStats(orgId: string): Promise<DashboardStats>;

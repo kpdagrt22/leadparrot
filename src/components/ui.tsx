@@ -66,6 +66,48 @@ export function SafetyNotice({ children, className }: { children?: ReactNode; cl
   );
 }
 
+/**
+ * Generalized notice block (Crest port of docs/components/feedback/Notice.jsx).
+ * Left-rule + tint, mono caps title. `SafetyNotice` above is the accent-tone
+ * special case; this carries the full tone set used by feedback + detail pages.
+ */
+export function Notice({
+  tone = "neutral",
+  title,
+  children,
+  className,
+}: {
+  tone?: "info" | "accent" | "caution" | "danger" | "neutral";
+  title?: ReactNode;
+  children: ReactNode;
+  className?: string;
+}) {
+  const tones = {
+    info: "border-info bg-info-tint",
+    accent: "border-accent bg-accent-tint",
+    caution: "border-medium bg-medium-tint",
+    danger: "border-danger bg-danger-tint",
+    neutral: "border-line-2 bg-paper-sunk",
+  } as const;
+  const titleTone = {
+    info: "text-info",
+    accent: "text-accent",
+    caution: "text-medium",
+    danger: "text-danger",
+    neutral: "text-ink-3",
+  } as const;
+  return (
+    <div className={cn("border-l-2 px-4 py-3 text-xs text-ink-2", tones[tone], className)}>
+      {title && (
+        <span className={cn("mb-1 block font-mono text-3xs font-medium uppercase tracking-caps", titleTone[tone])}>
+          {title}
+        </span>
+      )}
+      <span>{children}</span>
+    </div>
+  );
+}
+
 export function LinkButton({
   href,
   children,

@@ -11,6 +11,7 @@ const NAV = [
   { href: "/app/digest", label: "Daily digest" },
   { href: "/app/billing", label: "Billing" },
   { href: "/app/settings", label: "Settings" },
+  { href: "/app/feedback", label: "Support" },
 ];
 
 export function AppNav({ isAdmin }: { isAdmin: boolean }) {

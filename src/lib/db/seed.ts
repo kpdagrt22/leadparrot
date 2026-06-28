@@ -7,6 +7,8 @@ import type {
   LeadCandidate,
   ReplyDraft,
   Subscription,
+  FeedbackTicket,
+  TicketMessage,
 } from "@/lib/types";
 
 export const DEMO_USER_ID = "00000000-0000-4000-8000-000000000001";
@@ -25,6 +27,8 @@ export interface SeedData {
   leads: LeadCandidate[];
   replyDrafts: ReplyDraft[];
   subscriptions: Subscription[];
+  tickets: FeedbackTicket[];
+  ticketMessages: TicketMessage[];
 }
 
 /**
@@ -259,6 +263,58 @@ export function buildSeed(): SeedData {
     },
   ];
 
+  // Two demo support tickets (one bug with a 2-message thread, one open feature)
+  // so /app/feedback + the admin triage queue aren't empty in demo mode.
+  const tickets: FeedbackTicket[] = [
+    {
+      id: "00000000-0000-4000-8000-000000000701",
+      organization_id: DEMO_ORG_ID,
+      created_by: DEMO_USER_ID,
+      type: "bug",
+      subject: "Score badge clips on small screens",
+      body: "On my phone the score badge on the lead inbox overlaps the title when the subject is long. Looks like a wrapping issue under ~360px.",
+      page_context: { route: "/app/leads", url: "https://theleadsnest.com/app/leads", user_agent: "Mozilla/5.0 (iPhone)" },
+      severity: "normal",
+      status: "in_progress",
+      created_at: T("2026-06-26T09:10:00.000Z"),
+      updated_at: T("2026-06-27T11:00:00.000Z"),
+    },
+    {
+      id: "00000000-0000-4000-8000-000000000702",
+      organization_id: DEMO_ORG_ID,
+      created_by: DEMO_USER_ID,
+      type: "feature",
+      subject: "Add CSV export for saved leads",
+      body: "Would love to export my saved leads to CSV so I can work them in a spreadsheet alongside my other pipeline.",
+      page_context: { route: "/app/leads", url: "https://theleadsnest.com/app/leads", user_agent: "Mozilla/5.0 (Macintosh)" },
+      severity: "low",
+      status: "open",
+      created_at: T("2026-06-27T15:42:00.000Z"),
+      updated_at: T("2026-06-27T15:42:00.000Z"),
+    },
+  ];
+
+  const ticketMessages: TicketMessage[] = [
+    {
+      id: "00000000-0000-4000-8000-000000000801",
+      organization_id: DEMO_ORG_ID,
+      ticket_id: tickets[0].id,
+      author_id: DEMO_USER_ID,
+      author_role: "user",
+      body: "Happens on iOS Safari specifically. Happy to send a screenshot if useful.",
+      created_at: T("2026-06-26T09:12:00.000Z"),
+    },
+    {
+      id: "00000000-0000-4000-8000-000000000802",
+      organization_id: DEMO_ORG_ID,
+      ticket_id: tickets[0].id,
+      author_id: null,
+      author_role: "admin",
+      body: "Thanks — reproduced it. We're tightening the badge wrap rule; will land in the next design pass.",
+      created_at: T("2026-06-27T11:00:00.000Z"),
+    },
+  ];
+
   return {
     profiles: [profile],
     organizations: [organization],
@@ -268,5 +324,7 @@ export function buildSeed(): SeedData {
     leads,
     replyDrafts,
     subscriptions,
+    tickets,
+    ticketMessages,
   };
 }
