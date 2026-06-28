@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Leads Nest — Extension settings</title>
+<style>
+  :root { --paper:#F4F1E9; --surface:#FBFAF5; --ink:#1C1B17; --ink-3:#6F6A5C; --line-2:#CDC8B8; --accent:#2E5E45; --on-accent:#F4F1E9; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family: "IBM Plex Sans", system-ui, sans-serif; }
+  .wrap { max-width: 520px; margin: 0 auto; padding: 32px 24px; }
+  h1 { font-family: Georgia, "Newsreader", serif; font-weight: 300; letter-spacing: -0.02em; font-size: 26px; margin: 0 0 4px; }
+  p.sub { color: var(--ink-3); font-size: 13px; margin: 0 0 24px; }
+  label { display:block; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); margin: 16px 0 6px; }
+  input { width:100%; border:1px solid var(--line-2); background:#fff; padding:10px 12px; font-size:14px; color:var(--ink); border-radius:2px; }
+  input:focus { outline:none; border-color:var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+  button { margin-top:20px; border:1px solid var(--accent); background:var(--accent); color:var(--on-accent); font-family:"IBM Plex Mono",monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; padding:11px 18px; cursor:pointer; }
+  button:hover { background:#244B37; }
+  .saved { margin-top:12px; color:var(--accent); font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; }
+  .note { margin-top:24px; font-size:12px; color:var(--ink-3); line-height:1.5; }
+  code { font-family:"IBM Plex Mono",monospace; font-size:12px; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>The Leads Nest</h1>
+    <p class="sub">Connect the extension to your workspace. Generate a token in the app under Settings → Browser extension.</p>
+
+    <label for="apiBase">API base URL</label>
+    <input id="apiBase" type="url" placeholder="https://theleadsnest.com" />
+
+    <label for="token">Extension token</label>
+    <input id="token" type="password" placeholder="tln_…" />
+
+    <button id="save">Save</button>
+    <div class="saved" id="saved" hidden>Saved.</div>
+
+    <p class="note">
+      Your token is stored locally in this browser only. The extension captures only the single post you click on —
+      it never scrapes feeds, reads private content, or posts anything. Revoke a token anytime in the app.
+    </p>
+  </div>
+  <script src="options.js"></script>
+</body>
+</html>

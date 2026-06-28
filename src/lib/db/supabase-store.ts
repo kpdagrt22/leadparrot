@@ -11,6 +11,7 @@ import type {
   SavedLead,
   Subscription,
   LeadStatus,
+  ApiToken,
 } from "@/lib/types";
 import { scoreTier, isHighIntent, HIGH_INTENT_THRESHOLD } from "@/lib/scoring/score";
 import type { UsageSnapshot } from "@/lib/usage/limits";
@@ -26,7 +27,11 @@ import type {
   DashboardStats,
   AdminStats,
   AiLogInput,
+  RecordNotificationInput,
+  CreateApiTokenInput,
 } from "@/lib/db/store";
+
+const API_TOKEN_COLS = "id, organization_id, user_id, name, token_prefix, last_used_at, revoked_at, created_at";
 
 /**
  * Supabase-backed DataStore. Org scoping is enforced both by explicit filters
@@ -69,6 +74,11 @@ export class SupabaseStore implements DataStore {
     return org ?? null;
   }
 
+  async getOrganizationById(orgId: string): Promise<Organization | null> {
+    const { data } = await this.sb.from("organizations").select("*").eq("id", orgId).maybeSingle();
+    return (data as Organization) ?? null;
+  }
+
   async createOrganization(input: CreateOrganizationInput): Promise<Organization> {
     const { data, error } = await this.sb
       .from("organizations")
@@ -102,6 +112,76 @@ export class SupabaseStore implements DataStore {
       .select("*")
       .single();
     return this.orThrow(data as Organization, error, "updateOrganization");
+  }
+
+  async recordNotification(orgId: string, input: RecordNotificationInput): Promise<void> {
+    await this.sb.from("notifications").insert({
+      organization_id: orgId,
+      channel: input.channel,
+      event: input.event,
+      status: input.status,
+      target: input.target ?? null,
+      detail: input.detail ?? null,
+    });
+  }
+
+  async getLastNotificationAt(orgId: string, event: string): Promise<string | null> {
+    const { data } = await this.sb
+      .from("notifications")
+      .select("created_at")
+      .eq("organization_id", orgId)
+      .eq("event", event)
+      .eq("status", "sent")
+      .order("created_at", { ascending: false })
+      .limit(1)
+      .maybeSingle();
+    return (data as { created_at: string } | null)?.created_at ?? null;
+  }
+
+  async createApiToken(orgId: string, input: CreateApiTokenInput): Promise<ApiToken> {
+    const { data, error } = await this.sb
+      .from("api_tokens")
+      .insert({
+        organization_id: orgId,
+        user_id: input.user_id ?? null,
+        name: input.name ?? "Browser extension",
+        token_hash: input.token_hash,
+        token_prefix: input.token_prefix,
+      })
+      .select(API_TOKEN_COLS)
+      .single();
+    return this.orThrow(data as ApiToken, error, "createApiToken");
+  }
+
+  async listApiTokens(orgId: string): Promise<ApiToken[]> {
+    const { data } = await this.sb
+      .from("api_tokens")
+      .select(API_TOKEN_COLS)
+      .eq("organization_id", orgId)
+      .order("created_at", { ascending: false });
+    return (data as ApiToken[]) ?? [];
+  }
+
+  async revokeApiToken(orgId: string, tokenId: string): Promise<void> {
+    await this.sb
+      .from("api_tokens")
+      .update({ revoked_at: new Date().toISOString() })
+      .eq("organization_id", orgId)
+      .eq("id", tokenId)
+      .is("revoked_at", null);
+  }
+
+  async getApiTokenByHash(hash: string): Promise<{ id: string; organization_id: string } | null> {
+    const { data } = await this.sb
+      .from("api_tokens")
+      .select("id, organization_id")
+      .eq("token_hash", hash)
+      .is("revoked_at", null)
+      .maybeSingle();
+    if (!data) return null;
+    const row = data as { id: string; organization_id: string };
+    await this.sb.from("api_tokens").update({ last_used_at: new Date().toISOString() }).eq("id", row.id);
+    return row;
   }
 
   async getSubscription(orgId: string): Promise<Subscription> {
@@ -349,6 +429,18 @@ export class SupabaseStore implements DataStore {
       .select("*")
       .eq("organization_id", orgId)
       .eq("id", leadId)
+      .maybeSingle();
+    return (data as LeadCandidate) ?? null;
+  }
+
+  async getLeadByRawPost(orgId: string, rawPostId: string): Promise<LeadCandidate | null> {
+    const { data } = await this.sb
+      .from("lead_candidates")
+      .select("*")
+      .eq("organization_id", orgId)
+      .eq("raw_post_id", rawPostId)
+      .order("created_at", { ascending: false })
+      .limit(1)
       .maybeSingle();
     return (data as LeadCandidate) ?? null;
   }

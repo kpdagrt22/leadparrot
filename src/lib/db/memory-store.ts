@@ -12,6 +12,7 @@ import type {
   Subscription,
   LeadStatus,
   UsageEvent,
+  ApiToken,
 } from "@/lib/types";
 import { scoreTier, isHighIntent } from "@/lib/scoring/score";
 import type { UsageSnapshot } from "@/lib/usage/limits";
@@ -28,7 +29,25 @@ import type {
   DashboardStats,
   AdminStats,
   AiLogInput,
+  RecordNotificationInput,
+  CreateApiTokenInput,
 } from "@/lib/db/store";
+
+/** Internal token record (keeps the hash; ApiToken returned to callers omits it). */
+type StoredApiToken = ApiToken & { token_hash: string };
+
+function publicToken(t: StoredApiToken): ApiToken {
+  return {
+    id: t.id,
+    organization_id: t.organization_id,
+    user_id: t.user_id,
+    name: t.name,
+    token_prefix: t.token_prefix,
+    last_used_at: t.last_used_at,
+    revoked_at: t.revoked_at,
+    created_at: t.created_at,
+  };
+}
 
 interface State {
   profiles: Profile[];
@@ -43,6 +62,16 @@ interface State {
   subscriptions: Subscription[];
   usageEvents: UsageEvent[];
   aiLogs: Array<{ status: string; source_type?: string; created_at: string; organization_id: string }>;
+  notifications: Array<{
+    organization_id: string;
+    channel: string;
+    event: string;
+    status: string;
+    target: string | null;
+    detail: string | null;
+    created_at: string;
+  }>;
+  apiTokens: StoredApiToken[];
 }
 
 // Module-level singleton so all requests in a dev/demo session share data.
@@ -63,6 +92,8 @@ function freshState(): State {
     subscriptions: seed.subscriptions,
     usageEvents: [],
     aiLogs: [],
+    notifications: [],
+    apiTokens: [],
   };
 }
 
@@ -109,6 +140,10 @@ export class MemoryStore implements DataStore {
     return state().organizations.find((o) => o.owner_id === userId) ?? null;
   }
 
+  async getOrganizationById(orgId: string): Promise<Organization | null> {
+    return state().organizations.find((o) => o.id === orgId) ?? null;
+  }
+
   async createOrganization(input: CreateOrganizationInput): Promise<Organization> {
     const s = state();
     const org: Organization = {
@@ -122,6 +157,16 @@ export class MemoryStore implements DataStore {
       reply_tone: input.reply_tone ?? "helpful",
       notification_email: input.notification_email ?? null,
       daily_digest_enabled: input.daily_digest_enabled ?? true,
+      notify_email_enabled: input.notify_email_enabled ?? false,
+      notify_sms_enabled: input.notify_sms_enabled ?? false,
+      notify_whatsapp_enabled: input.notify_whatsapp_enabled ?? false,
+      notify_phone: input.notify_phone ?? null,
+      notify_email_verified: input.notify_email_verified ?? false,
+      notify_phone_verified: input.notify_phone_verified ?? false,
+      high_intent_threshold: input.high_intent_threshold ?? 70,
+      quiet_hours_start: input.quiet_hours_start ?? null,
+      quiet_hours_end: input.quiet_hours_end ?? null,
+      digest_hour: input.digest_hour ?? 13,
       created_at: nowIso(),
       updated_at: nowIso(),
     };
@@ -145,6 +190,60 @@ export class MemoryStore implements DataStore {
     if (!org) throw new Error("Organization not found");
     Object.assign(org, patch, { updated_at: nowIso() });
     return org;
+  }
+
+  async recordNotification(orgId: string, input: RecordNotificationInput): Promise<void> {
+    state().notifications.push({
+      organization_id: orgId,
+      channel: input.channel,
+      event: input.event,
+      status: input.status,
+      target: input.target ?? null,
+      detail: input.detail ?? null,
+      created_at: nowIso(),
+    });
+  }
+
+  async getLastNotificationAt(orgId: string, event: string): Promise<string | null> {
+    const rows = state()
+      .notifications.filter((n) => n.organization_id === orgId && n.event === event && n.status === "sent")
+      .sort((a, b) => b.created_at.localeCompare(a.created_at));
+    return rows[0]?.created_at ?? null;
+  }
+
+  async createApiToken(orgId: string, input: CreateApiTokenInput): Promise<ApiToken> {
+    const token: StoredApiToken = {
+      id: randomUUID(),
+      organization_id: orgId,
+      user_id: input.user_id ?? null,
+      name: input.name ?? "Browser extension",
+      token_prefix: input.token_prefix,
+      token_hash: input.token_hash,
+      last_used_at: null,
+      revoked_at: null,
+      created_at: nowIso(),
+    };
+    state().apiTokens.push(token);
+    return publicToken(token);
+  }
+
+  async listApiTokens(orgId: string): Promise<ApiToken[]> {
+    return state()
+      .apiTokens.filter((t) => t.organization_id === orgId)
+      .sort((a, b) => b.created_at.localeCompare(a.created_at))
+      .map(publicToken);
+  }
+
+  async revokeApiToken(orgId: string, tokenId: string): Promise<void> {
+    const t = state().apiTokens.find((x) => x.organization_id === orgId && x.id === tokenId);
+    if (t && !t.revoked_at) t.revoked_at = nowIso();
+  }
+
+  async getApiTokenByHash(hash: string): Promise<{ id: string; organization_id: string } | null> {
+    const t = state().apiTokens.find((x) => x.token_hash === hash && !x.revoked_at);
+    if (!t) return null;
+    t.last_used_at = nowIso();
+    return { id: t.id, organization_id: t.organization_id };
   }
 
   async getSubscription(orgId: string): Promise<Subscription> {
@@ -358,6 +457,10 @@ export class MemoryStore implements DataStore {
 
   async getLead(orgId: string, leadId: string): Promise<LeadCandidate | null> {
     return state().leads.find((l) => l.organization_id === orgId && l.id === leadId) ?? null;
+  }
+
+  async getLeadByRawPost(orgId: string, rawPostId: string): Promise<LeadCandidate | null> {
+    return state().leads.find((l) => l.organization_id === orgId && l.raw_post_id === rawPostId) ?? null;
   }
 
   async updateLeadStatus(orgId: string, leadId: string, status: LeadStatus): Promise<LeadCandidate> {

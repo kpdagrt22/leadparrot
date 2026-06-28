@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header class="top">
+    <span class="mark" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 48 48" fill="none">
+        <rect x="0.75" y="0.75" width="46.5" height="46.5" fill="#2E5E45"/>
+        <path d="M14 28.5L24 16.5L34 28.5" stroke="#F4F1E9" stroke-width="2.25"/>
+        <path d="M19 33.5L24 27.5L29 33.5" stroke="#F4F1E9" stroke-width="2.25" opacity="0.55"/>
+      </svg>
+    </span>
+    <span class="wm">The Leads <b>Nest</b></span>
+    <a href="#" id="openOptions" class="opt" title="Settings">Options</a>
+  </header>
+
+  <main>
+    <div id="setup" class="notice" hidden>
+      Set your API URL + token in <a href="#" id="openOptions2">Options</a> first.
+    </div>
+
+    <button id="captureBtn" class="btn primary block">Capture this post</button>
+    <div id="status" class="status"></div>
+
+    <section id="result" class="card" hidden>
+      <div class="scorerow">
+        <span id="score" class="score tier-low">0</span>
+        <span id="tier" class="tierlbl">Low</span>
+      </div>
+      <div id="bars" class="bars"></div>
+      <p id="reason" class="reason"></p>
+      <button id="draftBtn" class="btn secondary block">Generate reply draft</button>
+    </section>
+
+    <section id="draftCard" class="card" hidden>
+      <div class="lbl">Reply draft — you post it yourself</div>
+      <textarea id="draftText" class="draft" rows="6" readonly></textarea>
+      <p id="disclosure" class="disclosure"></p>
+      <button id="copyBtn" class="btn primary block">Copy reply</button>
+      <p id="disclaimer" class="disclaimer"></p>
+    </section>
+
+    <a id="openApp" class="applink" href="#" target="_blank" rel="noopener">Open in The Leads Nest →</a>
+  </main>
+
+  <footer class="foot">Single-post capture only. No scraping, no posting.</footer>
+  <script src="popup.js"></script>
+</body>
+</html>

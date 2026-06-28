@@ -12,6 +12,8 @@ import {
   assertLeadBelongsToOrg,
   assertReplyDraftBelongsToOrg,
 } from "@/lib/auth/organizations";
+import { notify, testPayload, type NotifyChannel } from "@/lib/notify";
+import { generateApiToken } from "@/lib/extension/token";
 import type { BusinessType, LeadStatus, ReplyTone, SourceType } from "@/lib/types";
 
 export interface ActionResult {
@@ -298,15 +300,97 @@ export async function updateLeadStatusAction(leadId: string, status: string): Pr
 export async function updateSettingsAction(formData: FormData): Promise<void> {
   const ctx = await requireContext();
   const store = await getStore();
-  await store.updateOrganization(ctx.organization.id, {
-    name: str(formData.get("name")) ?? ctx.organization.name,
+  const org = ctx.organization;
+
+  const newEmail = str(formData.get("notification_email")) ?? null;
+  const newPhone = str(formData.get("notify_phone")) ?? null;
+  const emailChanged = (newEmail ?? "") !== (org.notification_email ?? "");
+  const phoneChanged = (newPhone ?? "") !== (org.notify_phone ?? "");
+
+  await store.updateOrganization(org.id, {
+    name: str(formData.get("name")) ?? org.name,
     website: str(formData.get("website")) ?? null,
-    reply_tone: (str(formData.get("reply_tone")) as ReplyTone) ?? ctx.organization.reply_tone,
-    notification_email: str(formData.get("notification_email")) ?? null,
+    reply_tone: (str(formData.get("reply_tone")) as ReplyTone) ?? org.reply_tone,
+    notification_email: newEmail,
     target_geography: str(formData.get("target_geography")) ?? null,
     daily_digest_enabled: formData.get("daily_digest") === "on",
+    // Alert channels (owner-only). Changing the address/number resets its
+    // verified flag so the owner re-confirms before it can go live.
+    notify_email_enabled: formData.get("notify_email_enabled") === "on",
+    notify_sms_enabled: formData.get("notify_sms_enabled") === "on",
+    notify_whatsapp_enabled: formData.get("notify_whatsapp_enabled") === "on",
+    notify_phone: newPhone,
+    ...(emailChanged ? { notify_email_verified: false } : {}),
+    ...(phoneChanged ? { notify_phone_verified: false } : {}),
+    high_intent_threshold: clampInt(formData.get("high_intent_threshold"), org.high_intent_threshold, 0, 100),
+    digest_hour: clampInt(formData.get("digest_hour"), org.digest_hour, 0, 23),
+    quiet_hours_start: optHour(formData.get("quiet_hours_start")),
+    quiet_hours_end: optHour(formData.get("quiet_hours_end")),
   });
   revalidatePath("/app/settings");
+}
+
+/**
+ * Send a test alert to the owner's own address/number for one channel. On a real
+ * send this also marks the channel verified. Owner-only by construction —
+ * notify() resolves the recipient from org settings, never from lead data.
+ */
+export async function sendTestAlertAction(channel: NotifyChannel): Promise<ActionResult> {
+  const ctx = await requireContext();
+  const store = await getStore();
+  const org = ctx.organization;
+  const to = channel === "email" ? org.notification_email : org.notify_phone;
+  if (!to) {
+    return { ok: false, message: channel === "email" ? "Add your notification email and save first." : "Add your phone number and save first." };
+  }
+  const results = await notify(store, org.id, "test", testPayload(org.name), { channels: [channel] });
+  const r = results[0];
+  if (r?.status === "sent") {
+    await store.updateOrganization(org.id, channel === "email" ? { notify_email_verified: true } : { notify_phone_verified: true });
+    revalidatePath("/app/settings");
+    return { ok: true, message: "Test sent — channel verified." };
+  }
+  if (r?.status === "preview") {
+    return { ok: false, message: "This channel isn't configured on the server yet (preview only). Add its keys to send for real." };
+  }
+  return { ok: false, message: "Couldn't send a test on this channel. Check that it's configured and your address/number is correct." };
+}
+
+function clampInt(v: FormDataEntryValue | null, fallback: number, min: number, max: number): number {
+  const n = typeof v === "string" ? parseInt(v, 10) : NaN;
+  return Number.isNaN(n) ? fallback : Math.max(min, Math.min(max, n));
+}
+
+function optHour(v: FormDataEntryValue | null): number | null {
+  if (typeof v !== "string" || v.trim() === "") return null;
+  const n = parseInt(v, 10);
+  return Number.isNaN(n) ? null : Math.max(0, Math.min(23, n));
+}
+
+// ---------------------------------------------------------------------------
+// Browser-extension API tokens (per-user, revocable, hashed)
+// ---------------------------------------------------------------------------
+export async function createExtensionTokenAction(): Promise<{ ok: boolean; token?: string; message?: string }> {
+  const ctx = await requireContext();
+  const store = await getStore();
+  const { token, hash, prefix } = generateApiToken();
+  await store.createApiToken(ctx.organization.id, {
+    user_id: ctx.user.id,
+    name: "Browser extension",
+    token_hash: hash,
+    token_prefix: prefix,
+  });
+  revalidatePath("/app/settings");
+  // The plaintext is returned ONCE here and never stored.
+  return { ok: true, token };
+}
+
+export async function revokeExtensionTokenAction(tokenId: string): Promise<ActionResult> {
+  const ctx = await requireContext();
+  const store = await getStore();
+  await store.revokeApiToken(ctx.organization.id, tokenId);
+  revalidatePath("/app/settings");
+  return { ok: true, message: "Token revoked." };
 }
 
 function str(v: FormDataEntryValue | null): string | undefined {

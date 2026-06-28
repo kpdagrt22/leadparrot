@@ -15,6 +15,7 @@ import type {
   ReplyTone,
   BusinessType,
   ScoreTier,
+  ApiToken,
 } from "@/lib/types";
 import type { UsageSnapshot } from "@/lib/usage/limits";
 
@@ -28,6 +29,31 @@ export interface CreateOrganizationInput {
   reply_tone?: ReplyTone;
   notification_email?: string | null;
   daily_digest_enabled?: boolean;
+  notify_email_enabled?: boolean;
+  notify_sms_enabled?: boolean;
+  notify_whatsapp_enabled?: boolean;
+  notify_phone?: string | null;
+  notify_email_verified?: boolean;
+  notify_phone_verified?: boolean;
+  high_intent_threshold?: number;
+  quiet_hours_start?: number | null;
+  quiet_hours_end?: number | null;
+  digest_hour?: number;
+}
+
+export interface RecordNotificationInput {
+  channel: "email" | "sms" | "whatsapp";
+  event: string;
+  status: "sent" | "skipped" | "error" | "preview";
+  target?: string | null;
+  detail?: string | null;
+}
+
+export interface CreateApiTokenInput {
+  user_id?: string | null;
+  name?: string;
+  token_hash: string;
+  token_prefix: string;
 }
 
 export interface CreateProjectInput {
@@ -154,9 +180,22 @@ export interface DataStore {
   getProfile(userId: string): Promise<Profile | null>;
   upsertProfile(input: { id: string; full_name?: string | null; email?: string | null }): Promise<Profile>;
   getOrganizationForUser(userId: string): Promise<Organization | null>;
+  getOrganizationById(orgId: string): Promise<Organization | null>;
   createOrganization(input: CreateOrganizationInput): Promise<Organization>;
   updateOrganization(orgId: string, patch: Partial<CreateOrganizationInput>): Promise<Organization>;
   getSubscription(orgId: string): Promise<Subscription>;
+
+  // notifications (account-owner alerts: delivery log + dedupe)
+  recordNotification(orgId: string, input: RecordNotificationInput): Promise<void>;
+  getLastNotificationAt(orgId: string, event: string): Promise<string | null>;
+
+  // extension API tokens (per-user, revocable, hashed)
+  createApiToken(orgId: string, input: CreateApiTokenInput): Promise<ApiToken>;
+  listApiTokens(orgId: string): Promise<ApiToken[]>;
+  revokeApiToken(orgId: string, tokenId: string): Promise<void>;
+  /** Unscoped lookup by hash (used by the extension route via admin client);
+   *  returns the owning org for a non-revoked token and touches last_used_at. */
+  getApiTokenByHash(hash: string): Promise<{ id: string; organization_id: string } | null>;
 
   // projects
   listProjects(orgId: string): Promise<Project[]>;
@@ -183,6 +222,8 @@ export interface DataStore {
   createLead(orgId: string, input: CreateLeadInput): Promise<LeadCandidate>;
   listLeads(orgId: string, filters?: LeadFilters): Promise<LeadCandidate[]>;
   getLead(orgId: string, leadId: string): Promise<LeadCandidate | null>;
+  /** The lead for a raw post, if one was already created (idempotent re-capture). */
+  getLeadByRawPost(orgId: string, rawPostId: string): Promise<LeadCandidate | null>;
   updateLeadStatus(orgId: string, leadId: string, status: LeadStatus): Promise<LeadCandidate>;
 
   // reply drafts

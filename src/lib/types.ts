@@ -72,6 +72,17 @@ export interface Organization {
   reply_tone: ReplyTone;
   notification_email: string | null;
   daily_digest_enabled: boolean;
+  // Account-owner alert settings (alerts go to the owner only, never to a lead).
+  notify_email_enabled: boolean;
+  notify_sms_enabled: boolean;
+  notify_whatsapp_enabled: boolean;
+  notify_phone: string | null;
+  notify_email_verified: boolean;
+  notify_phone_verified: boolean;
+  high_intent_threshold: number;
+  quiet_hours_start: number | null;
+  quiet_hours_end: number | null;
+  digest_hour: number;
   created_at: string;
   updated_at: string;
 }
@@ -217,6 +228,18 @@ export interface UsageEvent {
   project_id: string | null;
   event_type: string;
   metadata: Record<string, unknown>;
+  created_at: string;
+}
+
+/** Per-user revocable API token for the browser extension (hash never exposed). */
+export interface ApiToken {
+  id: string;
+  organization_id: string;
+  user_id: string | null;
+  name: string;
+  token_prefix: string;
+  last_used_at: string | null;
+  revoked_at: string | null;
   created_at: string;
 }
 

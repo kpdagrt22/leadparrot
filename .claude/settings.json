@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(npm run test:*)",
+      "Bash(npm run typecheck)",
+      "Bash(npm run lint)",
+      "Bash(npm run build)",
+      "Bash(npm run verify:env)",
+      "Bash(npx tsc --noEmit)",
+      "Bash(npx vitest:*)",
+      "Bash(npx playwright:*)",
+      "Bash(git status)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git show:*)",
+      "Bash(git branch:*)"
+    ],
+    "ask": [
+      "Bash(git push:*)",
+      "Bash(git merge:*)",
+      "Bash(npm publish:*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [{ "type": "command", "command": "node .claude/hooks/guard-bash.mjs" }]
+      },
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [{ "type": "command", "command": "node .claude/hooks/protect-secrets.mjs" }]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [{ "type": "command", "command": "node .claude/hooks/safety-context.mjs" }]
+      }
+    ]
+  }
+}
