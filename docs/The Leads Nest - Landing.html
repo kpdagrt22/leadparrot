@@ -13,6 +13,14 @@
 <body>
 <div id="spotlight"></div>
 
+<!-- INTRO ANIMATION -->
+<div id="intro" aria-hidden="true">
+  <svg class="imk" viewBox="0 0 48 48"><path d="M12 30 L24 16 L36 30" pathLength="64"/><path class="p2" d="M18 35 L24 28 L30 35" pathLength="64"/></svg>
+  <div class="iw">The Leads <b>Nest</b></div>
+  <div class="ibar"><i></i></div>
+  <div class="icap">Calibrating intent radar</div>
+</div>
+
 <!-- ANNOUNCE -->
 <div class="announce">
   <div class="wrap">
@@ -39,8 +47,8 @@
       <a href="#safety">Safety</a>
     </div>
     <div class="nav-cta">
-      <a class="btn ghost sm" href="#">Log in</a>
-      <a class="btn sm" href="#pricing">Start free</a>
+      <a class="btn ghost sm" href="login.html">Log in</a>
+      <a class="btn sm" href="signup.html">Start free</a>
     </div>
   </div>
 </nav>
@@ -56,7 +64,7 @@
           for what you sell.</h1>
         <p class="lede">The Leads Nest watches public conversations, scores buyer intent, and drafts a helpful reply you review and post yourself — so you arrive before your competitors see the thread.</p>
         <div class="hero-cta">
-          <a class="btn lg" href="#pricing">Start finding leads</a>
+          <a class="btn lg" href="signup.html">Start finding leads</a>
           <a class="btn ghost lg" href="#how">See how it works&nbsp;&nbsp;→</a>
         </div>
         <p class="hero-sub">No card required · Clickable demo workspace from minute one</p>
@@ -95,6 +103,16 @@
     <div class="marquee-track" id="mq"></div>
   </div>
 </header>
+
+<!-- TRUST -->
+<section class="trust">
+  <div class="wrap trust-in" data-reveal>
+    <div class="ti"><b data-count="1200" data-suffix="+">0</b><span>Founder-led teams</span></div>
+    <div class="ti"><b>4.8 / 5</b><span>Avg beta rating</span></div>
+    <div class="ti"><b data-count="92" data-suffix="%">0</b><span>Draft acceptance</span></div>
+    <div class="ti"><b data-count="0">0</b><span>Auto-posts, ever</span></div>
+  </div>
+</section>
 
 <!-- PROBLEM -->
 <section class="sec" id="problem">
@@ -182,52 +200,87 @@
   </div>
 </section>
 
-<!-- PRODUCT SHOWCASE -->
-<section class="sec show-sec" id="product">
-  <div class="wrap">
-    <div class="sec-head center" data-reveal>
-      <span class="eyebrow accent center">The workspace</span>
-      <h2>Your nest of high-intent leads.</h2>
-      <p>A calm, engineered inbox — scored, sourced, and ready to act on. Built on the same Crest system as this page.</p>
-    </div>
-    <div class="app-mock" data-reveal>
-      <aside class="am-side">
-        <div class="am-brand"><img src="assets/crest-mark.svg" alt="" /><span>The Leads <b style="font-weight:500">Nest</b></span></div>
-        <nav class="am-nav">
-          <a class="on">◆ Dashboard</a>
-          <a>◇ Lead inbox</a>
-          <a>◇ Projects</a>
-          <a>◇ Sources</a>
-          <a>◇ Daily digest</a>
-          <a>◇ Settings</a>
-        </nav>
-      </aside>
-      <div class="am-main">
-        <div class="am-bento">
-          <div class="am-stat"><div class="sl">Total leads</div><div class="sv">248</div></div>
-          <div class="am-stat"><div class="sl">High-intent</div><div class="sv">41</div></div>
-          <div class="am-stat ink"><div class="sl">Avg score</div><div class="sv">63</div></div>
-          <div class="am-stat acc"><div class="sl">Replies copied</div><div class="sv">29</div></div>
+<!-- PRODUCT TOUR (scroll-driven) -->
+<section class="tour" id="product">
+  <div class="tour-pin">
+    <div class="wrap">
+      <div class="tour-head">
+        <div>
+          <span class="eyebrow accent">The workspace · scroll to tour</span>
+          <h2 style="font-size:clamp(26px,3.2vw,38px);margin-top:12px">Your nest, tab by tab.</h2>
         </div>
-        <div class="am-lead">
-          <div class="as">81</div>
-          <div style="min-width:0">
-            <div class="am-meta"><span class="am-badge">Reddit</span> r/agency · competitor-switching · 1d ago</div>
-            <div class="at">Frustrated with PandaDoc pricing — any cheaper alternatives?</div>
+        <span class="tcount">01 / 06</span>
+      </div>
+      <div class="tour-app">
+        <aside class="tnav-side">
+          <div class="tnav-brand"><img src="assets/crest-mark.svg" alt="" /><span>The Leads <b style="font-weight:500">Nest</b></span></div>
+          <nav class="tnav">
+            <a class="on"><span class="tdoticon">◆</span> Dashboard</a>
+            <a><span class="tdoticon">◆</span> Lead inbox</a>
+            <a><span class="tdoticon">◆</span> Projects</a>
+            <a><span class="tdoticon">◆</span> Sources</a>
+            <a><span class="tdoticon">◆</span> Daily digest</a>
+            <a><span class="tdoticon">◆</span> Settings</a>
+          </nav>
+          <div class="tprog"><div class="trail"><i></i></div></div>
+        </aside>
+        <div class="tmain">
+          <!-- 0 · Dashboard -->
+          <div class="tpanel on">
+            <div class="tsec-h">Overview · Acme Proposals</div>
+            <div class="am-bento" style="margin-bottom:14px">
+              <div class="am-stat"><div class="sl">Total leads</div><div class="sv">248</div></div>
+              <div class="am-stat"><div class="sl">High-intent</div><div class="sv">41</div></div>
+              <div class="am-stat ink"><div class="sl">Avg score</div><div class="sv">63</div></div>
+              <div class="am-stat acc"><div class="sl">Replies copied</div><div class="sv">29</div></div>
+            </div>
+            <div class="trow"><div class="rscore">81</div><div style="min-width:0"><div class="rm"><span class="tpill">Reddit</span> r/agency · competitor-switching · 1d</div><div class="rt">Frustrated with PandaDoc pricing — any cheaper alternatives?</div></div></div>
+            <div class="trow"><div class="rscore">74</div><div style="min-width:0"><div class="rm"><span class="tpill gray">Hacker News</span> Ask HN · problem-aware · 2d</div><div class="rt">How do you track which communities send you clients?</div></div></div>
           </div>
-        </div>
-        <div class="am-lead">
-          <div class="as">74</div>
-          <div style="min-width:0">
-            <div class="am-meta"><span class="am-badge" style="background:var(--info)">Hacker News</span> Ask HN · problem-aware · 2d ago</div>
-            <div class="at">How do you track which communities actually send you clients?</div>
+          <!-- 1 · Lead inbox -->
+          <div class="tpanel">
+            <div class="tsec-h">Lead inbox</div>
+            <div class="tinbox-tabs"><b>All<span class="c">248</span></b><span>High<span class="c">41</span></span><span>Saved<span class="c">12</span></span><span>Replied<span class="c">7</span></span></div>
+            <div class="trow"><div class="rscore">81</div><div style="min-width:0"><div class="rm"><span class="tpill">Reddit</span> r/agency · 1d</div><div class="rt">Frustrated with PandaDoc pricing — any cheaper alternatives?</div></div></div>
+            <div class="trow"><div class="rscore">74</div><div style="min-width:0"><div class="rm"><span class="tpill gray">Hacker News</span> Ask HN · 2d</div><div class="rt">How do you track which communities send you clients?</div></div></div>
+            <div class="trow"><div class="rscore med">69</div><div style="min-width:0"><div class="rm"><span class="tpill">Reddit</span> r/freelance · 1d</div><div class="rt">Looking for a proposal tool — anything better than Word?</div></div></div>
           </div>
-        </div>
-        <div class="am-lead">
-          <div class="as" style="color:var(--medium)">69</div>
-          <div style="min-width:0">
-            <div class="am-meta"><span class="am-badge">Reddit</span> r/freelance · solution-aware · 1d ago</div>
-            <div class="at">Looking for a proposal tool — anything better than Word?</div>
+          <!-- 2 · Projects -->
+          <div class="tpanel">
+            <div class="tsec-h">Projects · 2 of 3 active</div>
+            <div class="trow" style="align-items:flex-start"><div style="flex:1;min-width:0"><div class="rm"><span class="tpill">Active</span> 4 sources · 248 leads</div><div class="rt">Proposal tool — Reddit + HN</div><div class="tkeys"><span class="tkey">proposal tool</span><span class="tkey">client proposal</span><span class="tkey">Upwork proposal</span></div></div></div>
+            <div class="trow" style="align-items:flex-start"><div style="flex:1;min-width:0"><div class="rm"><span class="tpill">Active</span> 2 sources · 96 leads</div><div class="rt">Contract e-sign — niche forums</div><div class="tkeys"><span class="tkey">e-signature</span><span class="tkey">contract tool</span></div></div></div>
+            <div class="trow" style="align-items:flex-start;opacity:.6"><div style="flex:1;min-width:0"><div class="rm"><span class="tpill gray">Paused</span> 0 sources</div><div class="rt">Onboarding flows — draft</div></div></div>
+          </div>
+          <!-- 3 · Sources -->
+          <div class="tpanel">
+            <div class="tsec-h">Sources · 3 live</div>
+            <div class="trow"><div style="flex:1;min-width:0"><div class="rm"><span class="tpill">Reddit</span> Official API · last sync 30m ago</div><div class="rt">r/freelance, r/agency, r/Upwork</div></div><div class="tsw"></div></div>
+            <div class="trow"><div style="flex:1;min-width:0"><div class="rm"><span class="tpill gray">Hacker News</span> Algolia search · 2h ago</div><div class="rt">"proposal software"</div></div><div class="tsw"></div></div>
+            <div class="trow"><div style="flex:1;min-width:0"><div class="rm"><span class="tpill gray">RSS</span> Public feed · 1d ago</div><div class="rt">indiehackers.com/feed</div></div><div class="tsw"></div></div>
+            <div class="trow"><div style="flex:1;min-width:0"><div class="rm"><span class="tpill gray">Manual</span> Paste a public URL</div><div class="rt">Manual posts</div></div><div class="tsw off"></div></div>
+          </div>
+          <!-- 4 · Daily digest -->
+          <div class="tpanel">
+            <div class="tsec-h">Daily digest · sent 7:00 AM</div>
+            <div class="tmail">
+              <div class="tmh"><div class="sub">3 high-intent leads this morning</div><div class="from">The Leads Nest · digest@theleadsnest.com</div></div>
+              <div class="tmb">
+                <div class="tml"><b>81</b><span>Frustrated with PandaDoc pricing — any cheaper alternatives? · r/agency</span></div>
+                <div class="tml"><b>74</b><span>How do you track which communities send clients? · Ask HN</span></div>
+                <div class="tml"><b>69</b><span>Looking for a proposal tool — anything better than Word? · r/freelance</span></div>
+              </div>
+            </div>
+          </div>
+          <!-- 5 · Settings -->
+          <div class="tpanel">
+            <div class="tsec-h">Settings · Workspace</div>
+            <div class="tset">
+              <div class="sf"><label>Workspace name</label><div class="box">Acme Proposals</div></div>
+              <div class="sf"><label>Plan</label><div class="box">Starter — $19 / mo · 500 posts</div></div>
+              <div class="srow"><div class="sl2">Daily digest email<em>7:00 AM · your timezone</em></div><div class="tsw"></div></div>
+              <div class="srow"><div class="sl2">Auto-post replies<em>Disabled by design — you always post</em></div><div class="tsw off"></div></div>
+            </div>
           </div>
         </div>
       </div>
@@ -248,6 +301,23 @@
     <div class="cell"><div class="ico" data-ic="boxes"></div><h3>B2B services</h3><p>Surface buying-intent threads in niche communities you can't watch all day.</p></div>
     <div class="cell"><div class="ico" data-ic="bot"></div><h3>AI tools</h3><p>Be first to the workflows people are trying to automate right now.</p></div>
     <div class="cell"><div class="ico" data-ic="compass"></div><h3>Niche services</h3><p>Monitor the handful of forums where your customers actually hang out.</p></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="sec wrap" id="loved">
+  <div class="sec-head center" data-reveal>
+    <span class="eyebrow accent center">Founder-led teams</span>
+    <h2>People who'd rather help than spam.</h2>
+    <p>Early users from SaaS, agencies and solo consulting — in their words.</p>
+  </div>
+  <div class="tgrid" data-reveal>
+    <div class="tcard"><div class="stars">★★★★★</div><p class="tq">“I replied to three threads in week one — two became calls. The draft kept me from <span class="hl">sounding like a pitch.</span>”</p><div class="tperson"><span class="tav acc">MO</span><span class="pmeta"><span class="pn2">Maya Okafor</span><span class="pr">Founder · Tetra Forms</span></span><span class="src2">@maya_builds</span></div></div>
+    <div class="tcard"><div class="stars">★★★★★</div><p class="tq">“It surfaces the ‘frustrated with [competitor]’ posts I’d never catch in time. <span class="hl">That timing is everything.</span>”</p><div class="tperson"><span class="tav ink">DR</span><span class="pmeta"><span class="pn2">Daniel Roth</span><span class="pr">Agency owner · Northbound</span></span><span class="src2">r/agency</span></div></div>
+    <div class="tcard"><div class="stars">★★★★★</div><p class="tq">“The score breakdown is the part I trust. I can see <span class="hl">why a lead is a 70 and not a 40.</span>”</p><div class="tperson"><span class="tav soft">PN</span><span class="pmeta"><span class="pn2">Priya Nair</span><span class="pr">Independent consultant</span></span><span class="src2">@priyaships</span></div></div>
+    <div class="tcard"><div class="stars">★★★★★</div><p class="tq">“Finally a tool that doesn’t auto-post. <span class="hl">I’d never risk my Reddit account</span> on automation.”</p><div class="tperson"><span class="tav acc">TV</span><span class="pmeta"><span class="pn2">Tom Vasquez</span><span class="pr">Indie hacker</span></span><span class="src2">news.yc</span></div></div>
+    <div class="tcard"><div class="stars">★★★★★</div><p class="tq">“Set up two projects in an afternoon. The daily digest is <span class="hl">the only growth email I actually open.</span>”</p><div class="tperson"><span class="tav ink">LK</span><span class="pmeta"><span class="pn2">Lena Kraft</span><span class="pr">Solo SaaS founder</span></span><span class="src2">@lenakraft</span></div></div>
+    <div class="tcard"><div class="stars">★★★★★</div><p class="tq">“Helpful-first, disclosure built in. It made our outreach feel <span class="hl">honest — which is the whole point.</span>”</p><div class="tperson"><span class="tav soft">SI</span><span class="pmeta"><span class="pn2">Sam Idris</span><span class="pr">B2B services · Cle</span></span><span class="src2">@sam_cle</span></div></div>
   </div>
 </section>
 
@@ -287,28 +357,28 @@
       <div class="pp"><b>$0</b><span>/mo</span></div>
       <div class="pt">Validate the workflow with one project.</div>
       <ul><li>1 project</li><li>Manual source</li><li>20 scanned posts / mo</li><li>10 reply drafts / mo</li></ul>
-      <a class="btn ghost sm" href="#">Start free</a>
+      <a class="btn ghost sm" href="signup.html">Start free</a>
     </div>
     <div class="plan">
       <div class="pn">Starter</div>
       <div class="pp"><b>$19</b><span>/mo</span></div>
       <div class="pt">For solo founders finding their first leads.</div>
       <ul><li>3 projects</li><li>Reddit, HN, RSS + manual</li><li>500 scanned posts / mo</li><li>Daily digest email</li></ul>
-      <a class="btn ghost sm" href="#">Choose Starter</a>
+      <a class="btn ghost sm" href="signup.html">Choose Starter</a>
     </div>
     <div class="plan hi">
       <div class="pn">Pro <span class="tagpop">Popular</span></div>
       <div class="pp"><b>$49</b><span>/mo</span></div>
       <div class="pt">For consultants and small teams scaling outreach.</div>
       <ul><li>10 projects</li><li>3,000 scanned posts / mo</li><li>1,000 reply drafts / mo</li><li>Advanced filters</li></ul>
-      <a class="btn on-dark sm" href="#">Choose Pro</a>
+      <a class="btn on-dark sm" href="signup.html">Choose Pro</a>
     </div>
     <div class="plan">
       <div class="pn">Agency</div>
       <div class="pp"><b>$99</b><span>/mo</span></div>
       <div class="pt">For agencies managing multiple clients.</div>
       <ul><li>25 projects</li><li>10,000 scanned posts / mo</li><li>Multi-client workspace</li><li>White-label digest</li></ul>
-      <a class="btn ghost sm" href="#">Choose Agency</a>
+      <a class="btn ghost sm" href="signup.html">Choose Agency</a>
     </div>
   </div>
 </section>
@@ -337,8 +407,8 @@
     <h2 style="margin-top:18px">Get a useful reply draft<br/>before your competitors see the thread.</h2>
     <p class="lede">No card required. Runs in a clickable demo workspace from the first minute.</p>
     <div class="fc-cta">
-      <a class="btn lg" href="#">Start finding leads</a>
-      <a class="btn ghost lg" href="#">Try the demo&nbsp;&nbsp;→</a>
+      <a class="btn lg" href="signup.html">Start finding leads</a>
+      <a class="btn ghost lg" href="demo.html">Try the demo&nbsp;&nbsp;→</a>
     </div>
   </div>
 </section>
@@ -351,9 +421,9 @@
         <a class="brand" href="#top"><img src="assets/crest-mark-outline.svg" alt="" style="width:26px;height:26px" /><span class="wm">The Leads <b>Nest</b></span></a>
         <p>Platform-safe, high-intent lead discovery and AI reply drafts from public conversations. You stay in control.</p>
       </div>
-      <div class="col"><h5>Product</h5><a href="#how">How it works</a><a href="#scoring">Scoring</a><a href="#product">Workspace</a><a href="#pricing">Pricing</a></div>
-      <div class="col"><h5>Company</h5><a href="#safety">Platform safety</a><a href="#">Compliance</a><a href="#uses">Use cases</a><a href="#">Changelog</a></div>
-      <div class="col"><h5>Account</h5><a href="#">Log in</a><a href="#pricing">Start free</a><a href="#">Daily digest</a></div>
+      <div class="col"><h5>Product</h5><a href="#how">How it works</a><a href="#scoring">Scoring</a><a href="#product">Workspace</a><a href="demo.html">Live demo</a><a href="#pricing">Pricing</a></div>
+      <div class="col"><h5>Company</h5><a href="#safety">Platform safety</a><a href="#safety">Compliance</a><a href="#uses">Use cases</a><a href="#loved">Customers</a></div>
+      <div class="col"><h5>Account</h5><a href="login.html">Log in</a><a href="signup.html">Start free</a><a href="app.html">Daily digest</a></div>
     </div>
     <div class="foot-base">
       <span class="dom">theleadsnest.com</span>

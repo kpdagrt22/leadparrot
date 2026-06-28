@@ -274,6 +274,26 @@ is in `ADMIN_EMAILS`.
 
 ---
 
+### 3.11 Browser extension — distribution accounts (Phase 10)
+
+The extension introduces **no new server env var** — it authenticates with a
+**per-user, revocable, hashed API token** minted in `/app/settings` and stored in
+the database (migration `0005_extension_tokens.sql`). What it needs:
+
+| Account | Cost | Purpose |
+|---|---|---|
+| Chrome Web Store developer account | **one-time $5** | Publish to Chrome/Edge users. |
+| Microsoft Edge Add-ons account | free | Optional Edge listing. |
+| Firefox AMO account | free | Optional; `moz-extension://<id>` (CORS allowlist) is known only **after AMO signing**. |
+
+Store review also requires a **published privacy policy** (single-purpose +
+minimal-permission justification). The extension is configured client-side with
+the app's **API base URL** (user pastes their token + origin in the Options page).
+Full spec: `docs/EXTENSION_BUILD_PROMPT.md`. **Security:** the token is a bearer
+secret — server-only at rest (hashed), revocable, never `NEXT_PUBLIC_`.
+
+---
+
 ## 4. Consolidated checklist — every env var
 
 Secret = `yes` means **server-only, never commit, never `NEXT_PUBLIC_`**.

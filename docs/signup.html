@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Start free — The Leads Nest</title>
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="assets/landing.css" />
+<link rel="icon" href="assets/crest-mark.svg" />
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+<div id="spotlight"></div>
+<div class="auth">
+  <div class="auth-brand">
+    <a class="ab-brand" href="The%20Leads%20Nest%20-%20Landing.html"><img src="assets/crest-mark.svg" alt="" /><span>The Leads <b>Nest</b></span></a>
+    <div class="ab-lead">
+      <span class="eyebrow on-dark">Live intent radar</span>
+      <h2>Watch buyer intent <span class="accent">surface</span> as it happens.</h2>
+    </div>
+    <div class="ab-stream" id="abStream">
+      <div class="ab-rings">
+        <span class="rr" style="width:150px;height:150px"></span>
+        <span class="rr" style="width:250px;height:250px"></span>
+        <span class="rr" style="width:360px;height:360px"></span>
+        <span class="ax"></span>
+        <span class="sweep"></span>
+        <svg class="chev" viewBox="0 0 48 48"><path d="M12 30 L24 16 L36 30" fill="none" stroke="#5A7C66" stroke-width="2.4"/><path d="M18 35 L24 28 L30 35" fill="none" stroke="#5A7C66" stroke-width="2.4" opacity=".5"/></svg>
+      </div>
+      <div class="scanline"></div>
+      <div class="scanlabel"><span class="ld"></span>Scoring · live</div>
+    </div>
+    <div class="ab-foot">
+      <div class="ab-stats">
+        <div><b>4</b><span>Public sources</span></div>
+        <div><b>&lt;1m</b><span>To first scan</span></div>
+        <div><b>$0</b><span>To start</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="auth-form-wrap">
+    <a class="auth-back" href="The%20Leads%20Nest%20-%20Landing.html"><i data-lucide="arrow-left" style="width:13px"></i> Back</a>
+    <form class="auth-form" onsubmit="event.preventDefault(); window.location.href='app.html';">
+      <div class="ttl">Create your free account</div>
+      <div class="sub">No card required. Clickable demo workspace from minute one.</div>
+      <button class="oauth" type="button" onclick="window.location.href='app.html'">
+        <svg width="15" height="15" viewBox="0 0 48 48"><path fill="#4285F4" d="M45 24c0-1.6-.1-3.1-.4-4.5H24v9h11.8c-.5 2.7-2 5-4.3 6.6v5.5h7C42.6 36.8 45 31 45 24z"/><path fill="#34A853" d="M24 46c5.9 0 10.8-2 14.4-5.3l-7-5.5c-2 1.3-4.5 2.1-7.4 2.1-5.7 0-10.5-3.8-12.2-9H4.5v5.7C8.1 41.1 15.5 46 24 46z"/><path fill="#FBBC05" d="M11.8 28.3c-.4-1.3-.7-2.7-.7-4.3s.3-3 .7-4.3v-5.7H4.5C2.9 17.3 2 20.5 2 24s.9 6.7 2.5 9.7l7.3-5.4z"/><path fill="#EA4335" d="M24 10.8c3.2 0 6.1 1.1 8.4 3.3l6.3-6.3C34.8 4.1 29.9 2 24 2 15.5 2 8.1 6.9 4.5 14.3l7.3 5.7c1.7-5.2 6.5-9.2 12.2-9.2z"/></svg>
+        Sign up with Google
+      </button>
+      <div class="auth-divider"><span>or</span></div>
+      <div class="field"><label>Full name</label><input type="text" placeholder="Maya Okafor" required /></div>
+      <div class="field"><label>Work email</label><input type="email" placeholder="you@company.com" required /></div>
+      <div class="field"><label>Password</label><input type="password" placeholder="At least 8 characters" required /></div>
+      <div class="consent"><input type="checkbox" id="c1" checked /><label for="c1">I understand The Leads Nest drafts replies only — I&rsquo;ll review and post them myself, with disclosure.</label></div>
+      <button class="btn lg" type="submit" style="width:100%">Create free account</button>
+      <div class="auth-foot">Already have an account? <a href="login.html">Log in</a></div>
+    </form>
+  </div>
+</div>
+<script src="assets/landing.js"></script>
+<script src="assets/auth.js"></script>
+<script>window.addEventListener("load", function(){ if(window.lucide) window.lucide.createIcons(); });</script>
+</body>
+</html>

@@ -305,6 +305,50 @@ copy-only draft carries a disclosure; demo mode returns a sensible mock.
 
 ---
 
+## Phase 11 — Feedback & support ticketing ⭐
+
+**Goal:** users can raise tickets (bug / feature / question / general feedback)
+and track status, from **every web screen** and from **mobile Settings → Help**.
+Internal support only — it feeds the `support-feedback` agent's backlog and
+**never messages a lead**. Full spec: **`docs/FEEDBACK_SYSTEM_PROMPT.md`**.
+
+**Surfaces:** a global **Feedback launcher mounted once in the app shell**
+(`src/app/app/layout.tsx`) so it appears on every authenticated screen and
+auto-captures the current route; **`/app/feedback`** (My tickets) list + detail;
+an **admin triage** view in `/app/admin`; **mobile** Settings → Help & Feedback →
+bottom **sheet** to raise/feedback + My tickets. Marketing pages get a lightweight
+variant (sign-in to track).
+
+**Wire to backend:** new migration **`0006_feedback_tickets.sql`** (+ optional
+`ticket_messages`), org-scoped with RLS (members read/insert own org; **only
+admins update status**); `DataStore` methods (`createTicket`, `listTickets`,
+`getTicket`, `updateTicketStatus`, `addTicketMessage`) at **MemoryStore +
+SupabaseStore parity** + demo seed; server actions (RHF + Zod, org derived from
+session, **rate-limited**, demo-safe). Optional admin notification on a new ticket
+reuses `src/lib/notify` / `ERROR_WEBHOOK_URL` — **to the product team, not a
+lead.** Do **not** collide with the inline `Feedback` status component in
+`src/components/actions.tsx`.
+
+**Owner:** `supabase-rls` (table + RLS + parity) → `frontend-ux` (actions, global
+launcher, panel, mobile sheet, admin triage). **Audit (mandatory):**
+`security-compliance` (RLS/IDOR, no lead messaging, PII) + `platform-safety-audit`.
+**Skills:** `wire-feature`, `crest-design`, `release-gate`.
+
+**Acceptance:** a ticket can be raised from any web screen and from mobile
+Settings → Help; tickets are org-scoped (no cross-org read/update); status updates
+are admin-only **server-side**; rate-limited; works in demo mode; a11y
+(focus-trapped modal/sheet, ESC, labels); both stores at parity with tests.
+
+> **Prompt:** "Implement Phase 11 (feedback & support ticketing) per
+> `docs/FEEDBACK_SYSTEM_PROMPT.md` using `wire-feature` + `crest-design`. Add
+> migration `0006_feedback_tickets.sql` + RLS, the DataStore methods on both
+> stores, the rate-limited org-scoped server actions, the global app-shell
+> launcher + `/app/feedback` + admin triage, and the mobile Settings → Help
+> sheet. Then run `security-compliance`, `platform-safety-audit`, and
+> `release-gate`."
+
+---
+
 ## Env additions introduced by this plan (all optional, demo-safe)
 
 ```

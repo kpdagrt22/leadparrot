@@ -141,6 +141,7 @@ Delegate domain work to them:
 | `support-feedback` | Triage beta feedback into scoped backlog items |
 
 Reusable skills in [`.claude/skills/`](.claude/skills/):
+`wire-feature`, `notification-channels`, `browser-extension`,
 `platform-safety-audit`, `release-gate`, `lead-scoring`, `sample-report`,
 `crest-design`.
 
@@ -150,6 +151,16 @@ in Bash, and inject invariant reminders when you edit safety-critical paths.
 
 ## 9. Key references
 
+- **Build & operate:** [docs/BUILD_PROMPT.md](docs/BUILD_PROMPT.md) (phased build,
+  login → alerts → extension) · [docs/CREDENTIALS.md](docs/CREDENTIALS.md) ·
+  [docs/TESTING_MASTER_PROMPT.md](docs/TESTING_MASTER_PROMPT.md) ·
+  [docs/EXTENSION_BUILD_PROMPT.md](docs/EXTENSION_BUILD_PROMPT.md) ·
+  [docs/DESIGN_MIGRATION_PROMPT.md](docs/DESIGN_MIGRATION_PROMPT.md) (apply theme +
+  web/mobile/PWA onto `src/`) ·
+  [docs/FEEDBACK_SYSTEM_PROMPT.md](docs/FEEDBACK_SYSTEM_PROMPT.md) (feedback +
+  support ticketing — every web screen + mobile Help)
+- Each prompt doc opens with a **Section 0 — Mandatory Corrections** from an
+  adversarial review verified against live code; apply it first.
 - [README.md](README.md) · [docs/PRD.md](docs/PRD.md) ·
   [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) · [docs/DATABASE.md](docs/DATABASE.md)
 - [docs/AI_SCORING_WORKFLOW.md](docs/AI_SCORING_WORKFLOW.md) ·

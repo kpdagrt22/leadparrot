@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Log in — The Leads Nest</title>
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="assets/landing.css" />
+<link rel="icon" href="assets/crest-mark.svg" />
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+</head>
+<body>
+<div id="spotlight"></div>
+<div class="auth">
+  <div class="auth-brand">
+    <a class="ab-brand" href="The%20Leads%20Nest%20-%20Landing.html"><img src="assets/crest-mark.svg" alt="" /><span>The Leads <b>Nest</b></span></a>
+    <h2>Find customers already <span class="accent">asking</span> for what you sell.</h2>
+    <div class="ab-mid">
+      <div class="ab-quote">&ldquo;I replied to three threads in week one — two became calls. The draft kept me from sounding like a pitch.&rdquo;</div>
+      <div class="ab-by"><span class="tav acc">MO</span><div><div class="pn2">Maya Okafor</div><div class="pr">Founder · Tetra Forms</div></div></div>
+      <div class="ab-stats">
+        <div><b>1,200+</b><span>Founder-led teams</span></div>
+        <div><b>4.8/5</b><span>Avg rating</span></div>
+        <div><b>0</b><span>Auto-posts</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="auth-form-wrap">
+    <a class="auth-back" href="The%20Leads%20Nest%20-%20Landing.html"><i data-lucide="arrow-left" style="width:13px"></i> Back</a>
+    <form class="auth-form" onsubmit="event.preventDefault(); window.location.href='app.html';">
+      <div class="ttl">Welcome back</div>
+      <div class="sub">Log in to your nest.</div>
+      <button class="oauth" type="button" onclick="window.location.href='app.html'">
+        <svg width="15" height="15" viewBox="0 0 48 48"><path fill="#4285F4" d="M45 24c0-1.6-.1-3.1-.4-4.5H24v9h11.8c-.5 2.7-2 5-4.3 6.6v5.5h7C42.6 36.8 45 31 45 24z"/><path fill="#34A853" d="M24 46c5.9 0 10.8-2 14.4-5.3l-7-5.5c-2 1.3-4.5 2.1-7.4 2.1-5.7 0-10.5-3.8-12.2-9H4.5v5.7C8.1 41.1 15.5 46 24 46z"/><path fill="#FBBC05" d="M11.8 28.3c-.4-1.3-.7-2.7-.7-4.3s.3-3 .7-4.3v-5.7H4.5C2.9 17.3 2 20.5 2 24s.9 6.7 2.5 9.7l7.3-5.4z"/><path fill="#EA4335" d="M24 10.8c3.2 0 6.1 1.1 8.4 3.3l6.3-6.3C34.8 4.1 29.9 2 24 2 15.5 2 8.1 6.9 4.5 14.3l7.3 5.7c1.7-5.2 6.5-9.2 12.2-9.2z"/></svg>
+        Continue with Google
+      </button>
+      <div class="auth-divider"><span>or</span></div>
+      <div class="field"><label>Email</label><input type="email" placeholder="you@company.com" required /></div>
+      <div class="field"><div class="lrow"><label>Password</label><a href="#">Forgot?</a></div><input type="password" placeholder="••••••••" required /></div>
+      <button class="btn lg" type="submit" style="width:100%">Log in</button>
+      <div class="auth-foot">New here? <a href="signup.html">Create a free account</a></div>
+    </form>
+  </div>
+</div>
+<script src="assets/landing.js"></script>
+<script>window.addEventListener("load", function(){ if(window.lucide) window.lucide.createIcons(); });</script>
+</body>
+</html>

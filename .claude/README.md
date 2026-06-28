@@ -14,6 +14,7 @@ work to them: `product-owner`, `architecture`, `supabase-rls`, `ai-workflow`,
 Reusable procedures (invoke with `/<name>` or let them auto-trigger):
 - `wire-feature` — add a feature end-to-end (route → backend → store → tests).
 - `notification-channels` — wire email (SMTP/Resend), SMS, WhatsApp alerts.
+- `browser-extension` — build the MV3 manual-capture extension (safety-contracted).
 - `platform-safety-audit` — the no-auto-post / no-scrape / disclosure gate.
 - `release-gate` — the full pre-PR/merge/deploy verification sequence.
 - `lead-scoring` — understand and safely tune the scoring model.
@@ -30,7 +31,15 @@ Reusable procedures (invoke with `/<name>` or let them auto-trigger):
 
 `settings.json` also allow-lists safe read/test/build commands to cut prompts.
 
-## The build plan
-[`../docs/BUILD_PROMPT.md`](../docs/BUILD_PROMPT.md) is the phased prompt for
-building all functionality and wiring it to the backend (login → SMTP/SMS/
-WhatsApp alerts).
+## Build & operate docs
+- [`../docs/BUILD_PROMPT.md`](../docs/BUILD_PROMPT.md) — phased build (login →
+  SMTP/SMS/WhatsApp alerts → Phase 10 browser extension).
+- [`../docs/EXTENSION_BUILD_PROMPT.md`](../docs/EXTENSION_BUILD_PROMPT.md) — the
+  full MV3 extension build prompt (apply its Section 0 corrections first).
+- [`../docs/TESTING_MASTER_PROMPT.md`](../docs/TESTING_MASTER_PROMPT.md) — the
+  master testing prompt (apply its Section 0 corrections first).
+- [`../docs/DESIGN_MIGRATION_PROMPT.md`](../docs/DESIGN_MIGRATION_PROMPT.md) — apply
+  the new theme + web/mobile/PWA design onto `src/` (apply its Section 0 first).
+- [`../docs/FEEDBACK_SYSTEM_PROMPT.md`](../docs/FEEDBACK_SYSTEM_PROMPT.md) — feedback
+  + support ticketing on every web screen + mobile Help (apply its Section 0 first).
+- [`../docs/CREDENTIALS.md`](../docs/CREDENTIALS.md) — every credential, by tier.
