@@ -8,19 +8,70 @@
   document.documentElement.classList.add("js");
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ---------- cursor spotlight ---------- */
-  var spot = document.getElementById("spotlight");
-  if (spot && !reduce) {
+  /* ---------- intro animation (landing only) ---------- */
+  var intro = document.getElementById("intro");
+  if (intro) {
+    if (reduce) { intro.parentNode && intro.parentNode.removeChild(intro); }
+    else {
+      var killIntro = function () {
+        if (intro.classList.contains("done")) return;
+        intro.classList.add("done");
+        setTimeout(function () { intro.parentNode && intro.parentNode.removeChild(intro); }, 720);
+      };
+      setTimeout(killIntro, 2000);
+      intro.addEventListener("click", killIntro);
+    }
+  }
+
+  /* ---------- prominent custom cursor + spotlight ---------- */
+  function ensureEl(id) {
+    var e = document.getElementById(id);
+    if (!e) { e = document.createElement("div"); e.id = id; document.body.appendChild(e); }
+    return e;
+  }
+  var finePointer = window.matchMedia("(pointer:fine)").matches;
+  var noCursor = document.documentElement.hasAttribute("data-no-cursor");
+  if (finePointer && !reduce && !noCursor) {
+    var spot = ensureEl("spotlight");
+    var dot = ensureEl("cur-dot");
+    var ring = ensureEl("cur-ring");
+    var mx = window.innerWidth / 2, my = window.innerHeight / 2, rx = mx, ry = my;
     window.addEventListener("pointermove", function (e) {
-      spot.style.setProperty("--mx", e.clientX + "px");
-      spot.style.setProperty("--my", e.clientY + "px");
+      mx = e.clientX; my = e.clientY;
+      spot.style.setProperty("--mx", mx + "px");
+      spot.style.setProperty("--my", my + "px");
+      dot.style.transform = "translate(" + mx + "px," + my + "px) translate(-50%,-50%)";
     }, { passive: true });
+    (function ringLoop() {
+      rx += (mx - rx) * 0.18; ry += (my - ry) * 0.18;
+      ring.style.transform = "translate(" + rx + "px," + ry + "px) translate(-50%,-50%)";
+      requestAnimationFrame(ringLoop);
+    })();
+    var hotSel = "a,button,.btn,.qa button,.am-lead,.plan,.cell,.tcard,#radar,input,select,textarea,.am-nav a";
+    document.addEventListener("pointerover", function (e) {
+      if (e.target.closest && e.target.closest(hotSel)) ring.classList.add("hot");
+    });
+    document.addEventListener("pointerout", function (e) {
+      if (e.target.closest && e.target.closest(hotSel)) {
+        var to = e.relatedTarget;
+        if (!(to && to.closest && to.closest(hotSel))) ring.classList.remove("hot");
+      }
+    });
+    window.addEventListener("pointerdown", function () { ring.classList.add("click"); });
+    window.addEventListener("pointerup", function () { ring.classList.remove("click"); });
+    document.addEventListener("mouseleave", function () { dot.style.opacity = ring.style.opacity = "0"; });
+    document.addEventListener("mouseenter", function () { dot.style.opacity = ring.style.opacity = "1"; });
+  } else {
+    var sp = document.getElementById("spotlight");
+    if (sp) sp.style.display = "none";
   }
 
   /* ---------- sticky nav ---------- */
   var nav = document.getElementById("nav");
-  function navState() { nav.classList.toggle("stuck", window.scrollY > 12); }
-  navState(); window.addEventListener("scroll", navState, { passive: true });
+  if (nav) {
+    var navState = function () { nav.classList.toggle("stuck", window.scrollY > 12); };
+    navState(); window.addEventListener("scroll", navState, { passive: true });
+  }
 
   /* ---------- headline underline draw ---------- */
   var uline = document.querySelector(".hero h1 .accent path");
@@ -82,9 +133,22 @@
   checkReveal();
   setTimeout(checkReveal, 300);
   setTimeout(checkReveal, 1200);
+  // Fallback: ensure signature pieces populate even if the page never
+  // scrolls (embedded previews, very tall viewports).
+  window.addEventListener("load", function () {
+    setTimeout(function () {
+      runScanLog();
+      document.querySelectorAll(".formula").forEach(fillBars);
+      document.querySelectorAll("[data-count]").forEach(function (el) {
+        if (!el.classList.contains("counted")) { el.classList.add("counted"); countUp(el); }
+      });
+    }, 700);
+  });
 
   /* ---------- count-up ---------- */
   function countUp(el) {
+    if (el.__counted) return;
+    el.__counted = true;
     var target = parseFloat(el.getAttribute("data-count"));
     var suffix = el.getAttribute("data-suffix") || "";
     var dur = 1300, t0 = null;
@@ -198,6 +262,55 @@
 
   var cv = document.getElementById("radar");
   if (cv) initRadar(cv);
+
+  /* ---------- scroll-driven product tour ---------- */
+  (function initTour() {
+    var sec = document.getElementById("product");
+    if (!sec || !sec.classList.contains("tour")) return;
+    var tabs = [].slice.call(sec.querySelectorAll(".tnav a"));
+    var panels = [].slice.call(sec.querySelectorAll(".tpanel"));
+    var n = tabs.length;
+    if (!n) return;
+    var current = -1, locked = -1, lockUntil = 0;
+    var prog = sec.querySelector(".tprog .trail i");
+    var count = sec.querySelector(".tcount");
+    function setStep(i) {
+      if (i === current) return;
+      current = i;
+      tabs.forEach(function (t, idx) { t.classList.toggle("on", idx === i); });
+      panels.forEach(function (p, idx) { p.classList.toggle("on", idx === i); });
+      if (prog) prog.style.width = ((i + 1) / n * 100) + "%";
+      if (count) count.textContent = pad(i + 1) + " / " + pad(n);
+    }
+    function pad(x) { return (x < 10 ? "0" : "") + x; }
+    function onScroll() {
+      if (Date.now() < lockUntil) return; // honor a click jump briefly
+      if (sec.offsetParent === null) return;
+      var r = sec.getBoundingClientRect();
+      var total = sec.offsetHeight - window.innerHeight;
+      if (total <= 0) return; // stacked (mobile) — driven by clicks
+      var scrolled = Math.min(Math.max(-r.top, 0), total);
+      var p = scrolled / total;
+      setStep(Math.min(n - 1, Math.floor(p * n + 0.0001)));
+    }
+    tabs.forEach(function (t, i) {
+      t.addEventListener("click", function (e) {
+        e.preventDefault();
+        setStep(i);
+        lockUntil = Date.now() + 700;
+        var total = sec.offsetHeight - window.innerHeight;
+        if (total > 0) {
+          var target = sec.offsetTop + (i + 0.5) / n * total;
+          window.scrollTo({ top: target, behavior: "smooth" });
+        }
+      });
+    });
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    setStep(0);
+    onScroll();
+    setTimeout(onScroll, 200);
+  })();
 
   function initRadar(canvas) {
     var ctx = canvas.getContext("2d");

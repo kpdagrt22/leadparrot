@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" data-no-cursor>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Live demo — The Leads Nest</title>
+<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="assets/landing.css" />
+<link rel="icon" href="assets/crest-mark.svg" />
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<style>
+  .demo-top { border-bottom: 1px solid var(--line-2); background: color-mix(in srgb, var(--paper) 86%, transparent); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 40; }
+  .demo-top .wrap { display: flex; align-items: center; gap: 16px; height: 68px; }
+  .demo-wrap { padding: 36px 0 80px; }
+  .demo-head { text-align: center; max-width: 640px; margin: 0 auto 28px; }
+  .demo-head h1 { font-family: var(--font-display); font-weight: 300; font-size: clamp(30px,3.6vw,44px); letter-spacing: -0.02em; margin: 14px 0 0; }
+  .demo-head p { font-family: var(--font-sans); font-size: 16px; line-height: 1.55; color: var(--ink-2); margin: 16px 0 0; }
+</style>
+</head>
+<body>
+<div id="spotlight"></div>
+
+<header class="demo-top">
+  <div class="wrap">
+    <a class="brand" href="The%20Leads%20Nest%20-%20Landing.html"><img src="assets/crest-mark.svg" alt="" /><span class="wm">The Leads <b>Nest</b></span></a>
+    <span style="flex:1"></span>
+    <a class="btn ghost sm" href="login.html">Log in</a>
+    <a class="btn sm" href="signup.html">Start free</a>
+  </div>
+</header>
+
+<div class="demo-wrap">
+  <div class="wrap">
+    <div class="demo-head" data-reveal>
+      <span class="eyebrow accent center">Live demo</span>
+      <h1>Try the workspace — no signup.</h1>
+      <p>This is the real Leads Nest workspace running in demo mode. Click around the sidebar, open a lead, generate a reply draft. Nothing is posted anywhere.</p>
+    </div>
+    <div class="bchrome" data-reveal>
+      <div class="bbar">
+        <span class="bdot"></span><span class="bdot"></span><span class="bdot"></span>
+        <span class="burl"><i data-lucide="lock" style="width:11px"></i> app.theleadsnest.com/workspace</span>
+        <span class="bact">Demo mode</span>
+      </div>
+      <iframe class="bframe" src="app.html" title="The Leads Nest workspace demo"></iframe>
+    </div>
+  </div>
+</div>
+
+<script src="assets/landing.js"></script>
+<script>window.addEventListener("load", function(){ if(window.lucide) window.lucide.createIcons(); });</script>
+</body>
+</html>

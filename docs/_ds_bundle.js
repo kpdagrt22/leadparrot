@@ -1,4 +1,4 @@
-/* @ds-bundle: {"format":3,"namespace":"CrestDesignSystemLeadParrot_bb3a07","components":[{"name":"Avatar","sourcePath":"components/core/Avatar.jsx"},{"name":"Badge","sourcePath":"components/core/Badge.jsx"},{"name":"Button","sourcePath":"components/core/Button.jsx"},{"name":"Eyebrow","sourcePath":"components/core/Eyebrow.jsx"},{"name":"Icon","sourcePath":"components/core/Icon.jsx"},{"name":"Tag","sourcePath":"components/core/Tag.jsx"},{"name":"Meter","sourcePath":"components/data/Meter.jsx"},{"name":"ScoreBadge","sourcePath":"components/data/ScoreBadge.jsx"},{"name":"ScoreBars","sourcePath":"components/data/ScoreBars.jsx"},{"name":"Notice","sourcePath":"components/feedback/Notice.jsx"},{"name":"Tabs","sourcePath":"components/feedback/Tabs.jsx"},{"name":"Field","sourcePath":"components/forms/Field.jsx"},{"name":"Select","sourcePath":"components/forms/Select.jsx"},{"name":"Switch","sourcePath":"components/forms/Switch.jsx"},{"name":"Bento","sourcePath":"components/layout/Bento.jsx"},{"name":"BentoItem","sourcePath":"components/layout/Bento.jsx"},{"name":"Card","sourcePath":"components/layout/Card.jsx"},{"name":"Stat","sourcePath":"components/layout/Stat.jsx"},{"name":"ActionButton","sourcePath":"handoff/action-button.tsx"},{"name":"LeadDetailCard","sourcePath":"handoff/lead-detail-card.tsx"},{"name":"TypographySpecimen","sourcePath":"handoff/typography.tsx"}],"sourceHashes":{"components/core/Avatar.jsx":"22d57337ac95","components/core/Badge.jsx":"26fa46eb67a5","components/core/Button.jsx":"4e04c4db8d8f","components/core/Eyebrow.jsx":"f9a7a8144933","components/core/Icon.jsx":"5d8f24d2c342","components/core/Tag.jsx":"03f83619a9c4","components/data/Meter.jsx":"809942918f08","components/data/ScoreBadge.jsx":"4fcf38a28fea","components/data/ScoreBars.jsx":"befb066c3989","components/feedback/Notice.jsx":"6afcf84f341f","components/feedback/Tabs.jsx":"70e538854247","components/forms/Field.jsx":"cd45d5f49f0a","components/forms/Select.jsx":"357e384d738d","components/forms/Switch.jsx":"134ed6ff5657","components/layout/Bento.jsx":"f40aa18b2e87","components/layout/Card.jsx":"e84656d3a542","components/layout/Stat.jsx":"dccb118f7556","handoff/action-button.tsx":"88a7647e139b","handoff/lead-detail-card.tsx":"e23df9ec08e7","handoff/tailwind.config.ts":"71b7edf99586","handoff/typography.tsx":"ffa45c8f1d8d","ui_kits/app/AppShell.jsx":"bf0a179d7c95","ui_kits/app/Dashboard.jsx":"c2d0cdb1ad6d","ui_kits/app/LeadDetail.jsx":"4bae9b834b34","ui_kits/app/LeadInbox.jsx":"1d12a53a42e3","ui_kits/app/data.js":"404e05e77414","ui_kits/marketing/Landing.jsx":"a492860c9ba8"},"inlinedExternals":[],"unexposedExports":[{"name":"config","sourcePath":"handoff/tailwind.config.ts"}]} */
+/* @ds-bundle: {"format":3,"namespace":"CrestDesignSystemLeadParrot_bb3a07","components":[{"name":"Avatar","sourcePath":"components/core/Avatar.jsx"},{"name":"Badge","sourcePath":"components/core/Badge.jsx"},{"name":"Button","sourcePath":"components/core/Button.jsx"},{"name":"Eyebrow","sourcePath":"components/core/Eyebrow.jsx"},{"name":"Icon","sourcePath":"components/core/Icon.jsx"},{"name":"Tag","sourcePath":"components/core/Tag.jsx"},{"name":"Meter","sourcePath":"components/data/Meter.jsx"},{"name":"ScoreBadge","sourcePath":"components/data/ScoreBadge.jsx"},{"name":"ScoreBars","sourcePath":"components/data/ScoreBars.jsx"},{"name":"Notice","sourcePath":"components/feedback/Notice.jsx"},{"name":"Tabs","sourcePath":"components/feedback/Tabs.jsx"},{"name":"Field","sourcePath":"components/forms/Field.jsx"},{"name":"Select","sourcePath":"components/forms/Select.jsx"},{"name":"Switch","sourcePath":"components/forms/Switch.jsx"},{"name":"Bento","sourcePath":"components/layout/Bento.jsx"},{"name":"BentoItem","sourcePath":"components/layout/Bento.jsx"},{"name":"Card","sourcePath":"components/layout/Card.jsx"},{"name":"Stat","sourcePath":"components/layout/Stat.jsx"},{"name":"ActionButton","sourcePath":"handoff/action-button.tsx"},{"name":"LeadDetailCard","sourcePath":"handoff/lead-detail-card.tsx"},{"name":"TypographySpecimen","sourcePath":"handoff/typography.tsx"}],"sourceHashes":{"assets/app.js":"7f2108146ce3","assets/auth.js":"e4a5039ea509","assets/landing.js":"b98e78b75978","assets/mobile.js":"230595b09e74","components/core/Avatar.jsx":"22d57337ac95","components/core/Badge.jsx":"26fa46eb67a5","components/core/Button.jsx":"4e04c4db8d8f","components/core/Eyebrow.jsx":"f9a7a8144933","components/core/Icon.jsx":"5d8f24d2c342","components/core/Tag.jsx":"03f83619a9c4","components/data/Meter.jsx":"809942918f08","components/data/ScoreBadge.jsx":"4fcf38a28fea","components/data/ScoreBars.jsx":"befb066c3989","components/feedback/Notice.jsx":"6afcf84f341f","components/feedback/Tabs.jsx":"70e538854247","components/forms/Field.jsx":"cd45d5f49f0a","components/forms/Select.jsx":"357e384d738d","components/forms/Switch.jsx":"134ed6ff5657","components/layout/Bento.jsx":"f40aa18b2e87","components/layout/Card.jsx":"e84656d3a542","components/layout/Stat.jsx":"dccb118f7556","handoff/action-button.tsx":"88a7647e139b","handoff/lead-detail-card.tsx":"e23df9ec08e7","handoff/tailwind.config.ts":"71b7edf99586","handoff/typography.tsx":"ffa45c8f1d8d","ui_kits/app/AppShell.jsx":"bf0a179d7c95","ui_kits/app/Dashboard.jsx":"c2d0cdb1ad6d","ui_kits/app/LeadDetail.jsx":"4bae9b834b34","ui_kits/app/LeadInbox.jsx":"1d12a53a42e3","ui_kits/app/data.js":"404e05e77414","ui_kits/marketing/Landing.jsx":"a492860c9ba8"},"inlinedExternals":[],"unexposedExports":[{"name":"config","sourcePath":"handoff/tailwind.config.ts"}]} */
 
 (() => {
 
@@ -7,6 +7,1938 @@ const __ds_ns = (window.CrestDesignSystemLeadParrot_bb3a07 = window.CrestDesignS
 const __ds_scope = {};
 
 (__ds_ns.__errors = __ds_ns.__errors || []);
+
+// assets/app.js
+try { (() => {
+/* ============================================================
+   THE LEADS NEST — App logic (self-contained, vanilla)
+   Post-login workspace: Dashboard · Lead inbox · Lead detail ·
+   Projects · Sources · Daily digest · Settings.
+   ============================================================ */
+(function () {
+  "use strict";
+
+  var DATA = {
+    org: {
+      name: "Acme Proposals",
+      plan: "Starter",
+      initials: "AP"
+    },
+    stats: {
+      total: 248,
+      high: 41,
+      avg: 63,
+      copied: 29
+    },
+    usage: {
+      posts: [342, 500],
+      replies: [88, 100],
+      projects: [2, 3]
+    },
+    keywords: ["proposal tool", "client proposal", "Upwork proposal", "freelance proposal"],
+    leads: [{
+      id: "l1",
+      score: 81,
+      tier: "high",
+      source: "Reddit",
+      badge: "",
+      sub: "r/agency",
+      author: "u/agency_ops",
+      posted: "1d ago",
+      stage: "competitor-switching",
+      saved: false,
+      title: "Frustrated with PandaDoc pricing — any cheaper alternatives?",
+      body: "We've been using PandaDoc but the per-seat pricing is getting expensive as our agency grows. Anyone switched to something cheaper that still does proposals and contracts well? Need to decide this week.",
+      relevance: 88,
+      intent: 82,
+      urgency: 75,
+      fit: 70,
+      confidence: 62,
+      reason: "Mentions a competitor (PandaDoc) and explicit budget pressure, with strong buying signals and a near-term decision deadline.",
+      angle: "Acknowledge the PandaDoc pricing frustration, share one concrete way to cut proposal time, then briefly mention Acme Proposals with disclosure.",
+      signals: ["frustrated with", "alternative", "decide this week"],
+      pains: ["Cost / pricing", "Outgrowing current tool"],
+      draft: "Totally get the PandaDoc pricing pain as you add seats. One thing that helped us before switching anything: standardise 2–3 proposal templates so you're not rebuilding each one — that alone cut our prep time a lot. If you do switch, list the must-have features (e-sign, templates, analytics) and only pay for those. I'm building a small proposal tool in this space (Acme Proposals) — happy to share if it's useful, no pressure.",
+      disclosure: "I'm building a small proposal tool in this space (Acme Proposals) — sharing because it's relevant, not to pitch."
+    }, {
+      id: "l2",
+      score: 69,
+      tier: "med",
+      source: "Reddit",
+      badge: "",
+      sub: "r/freelance",
+      author: "u/design_freelance",
+      posted: "1d ago",
+      stage: "solution-aware",
+      saved: true,
+      title: "Looking for a proposal tool — anything better than Word?",
+      body: "I'm a freelance designer sending 5–10 client proposals a month. Writing them in Word is painful. Looking for a proposal tool that handles templates and e-signatures. Budget is flexible if it saves time.",
+      relevance: 84,
+      intent: 68,
+      urgency: 40,
+      fit: 72,
+      confidence: 58,
+      reason: "Freelancer explicitly looking for a proposal tool with templates and e-signatures; flexible budget signals real intent.",
+      angle: "Lead with a concrete tip on reusable proposal templates, then mention Acme Proposals lightly with disclosure.",
+      signals: ["looking for", "recommend", "budget is flexible"],
+      pains: ["Manual workflow", "Wants templates + e-sign"],
+      draft: null
+    }, {
+      id: "l3",
+      score: 74,
+      tier: "high",
+      source: "Hacker News",
+      badge: "info",
+      sub: "Ask HN",
+      author: "swyx_builds",
+      posted: "2d ago",
+      stage: "problem-aware",
+      saved: false,
+      title: "Ask HN: how do you track which communities actually send you clients?",
+      body: "Running a small dev agency. We get clients from a few subreddits and Slack groups but have no idea which ones convert. How are people attributing this without a heavy CRM?",
+      relevance: 71,
+      intent: 64,
+      urgency: 55,
+      fit: 80,
+      confidence: 51,
+      reason: "Problem-aware post about attribution; adjacent to our ICP and a natural place to be genuinely helpful first.",
+      angle: "Share a lightweight attribution approach; only mention the product if asked.",
+      signals: ["how do you", "track", "without a heavy CRM"],
+      pains: ["No attribution", "Avoiding heavy CRM"],
+      draft: null
+    }, {
+      id: "l4",
+      score: 33,
+      tier: "low",
+      source: "RSS",
+      badge: "gray",
+      sub: "indiehackers.com",
+      author: "maker_jo",
+      posted: "3d ago",
+      stage: "research",
+      saved: false,
+      title: "Roundup: 12 tools I tried for client onboarding this year",
+      body: "A long blog post listing onboarding tools. Mentions proposals briefly but mostly about contracts and scheduling.",
+      relevance: 48,
+      intent: 22,
+      urgency: 15,
+      fit: 40,
+      confidence: 44,
+      reason: "Low intent — a retrospective roundup, not someone actively asking. Weak fit.",
+      angle: "Probably skip. No active buying question.",
+      signals: [],
+      pains: [],
+      draft: null
+    }],
+    sources: [{
+      type: "Reddit",
+      meta: "Official API · last sync 30m ago",
+      name: "r/freelance, r/agency, r/Upwork",
+      on: true
+    }, {
+      type: "Hacker News",
+      meta: "Algolia search · 2h ago",
+      name: "\u201cproposal software\u201d",
+      on: true
+    }, {
+      type: "RSS",
+      meta: "Public feed · 1d ago",
+      name: "indiehackers.com/feed",
+      on: true
+    }, {
+      type: "Manual",
+      meta: "Paste a public URL or text",
+      name: "Manual posts",
+      on: false
+    }],
+    projects: [{
+      name: "Proposal tool — Reddit + HN",
+      status: "Active",
+      sources: 4,
+      leads: 248,
+      keys: ["proposal tool", "client proposal", "Upwork proposal"]
+    }, {
+      name: "Contract e-sign — niche forums",
+      status: "Active",
+      sources: 2,
+      leads: 96,
+      keys: ["e-signature", "contract tool"]
+    }, {
+      name: "Onboarding flows — draft",
+      status: "Paused",
+      sources: 0,
+      leads: 0,
+      keys: []
+    }]
+  };
+  var state = {
+    view: "dashboard",
+    leadId: null,
+    inboxTab: "high"
+  };
+  var saved = {};
+  var NAV = [{
+    id: "dashboard",
+    icon: "layout-dashboard",
+    label: "Dashboard"
+  }, {
+    id: "inbox",
+    icon: "inbox",
+    label: "Lead inbox",
+    count: DATA.stats.high
+  }, {
+    id: "projects",
+    icon: "folder-kanban",
+    label: "Projects"
+  }, {
+    id: "sources",
+    icon: "radio",
+    label: "Sources"
+  }, {
+    id: "digest",
+    icon: "mail",
+    label: "Daily digest"
+  }, {
+    id: "billing",
+    icon: "crown",
+    label: "Plans"
+  }, {
+    id: "settings",
+    icon: "settings",
+    label: "Settings"
+  }];
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+  function lead(id) {
+    return DATA.leads.filter(function (l) {
+      return l.id === id;
+    })[0];
+  }
+  function isSaved(l) {
+    return l.id in saved ? saved[l.id] : l.saved;
+  }
+
+  /* ---------- shell ---------- */
+  function shell(content) {
+    var navHtml = NAV.map(function (n) {
+      var on = state.view === n.id || state.view === "lead" && n.id === "inbox";
+      return '<a data-nav="' + n.id + '" class="' + (on ? "on" : "") + '">' + '<span class="ai"><i data-lucide="' + n.icon + '"></i></span>' + n.label + (n.count != null ? '<span class="ct">' + n.count + '</span>' : '') + '</a>';
+    }).join("");
+    return '' + '<div class="app">' + '<aside class="aside">' + '<div class="abrand"><img src="assets/crest-mark.svg" alt=""/><span class="wm">The Leads <b>Nest</b></span></div>' + '<div class="aorg"><span class="tav acc" style="width:32px;height:32px;flex:0 0 32px;border-radius:2px">' + DATA.org.initials + '</span>' + '<span class="pmeta"><span class="pn2">' + DATA.org.name + '</span><span class="pr">' + DATA.org.plan + ' plan</span></span><span class="chev">⇅</span></div>' + '<nav class="anav">' + navHtml + '</nav>' + '<div class="afoot">' + upsellCard() + '<div class="live" style="margin-top:14px"><span class="dot"></span>3 sources live</div>' + '<button class="btn ghost sm" style="width:100%" data-scan>Run a scan</button></div>' + '</aside>' + '<div class="amain">' + '<header class="atop">' + '<div class="asearch"><i data-lucide="search" style="width:15px;color:var(--ink-4)"></i>' + '<input placeholder="Search leads, posts, keywords…"/><kbd>/</kbd></div>' + '<span style="flex:1"></span>' + '<a class="btn ghost sm" data-nav="digest"><i data-lucide="bell" style="width:14px"></i>&nbsp;Digest</a>' + '<a class="btn sm" data-nav="projects"><i data-lucide="plus" style="width:14px"></i>&nbsp;New project</a>' + '</header>' + '<main class="acontent">' + content + '</main>' + '</div>' + '</div>' + '<div id="toast"></div>';
+  }
+
+  /* ---------- views ---------- */
+  function vDashboard() {
+    var s = DATA.stats;
+    var recent = DATA.leads.filter(function (l) {
+      return l.tier === "high";
+    });
+    return '' + '<div class="aview-h"><div class="htxt"><span class="eyebrow">Workspace · ' + DATA.org.name + '</span>' + '<h1>Good morning. ' + s.high + ' leads worth a look.</h1></div>' + '<div class="actions"><a class="btn ghost sm" data-nav="inbox">View inbox</a>' + '<button class="btn sm" data-scan><i data-lucide="scan-line" style="width:14px"></i>&nbsp;Run a scan</button></div></div>' + '<div class="anotice caution" style="margin-bottom:24px"><i data-lucide="shield-check" style="width:16px;color:var(--medium);flex:0 0 auto"></i>' + '<div><div class="nt">Platform safety</div><p>The Leads Nest drafts replies — it never posts for you. You stay responsible for each platform\'s rules.</p></div></div>' + limitBanner() + '<div class="abento" style="margin-bottom:24px">' + '<div class="cellp astat"><div class="sl">Total leads</div><div class="sv" data-count="' + s.total + '">' + s.total + '</div><div class="sh">▲ 12 this week</div></div>' + '<div class="cellp astat"><div class="sl">High-intent</div><div class="sv" data-count="' + s.high + '">' + s.high + '</div><div class="sh">score ≥ 70</div></div>' + '<div class="cellp astat ink"><div class="sl">Avg score</div><div class="sv" data-count="' + s.avg + '">' + s.avg + '</div></div>' + '<div class="cellp astat acc"><div class="sl">Replies copied</div><div class="sv" data-count="' + s.copied + '">' + s.copied + '</div></div>' + '</div>' + '<div class="agrid-2">' + '<div><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">' + '<span class="eyebrow accent">Recent high-intent</span></div>' + '<div class="alist">' + recent.map(rowLead).join("") + '</div></div>' + '<div class="acard pad-lg"><span class="eyebrow">This month\'s usage</span>' + '<div style="margin-top:18px">' + meter("Posts scanned", DATA.usage.posts) + meter("Reply drafts", DATA.usage.replies) + meter("Projects", DATA.usage.projects) + '</div>' + '<div class="usage-up"><div><b>88% of reply drafts used</b><span>Upgrade to Pro — 10× the quota</span></div><button class="btn sm" data-upgrade>Upgrade</button></div>' + '<div style="margin-top:22px;padding-top:18px;border-top:1px solid var(--line)"><span class="eyebrow">Watched keywords</span>' + '<div class="ktags" style="margin-top:12px">' + DATA.keywords.map(function (k) {
+      return '<span class="ktag">' + esc(k) + '</span>';
+    }).join("") + '</div></div>' + '</div>' + '</div>';
+  }
+  function meter(label, pair) {
+    var pct = Math.min(100, pair[0] / pair[1] * 100);
+    var warn = pct >= 90 ? " warn" : "";
+    return '<div class="ameter"><div class="mh"><span class="ml">' + label + '</span>' + '<span class="mv">' + pair[0].toLocaleString() + ' <span class="dim">/ ' + pair[1].toLocaleString() + '</span></span></div>' + '<div class="mt"><div class="mf' + warn + '" style="width:0" data-fill="' + pct + '"></div></div></div>';
+  }
+  var PLANS = [{
+    name: "Free",
+    price: 0,
+    tag: "Validate the workflow.",
+    feats: ["1 project", "Manual source", "20 posts / mo", "10 drafts / mo"]
+  }, {
+    name: "Starter",
+    price: 19,
+    tag: "Find your first leads.",
+    feats: ["3 projects", "Reddit · HN · RSS", "500 posts / mo", "Daily digest"],
+    current: true
+  }, {
+    name: "Pro",
+    price: 49,
+    tag: "Scale outreach with no ceiling.",
+    feats: ["10 projects", "3,000 posts / mo", "1,000 drafts / mo", "Advanced filters", "Priority scoring"],
+    popular: true
+  }, {
+    name: "Agency",
+    price: 99,
+    tag: "Manage multiple clients.",
+    feats: ["25 projects", "10,000 posts / mo", "Multi-client workspace", "White-label digest"]
+  }];
+  function upsellCard() {
+    var u = DATA.usage.replies,
+      pct = Math.round(u[0] / u[1] * 100);
+    return '<div class="upsell"><div class="up-h"><span class="pro-badge">' + DATA.org.plan + '</span><span class="up-pct">' + pct + '% used</span></div>' + '<div class="up-bar"><div data-fill="' + pct + '" style="width:0"></div></div>' + '<div class="up-t">You’re near your monthly draft limit.</div>' + '<button class="btn sm" data-upgrade style="width:100%"><i data-lucide="crown" style="width:13px"></i>&nbsp;Upgrade to Pro</button></div>';
+  }
+  function limitBanner() {
+    var u = DATA.usage.replies,
+      pct = Math.round(u[0] / u[1] * 100);
+    if (pct < 80) return "";
+    return '<div class="limit-banner"><div class="lb-ic"><i data-lucide="zap"></i></div>' + '<div class="lb-tx"><b>You’ve used ' + pct + '% of your reply drafts this month.</b>' + '<span>Upgrade to Pro for 1,000 drafts/mo, 3,000 scanned posts and advanced filters — before you run out.</span></div>' + '<button class="btn sm" data-upgrade>Upgrade to Pro</button></div>';
+  }
+  function vBilling() {
+    return '<div class="aview-h"><div class="htxt"><span class="eyebrow accent">Plans &amp; billing</span><h1>Upgrade your nest.</h1></div></div>' + '<div class="anotice accent" style="margin-bottom:22px"><i data-lucide="crown" style="width:16px;color:var(--accent);flex:0 0 auto"></i><div><div class="nt">Current plan · Starter · $19/mo</div><p>You’re using 88% of reply drafts and 68% of scanned posts this month. Pro removes the ceiling and unlocks advanced filters.</p></div></div>' + '<div class="plan-grid">' + PLANS.map(function (p) {
+      return '<div class="plan-c' + (p.popular ? ' pop' : '') + (p.current ? ' cur' : '') + '">' + '<div class="pc-h">' + p.name + (p.popular ? ' <span class="pro-badge">Popular</span>' : '') + (p.current ? ' <span class="pro-badge cur">Current</span>' : '') + '</div>' + '<div class="pc-p"><b>$' + p.price + '</b><span>/mo</span></div>' + '<div class="pc-t">' + p.tag + '</div>' + '<ul>' + p.feats.map(function (f) {
+        return '<li>' + f + '</li>';
+      }).join("") + '</ul>' + '<button class="btn ' + (p.current ? 'ghost ' : '') + 'sm" ' + (p.current ? 'disabled' : 'data-upgrade') + ' style="width:100%">' + (p.current ? 'Current plan' : p.price > 19 ? 'Choose ' + p.name : 'Switch to ' + p.name) + '</button>' + '</div>';
+    }).join("") + '</div>' + '<p style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-4);margin-top:18px;text-align:center">Cancel anytime · No auto-posting on any plan · Official APIs only</p>';
+  }
+  function rowLead(l) {
+    var tcls = l.tier === "med" ? " med" : l.tier === "low" ? " low" : "";
+    var tlabel = l.tier === "high" ? "High" : l.tier === "med" ? "Medium" : "Low";
+    return '<div class="alead" data-open-lead="' + l.id + '">' + '<div class="ascore' + tcls + '"><b>' + l.score + '</b><span class="tier">' + tlabel + '</span></div>' + '<div class="amid"><div class="ameta"><span class="abadge ' + (l.badge || "") + '">' + l.source + '</span>' + '<span>' + esc(l.sub) + ' · ' + l.posted + '</span></div>' + '<div class="atitle">' + esc(l.title) + '</div></div>' + '<a class="btn ghost sm">Open</a></div>';
+  }
+  function vInbox() {
+    var counts = {
+      all: DATA.leads.length,
+      high: DATA.leads.filter(function (l) {
+        return l.tier === "high";
+      }).length,
+      saved: DATA.leads.filter(isSaved).length,
+      replied: 0
+    };
+    var t = state.inboxTab;
+    var list = DATA.leads.filter(function (l) {
+      return t === "all" ? true : t === "high" ? l.tier === "high" : t === "saved" ? isSaved(l) : false;
+    });
+    function tab(id, label, c) {
+      return '<button data-inbox-tab="' + id + '" class="' + (t === id ? "on" : "") + '">' + label + ' <span class="c">' + c + '</span></button>';
+    }
+    return '' + '<div class="aview-h"><div class="htxt"><span class="eyebrow">Lead inbox</span>' + '<h1>' + DATA.leads.length + ' leads across 3 sources</h1></div></div>' + '<div class="atabs">' + tab("all", "All", counts.all) + tab("high", "High intent", counts.high) + tab("saved", "Saved", counts.saved) + tab("replied", "Replied", counts.replied) + '</div>' + '<div class="afilter"><div class="aselect"><select><option>All sources</option><option>Reddit</option><option>Hacker News</option><option>RSS</option></select></div>' + '<div class="aselect"><select><option>Newest first</option><option>Highest score</option><option>Most urgent</option></select></div>' + '<span style="flex:1"></span><span class="eyebrow">' + list.length + ' shown</span></div>' + '<div class="alist">' + (list.length ? list.map(rowLead).join("") : '<div style="padding:48px;text-align:center;color:var(--ink-3);font-family:var(--font-sans);font-size:14px">Nothing here yet. Run a scan or paste a public post to start finding leads.</div>') + '</div>';
+  }
+  function vLead() {
+    var l = lead(state.leadId) || DATA.leads[0];
+    var sv = isSaved(l);
+    var draft = l.draft;
+    return '' + '<button class="aback" data-back>← Lead inbox</button>' + '<div style="display:flex;gap:10px;align-items:center;margin-bottom:12px;flex-wrap:wrap">' + '<span style="font-family:var(--font-display);font-size:34px;color:' + tierColor(l.tier) + ';line-height:1">' + l.score + '</span>' + '<span style="width:1px;height:26px;background:var(--line-2)"></span>' + '<span class="abadge ' + (l.badge || "") + '">' + l.source + '</span>' + '<span class="abadge gray">' + l.stage.replace(/-/g, " ") + '</span>' + '<span class="eyebrow">' + esc(l.sub) + ' · posted ' + l.posted + '</span></div>' + '<h1 style="font-family:var(--font-display);font-weight:300;font-size:32px;letter-spacing:-0.02em;line-height:1.12;margin:0 0 24px;max-width:820px">' + esc(l.title) + '</h1>' + '<div class="agrid-detail">' + '<div style="display:flex;flex-direction:column;gap:20px">' + '<div class="acard pad-lg"><div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">' + '<span class="tav soft" style="width:30px;height:30px;flex:0 0 30px;border-radius:2px;font-size:11px">' + initials(l.author) + '</span>' + '<span style="font-family:var(--font-mono);font-size:12px;color:var(--ink-2)">' + esc(l.author) + '</span>' + '<span style="flex:1"></span><a class="eyebrow" style="color:var(--accent)">View original ↗</a></div>' + '<p style="font-family:var(--font-sans);font-size:15px;line-height:1.6;color:var(--ink);margin:0">' + esc(l.body) + '</p></div>' + '<div class="acard pad-lg"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px">' + '<span class="eyebrow accent">Reply draft</span>' + '<button class="btn ghost sm" data-gen><i data-lucide="sparkles" style="width:13px"></i>&nbsp;' + (draft ? "Regenerate" : "Generate reply") + '</button></div>' + (draft ? '<div style="display:flex;flex-direction:column;gap:16px">' + '<div class="draftbox">' + esc(draft) + '</div>' + '<div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">' + '<button class="btn sm" data-copy><i data-lucide="clipboard" style="width:13px"></i>&nbsp;Copy reply</button>' + '<span class="eyebrow">Confidence ' + l.confidence + '%</span></div>' + '<div class="anotice accent"><i data-lucide="pen-line" style="width:16px;color:var(--accent);flex:0 0 auto"></i><div><div class="nt">Suggested disclosure</div><p>' + esc(l.disclosure) + '</p></div></div>' + '<div class="anotice caution"><i data-lucide="shield-check" style="width:16px;color:var(--medium);flex:0 0 auto"></i><div><div class="nt">Before you post</div><ul><li>Disclose your affiliation before mentioning your product.</li><li>Personalise — don\'t reuse this across threads.</li><li>Check the community\'s self-promotion rules.</li></ul></div></div>' + '</div>' : '<p style="font-family:var(--font-sans);font-size:14px;line-height:1.6;color:var(--ink-3);margin:0">No draft yet. Generate a helpful, transparent reply you can review and copy. The Leads Nest never posts for you.</p>') + '</div>' + '</div>' + '<div style="display:flex;flex-direction:column;gap:20px">' + '<div class="acard pad-lg"><span class="eyebrow">AI score</span>' + '<div style="display:flex;align-items:baseline;gap:10px;margin:14px 0 18px">' + '<span style="font-family:var(--font-display);font-weight:300;font-size:56px;line-height:1;letter-spacing:-0.03em;color:var(--ink)">' + l.score + '</span>' + '<span class="eyebrow">overall · ' + l.confidence + '% conf.</span></div>' + sbar("Relevance", "35%", l.relevance) + sbar("Intent", "30%", l.intent) + sbar("Urgency", "20%", l.urgency) + sbar("Fit", "15%", l.fit) + '</div>' + '<div class="acard pad-lg"><div style="display:flex;flex-direction:column;gap:16px">' + block("Why it's a lead", l.reason) + block("Suggested angle", l.angle) + (l.signals.length ? tagblock("Buying signals", l.signals, "tint") : "") + (l.pains.length ? tagblock("Pain points", l.pains, "gray") : "") + '</div></div>' + '<div class="acard pad-lg"><span class="eyebrow">Manage</span><div style="display:flex;flex-direction:column;gap:10px;margin-top:14px">' + '<button class="btn ' + (sv ? "" : "ghost") + ' sm" data-save style="width:100%"><i data-lucide="bookmark" style="width:13px"></i>&nbsp;' + (sv ? "Saved" : "Save lead") + '</button>' + '<button class="btn ghost sm" data-back style="width:100%;border-color:var(--danger);color:var(--danger)">Not a lead</button></div></div>' + '</div>' + '</div>';
+  }
+  function tierColor(t) {
+    return t === "high" ? "var(--accent)" : t === "med" ? "var(--medium)" : "var(--low)";
+  }
+  function sbar(label, w, v) {
+    return '<div class="sbar"><div class="sbh"><span class="sbl">' + label + '<em>· ' + w + '</em></span><span class="sbv">' + v + '</span></div>' + '<div class="sbt"><div class="sbf" style="width:0" data-fill="' + v + '"></div></div></div>';
+  }
+  function block(h, body) {
+    return '<div><span style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-3)">' + h + '</span>' + '<p style="font-family:var(--font-sans);font-size:13px;line-height:1.55;color:var(--ink-2);margin:7px 0 0">' + esc(body) + '</p></div>';
+  }
+  function tagblock(h, arr, cls) {
+    return '<div><span style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-3)">' + h + '</span>' + '<div class="ktags" style="margin-top:9px">' + arr.map(function (x) {
+      return '<span class="ktag">' + esc(x) + '</span>';
+    }).join("") + '</div></div>';
+  }
+  function initials(s) {
+    return s.replace(/^u\//, "").slice(0, 2).toUpperCase();
+  }
+  function vProjects() {
+    return '<div class="aview-h"><div class="htxt"><span class="eyebrow">Projects</span><h1>2 of 3 active</h1></div>' + '<div class="actions"><button class="btn sm"><i data-lucide="plus" style="width:14px"></i>&nbsp;New project</button></div></div>' + DATA.projects.map(function (p) {
+      var paused = p.status === "Paused";
+      return '<div class="acardrow"' + (paused ? ' style="opacity:.6"' : "") + '><div class="grow">' + '<div class="rsub"><span class="abadge ' + (paused ? "gray" : "tint") + '">' + p.status + '</span> ' + p.sources + ' sources · ' + p.leads + ' leads</div>' + '<div class="rtitle">' + esc(p.name) + '</div>' + (p.keys.length ? '<div class="ktags" style="margin-top:10px">' + p.keys.map(function (k) {
+        return '<span class="ktag">' + esc(k) + '</span>';
+      }).join("") + '</div>' : "") + '</div><a class="btn ghost sm">Open</a></div>';
+    }).join("");
+  }
+  function vSources() {
+    return '<div class="aview-h"><div class="htxt"><span class="eyebrow">Sources</span><h1>3 live · official APIs only</h1></div>' + '<div class="actions"><button class="btn sm"><i data-lucide="plus" style="width:14px"></i>&nbsp;Add source</button></div></div>' + '<div class="anotice accent" style="margin-bottom:18px"><i data-lucide="shield-check" style="width:16px;color:var(--accent);flex:0 0 auto"></i><div><div class="nt">Public sources only</div><p>Reddit\'s read-only API, public Hacker News search and public RSS. No scraping, no logged-in pages.</p></div></div>' + DATA.sources.map(function (s, i) {
+      return '<div class="acardrow"><div class="grow"><div class="rsub"><span class="abadge ' + (s.on ? "tint" : "gray") + '">' + s.type + '</span> ' + esc(s.meta) + '</div>' + '<div class="rtitle" style="font-size:16px">' + esc(s.name) + '</div></div>' + '<span class="tsw' + (s.on ? "" : " off") + '" data-toggle-src="' + i + '"></span></div>';
+    }).join("");
+  }
+  function vDigest() {
+    var top = DATA.leads.filter(function (l) {
+      return l.tier === "high";
+    });
+    return '<div class="aview-h"><div class="htxt"><span class="eyebrow">Daily digest</span><h1>Your 7:00 AM summary</h1></div>' + '<div class="actions"><a class="btn ghost sm" data-nav="settings">Digest settings</a></div></div>' + '<div class="acard" style="max-width:720px;padding:0">' + '<div style="padding:20px 24px;border-bottom:1px solid var(--line)"><div style="font-family:var(--font-display);font-size:22px;color:var(--ink)">' + top.length + ' high-intent leads this morning</div>' + '<div class="eyebrow" style="margin-top:8px">The Leads Nest · digest@theleadsnest.com</div></div>' + '<div style="padding:8px 24px 20px">' + top.concat(DATA.leads.filter(function (l) {
+      return l.tier === "med";
+    })).map(function (l) {
+      return '<div class="alead" data-open-lead="' + l.id + '" style="grid-template-columns:60px 1fr auto;padding:16px 0;border-bottom:1px solid var(--line)">' + '<div class="ascore' + (l.tier === "med" ? " med" : "") + '"><b style="font-size:24px">' + l.score + '</b></div>' + '<div class="amid"><div class="ameta"><span class="abadge ' + (l.badge || "") + '">' + l.source + '</span> ' + esc(l.sub) + '</div><div class="atitle" style="font-size:16px">' + esc(l.title) + '</div></div>' + '<a class="btn ghost sm">Open</a></div>';
+    }).join("") + '</div>' + '</div>';
+  }
+  function vSettings() {
+    return '<div class="aview-h"><div class="htxt"><span class="eyebrow">Settings</span><h1>Workspace</h1></div></div>' + '<div class="acard pad-lg" style="max-width:760px"><div class="aset-grid">' + '<div class="afield"><label>Workspace name</label><input value="Acme Proposals"/></div>' + '<div class="afield"><label>Website</label><input value="acmeproposals.com"/></div>' + '<div class="afield full"><label>Plan</label><div class="box">Starter — $19 / mo · 500 scanned posts · 100 reply drafts</div></div>' + '</div>' + '<div style="margin-top:8px">' + '<div class="arow"><div class="rl2">Daily digest email<em>7:00 AM · your timezone</em></div><span class="tsw" data-toggle-set="digest"></span></div>' + '<div class="arow"><div class="rl2">Weekly summary<em>Mondays · top movers</em></div><span class="tsw off" data-toggle-set="weekly"></span></div>' + '<div class="arow"><div class="rl2">Auto-post replies<em>Disabled by design — you always review and post</em></div><span class="tsw off" style="opacity:.5;pointer-events:none"></span></div>' + '</div>' + '<div style="margin-top:20px;display:flex;gap:8px"><button class="btn sm" data-save-set>Save changes</button><button class="btn ghost sm">Cancel</button></div></div>';
+  }
+
+  /* ---------- render ---------- */
+  var root = document.getElementById("app");
+  function render() {
+    var content;
+    switch (state.view) {
+      case "inbox":
+        content = vInbox();
+        break;
+      case "lead":
+        content = vLead();
+        break;
+      case "projects":
+        content = vProjects();
+        break;
+      case "sources":
+        content = vSources();
+        break;
+      case "digest":
+        content = vDigest();
+        break;
+      case "settings":
+        content = vSettings();
+        break;
+      case "billing":
+        content = vBilling();
+        break;
+      default:
+        content = vDashboard();
+    }
+    root.innerHTML = shell(content);
+    if (window.lucide) window.lucide.createIcons({
+      attrs: {
+        "stroke-width": 1.75,
+        width: 16,
+        height: 16
+      }
+    });
+    var _rm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    root.querySelectorAll("[data-fill]").forEach(function (f, k) {
+      if (_rm) {
+        f.style.width = f.getAttribute("data-fill") + "%";
+        return;
+      }
+      setTimeout(function () {
+        f.style.width = f.getAttribute("data-fill") + "%";
+      }, 150 + k * 60);
+    });
+    root.querySelectorAll("[data-count]").forEach(function (n) {
+      countUp(n, _rm);
+    });
+    var _it = root.querySelectorAll(".alead, .acardrow");
+    for (var _k = 0; _k < _it.length; _k++) _it[_k].style.animationDelay = Math.min(_k * 0.04, 0.28) + "s";
+    window.scrollTo(0, 0);
+  }
+  function countUp(n, rm) {
+    var target = parseFloat(n.getAttribute("data-count"));
+    if (isNaN(target)) return;
+    if (rm) {
+      n.textContent = Math.round(target).toLocaleString();
+      return;
+    }
+    var dur = 720,
+      t0 = null;
+    function step(ts) {
+      if (!t0) t0 = ts;
+      var p = Math.min((ts - t0) / dur, 1);
+      var e = 1 - Math.pow(1 - p, 3);
+      n.textContent = Math.round(target * e).toLocaleString();
+      if (p < 1) requestAnimationFrame(step);else n.textContent = Math.round(target).toLocaleString();
+    }
+    requestAnimationFrame(step);
+  }
+  function toast(msg) {
+    var t = document.getElementById("toast");
+    if (!t) return;
+    t.textContent = msg;
+    t.classList.add("show");
+    clearTimeout(t._h);
+    t._h = setTimeout(function () {
+      t.classList.remove("show");
+    }, 2200);
+  }
+
+  /* ---------- events ---------- */
+  document.addEventListener("click", function (e) {
+    var el = e.target.closest("[data-nav],[data-open-lead],[data-back],[data-inbox-tab],[data-gen],[data-copy],[data-save],[data-scan],[data-toggle-src],[data-toggle-set],[data-save-set],[data-upgrade]");
+    if (!el) return;
+    if (el.hasAttribute("data-nav")) {
+      state.view = el.getAttribute("data-nav");
+      render();
+    } else if (el.hasAttribute("data-open-lead")) {
+      state.leadId = el.getAttribute("data-open-lead");
+      state.view = "lead";
+      render();
+    } else if (el.hasAttribute("data-back")) {
+      state.view = "inbox";
+      render();
+    } else if (el.hasAttribute("data-inbox-tab")) {
+      state.inboxTab = el.getAttribute("data-inbox-tab");
+      render();
+    } else if (el.hasAttribute("data-gen")) {
+      var l = lead(state.leadId);
+      if (l && !l.draft) {
+        l.draft = draftFor(l);
+        toast("Draft generated — review before posting");
+      }
+      render();
+    } else if (el.hasAttribute("data-copy")) {
+      toast("Copied — now post it yourself");
+    } else if (el.hasAttribute("data-save")) {
+      var l2 = lead(state.leadId);
+      saved[l2.id] = !isSaved(l2);
+      toast(saved[l2.id] ? "Lead saved" : "Removed from saved");
+      render();
+    } else if (el.hasAttribute("data-scan")) {
+      toast("Scan started — checking 3 public sources…");
+    } else if (el.hasAttribute("data-toggle-src")) {
+      var i = +el.getAttribute("data-toggle-src");
+      DATA.sources[i].on = !DATA.sources[i].on;
+      el.classList.toggle("off");
+      toast(DATA.sources[i].on ? "Source enabled" : "Source paused");
+    } else if (el.hasAttribute("data-toggle-set")) {
+      el.classList.toggle("off");
+    } else if (el.hasAttribute("data-save-set")) {
+      toast("Settings saved");
+    } else if (el.hasAttribute("data-upgrade")) {
+      if (state.view === "billing") {
+        toast("Redirecting to secure checkout…");
+      } else {
+        state.view = "billing";
+        render();
+      }
+    }
+  });
+  function draftFor(l) {
+    return "Hey — saw your post about " + l.stage.replace(/-/g, " ") + ". A quick tip that helped us: standardise a couple of reusable templates so each one isn't from scratch. Happy to share what worked. (I build a small tool in this space — only mentioning since it's relevant, no pressure.)";
+  }
+  render();
+})();
+})(); } catch (e) { __ds_ns.__errors.push({ path: "assets/app.js", error: String((e && e.message) || e) }); }
+
+// assets/auth.js
+try { (() => {
+/* ============================================================
+   THE LEADS NEST — auth brand animation
+   A continuous "intent radar" stream: public posts drift upward
+   through a scan line; as each crosses, it lights up and reveals
+   its intent score. Reduced-motion safe.
+   ============================================================ */
+(function () {
+  "use strict";
+
+  var stream = document.getElementById("abStream");
+  if (!stream) return;
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var POSTS = [{
+    src: "Reddit",
+    sub: "r/agency",
+    q: "Any cheaper PandaDoc alternative?",
+    score: 81
+  }, {
+    src: "Hacker News",
+    sub: "Ask HN",
+    q: "How do you track which communities convert?",
+    score: 74
+  }, {
+    src: "Reddit",
+    sub: "r/freelance",
+    q: "A proposal tool better than Word?",
+    score: 69
+  }, {
+    src: "Reddit",
+    sub: "r/SaaS",
+    q: "What do you use instead of a heavy CRM?",
+    score: 77
+  }, {
+    src: "RSS",
+    sub: "indiehackers",
+    q: "Faster way to draft client replies?",
+    score: 66
+  }, {
+    src: "Reddit",
+    sub: "r/Upwork",
+    q: "Best e-sign tool for freelance contracts?",
+    score: 72
+  }];
+  function chipEl(p) {
+    var el = document.createElement("div");
+    el.className = "flchip";
+    el.innerHTML = '<div class="fl-meta"><span class="fl-badge">' + p.src + '</span><span>' + p.sub + '</span></div>' + '<div class="fl-q">' + p.q + '</div>' + '<div class="fl-score">' + p.score + '</div>';
+    return el;
+  }
+  if (reduce) {
+    // static: three chips, the middle one lit
+    [0, 1, 2].forEach(function (k) {
+      var el = chipEl(POSTS[k]);
+      el.style.top = 28 + k * 84 + "px";
+      if (k === 1) el.classList.add("lit");
+      stream.appendChild(el);
+    });
+    return;
+  }
+  var lane = [],
+    i = 0;
+  function spawn() {
+    var el = chipEl(POSTS[i % POSTS.length]);
+    i++;
+    el.style.top = stream.clientHeight + 12 + "px";
+    stream.appendChild(el);
+    lane.push({
+      el: el,
+      y: stream.clientHeight + 12
+    });
+  }
+  var GAP = 30;
+  function tick() {
+    var h = stream.clientHeight,
+      mid = h / 2;
+    for (var j = lane.length - 1; j >= 0; j--) {
+      var o = lane[j];
+      o.y -= 0.42;
+      o.el.style.top = o.y + "px";
+      var cy = o.y + o.el.offsetHeight / 2;
+      o.el.classList.toggle("lit", Math.abs(cy - mid) < 40);
+      if (o.y < -o.el.offsetHeight - 12) {
+        o.el.remove();
+        lane.splice(j, 1);
+      }
+    }
+    // self-paced spawn: only when the newest chip has cleared a gap
+    var last = lane[lane.length - 1];
+    if (!last || last.y < h - last.el.offsetHeight - GAP) spawn();
+    requestAnimationFrame(tick);
+  }
+  spawn();
+  requestAnimationFrame(tick);
+})();
+})(); } catch (e) { __ds_ns.__errors.push({ path: "assets/auth.js", error: String((e && e.message) || e) }); }
+
+// assets/landing.js
+try { (() => {
+/* ============================================================
+   THE LEADS NEST — landing interactions
+   Interactive intent-radar hero, count-ups, scan-log, reveals,
+   magnetic buttons, cursor spotlight. Reduced-motion aware.
+   ============================================================ */
+(function () {
+  "use strict";
+
+  document.documentElement.classList.add("js");
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- intro animation (landing only) ---------- */
+  var intro = document.getElementById("intro");
+  if (intro) {
+    if (reduce) {
+      intro.parentNode && intro.parentNode.removeChild(intro);
+    } else {
+      var killIntro = function () {
+        if (intro.classList.contains("done")) return;
+        intro.classList.add("done");
+        setTimeout(function () {
+          intro.parentNode && intro.parentNode.removeChild(intro);
+        }, 720);
+      };
+      setTimeout(killIntro, 2000);
+      intro.addEventListener("click", killIntro);
+    }
+  }
+
+  /* ---------- prominent custom cursor + spotlight ---------- */
+  function ensureEl(id) {
+    var e = document.getElementById(id);
+    if (!e) {
+      e = document.createElement("div");
+      e.id = id;
+      document.body.appendChild(e);
+    }
+    return e;
+  }
+  var finePointer = window.matchMedia("(pointer:fine)").matches;
+  var noCursor = document.documentElement.hasAttribute("data-no-cursor");
+  if (finePointer && !reduce && !noCursor) {
+    var spot = ensureEl("spotlight");
+    var dot = ensureEl("cur-dot");
+    var ring = ensureEl("cur-ring");
+    var mx = window.innerWidth / 2,
+      my = window.innerHeight / 2,
+      rx = mx,
+      ry = my;
+    window.addEventListener("pointermove", function (e) {
+      mx = e.clientX;
+      my = e.clientY;
+      spot.style.setProperty("--mx", mx + "px");
+      spot.style.setProperty("--my", my + "px");
+      dot.style.transform = "translate(" + mx + "px," + my + "px) translate(-50%,-50%)";
+    }, {
+      passive: true
+    });
+    (function ringLoop() {
+      rx += (mx - rx) * 0.18;
+      ry += (my - ry) * 0.18;
+      ring.style.transform = "translate(" + rx + "px," + ry + "px) translate(-50%,-50%)";
+      requestAnimationFrame(ringLoop);
+    })();
+    var hotSel = "a,button,.btn,.qa button,.am-lead,.plan,.cell,.tcard,#radar,input,select,textarea,.am-nav a";
+    document.addEventListener("pointerover", function (e) {
+      if (e.target.closest && e.target.closest(hotSel)) ring.classList.add("hot");
+    });
+    document.addEventListener("pointerout", function (e) {
+      if (e.target.closest && e.target.closest(hotSel)) {
+        var to = e.relatedTarget;
+        if (!(to && to.closest && to.closest(hotSel))) ring.classList.remove("hot");
+      }
+    });
+    window.addEventListener("pointerdown", function () {
+      ring.classList.add("click");
+    });
+    window.addEventListener("pointerup", function () {
+      ring.classList.remove("click");
+    });
+    document.addEventListener("mouseleave", function () {
+      dot.style.opacity = ring.style.opacity = "0";
+    });
+    document.addEventListener("mouseenter", function () {
+      dot.style.opacity = ring.style.opacity = "1";
+    });
+  } else {
+    var sp = document.getElementById("spotlight");
+    if (sp) sp.style.display = "none";
+  }
+
+  /* ---------- sticky nav ---------- */
+  var nav = document.getElementById("nav");
+  if (nav) {
+    var navState = function () {
+      nav.classList.toggle("stuck", window.scrollY > 12);
+    };
+    navState();
+    window.addEventListener("scroll", navState, {
+      passive: true
+    });
+  }
+
+  /* ---------- headline underline draw ---------- */
+  var uline = document.querySelector(".hero h1 .accent path");
+  if (uline) {
+    try {
+      var len = uline.getTotalLength();
+      uline.style.strokeDasharray = len;
+      uline.style.strokeDashoffset = len;
+      if (reduce) {
+        uline.style.strokeDashoffset = 0;
+      } else {
+        setTimeout(function () {
+          uline.style.transition = "stroke-dashoffset 1.1s cubic-bezier(0.16,1,0.3,1)";
+          uline.style.strokeDashoffset = 0;
+        }, 650);
+      }
+    } catch (e) {}
+  }
+
+  /* ---------- marquee ---------- */
+  var questions = ["anything better than Word for proposals?", "alternatives to PandaDoc that are cheaper?", "how do you track which communities send clients?", "best lightweight CRM for a 2-person agency?", "looking for a freelance proposal tool with e-sign", "what are people using instead of [competitor]?", "how to find customers without cold DMs?", "tools to draft client replies faster?"];
+  var mq = document.getElementById("mq");
+  if (mq) {
+    var one = questions.map(function (q) {
+      return '<span class="mq"><span class="mq-item">\u201C' + q + '\u201D</span><span class="mq-sep">\u25C6</span></span>';
+    }).join("");
+    mq.innerHTML = one + one;
+  }
+
+  /* ---------- reveal on scroll + triggers (scroll-based, robust) ---------- */
+  var watch = [].slice.call(document.querySelectorAll("[data-reveal], [data-count], .formula, #scanlog"));
+  document.querySelectorAll("[data-reveal]").forEach(function (el, i) {
+    el.style.setProperty("--d", i % 4 * 70 + "ms");
+  });
+  function checkReveal() {
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    watch = watch.filter(function (el) {
+      var top = el.getBoundingClientRect().top;
+      if (top < vh * 0.9) {
+        el.classList.add("in");
+        if (el.hasAttribute("data-count")) countUp(el);
+        if (el.classList.contains("formula")) fillBars(el);
+        if (el.id === "scanlog") runScanLog();
+        return false;
+      }
+      return true;
+    });
+  }
+  window.addEventListener("scroll", checkReveal, {
+    passive: true
+  });
+  window.addEventListener("resize", checkReveal);
+  checkReveal();
+  setTimeout(checkReveal, 300);
+  setTimeout(checkReveal, 1200);
+  // Fallback: ensure signature pieces populate even if the page never
+  // scrolls (embedded previews, very tall viewports).
+  window.addEventListener("load", function () {
+    setTimeout(function () {
+      runScanLog();
+      document.querySelectorAll(".formula").forEach(fillBars);
+      document.querySelectorAll("[data-count]").forEach(function (el) {
+        if (!el.classList.contains("counted")) {
+          el.classList.add("counted");
+          countUp(el);
+        }
+      });
+    }, 700);
+  });
+
+  /* ---------- count-up ---------- */
+  function countUp(el) {
+    if (el.__counted) return;
+    el.__counted = true;
+    var target = parseFloat(el.getAttribute("data-count"));
+    var suffix = el.getAttribute("data-suffix") || "";
+    var dur = 1300,
+      t0 = null;
+    if (reduce) {
+      el.textContent = format(target) + suffix;
+      return;
+    }
+    function step(ts) {
+      if (!t0) t0 = ts;
+      var p = Math.min((ts - t0) / dur, 1);
+      var e = 1 - Math.pow(1 - p, 3);
+      el.textContent = format(target * e) + suffix;
+      if (p < 1) requestAnimationFrame(step);else el.textContent = format(target) + suffix;
+    }
+    requestAnimationFrame(step);
+  }
+  function format(n) {
+    if (n >= 1000) return Math.round(n).toLocaleString();
+    return Math.round(n).toString();
+  }
+
+  /* ---------- scoring bars ---------- */
+  function fillBars(root) {
+    root.querySelectorAll(".ff").forEach(function (bar, i) {
+      var w = bar.getAttribute("data-w");
+      setTimeout(function () {
+        bar.style.width = w + "%";
+      }, reduce ? 0 : 120 + i * 130);
+    });
+  }
+
+  /* ---------- typed scan log ---------- */
+  var scanStarted = false;
+  function runScanLog() {
+    if (scanStarted) return;
+    scanStarted = true;
+    var box = document.getElementById("scanbody");
+    if (!box) return;
+    var lines = [{
+      t: '$ nest scan --project "proposal-tool" --sources reddit,hn,rss',
+      c: ""
+    }, {
+      t: "→ connecting to official APIs\u2026",
+      c: "c-dim"
+    }, {
+      t: "✓ reddit  · r/freelance, r/agency, r/Upwork",
+      c: "c-accent"
+    }, {
+      t: "✓ hn      · Algolia search \u201Cproposal software\u201D",
+      c: "c-accent"
+    }, {
+      t: "✓ rss     · indiehackers.com/feed",
+      c: "c-accent"
+    }, {
+      t: "→ pulled 342 public posts · filtering keywords\u2026",
+      c: "c-dim"
+    }, {
+      t: "→ scoring intent  [relevance · intent · urgency · fit]",
+      c: "c-dim"
+    }, {
+      t: "★ 81  competitor-switching  \u201CFrustrated with PandaDoc pricing\u2026\u201D",
+      c: "c-hi"
+    }, {
+      t: "★ 74  problem-aware        \u201Chow do you track which communities\u2026\u201D",
+      c: "c-hi"
+    }, {
+      t: "★ 69  solution-aware       \u201Clooking for a proposal tool\u2026\u201D",
+      c: "c-hi"
+    }, {
+      t: "✓ 41 high-intent leads ready · 0 posts published. you decide.",
+      c: "c-accent"
+    }];
+    if (reduce) {
+      box.innerHTML = lines.map(function (l) {
+        return '<div class="ln ' + l.c + '">' + esc(l.t) + "</div>";
+      }).join("");
+      return;
+    }
+    var li = 0;
+    function typeLine() {
+      if (li >= lines.length) return;
+      var l = lines[li];
+      var div = document.createElement("div");
+      div.className = "ln " + l.c;
+      box.appendChild(div);
+      var ci = 0,
+        txt = l.t;
+      var speed = li === 0 ? 16 : 7;
+      function typeChar() {
+        div.innerHTML = esc(txt.slice(0, ci)) + '<span class="cursor"></span>';
+        ci++;
+        if (ci <= txt.length) setTimeout(typeChar, speed + Math.random() * 14);else {
+          div.innerHTML = esc(txt);
+          li++;
+          setTimeout(typeLine, 220);
+        }
+      }
+      typeChar();
+    }
+    typeLine();
+  }
+  function esc(s) {
+    return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+
+  /* ---------- magnetic buttons ---------- */
+  if (!reduce && window.matchMedia("(pointer:fine)").matches) {
+    document.querySelectorAll(".btn").forEach(function (b) {
+      b.addEventListener("pointermove", function (e) {
+        var r = b.getBoundingClientRect();
+        var x = (e.clientX - r.left - r.width / 2) / r.width;
+        var y = (e.clientY - r.top - r.height / 2) / r.height;
+        b.style.transform = "translate(" + (x * 6).toFixed(1) + "px," + (y * 5).toFixed(1) + "px)";
+      });
+      b.addEventListener("pointerleave", function () {
+        b.style.transform = "";
+      });
+    });
+  }
+
+  /* ---------- inject Lucide icons (data-ic → data-lucide) ---------- */
+  document.querySelectorAll("[data-ic]").forEach(function (el) {
+    var i = document.createElement("i");
+    i.setAttribute("data-lucide", el.getAttribute("data-ic"));
+    el.appendChild(i);
+  });
+
+  /* ---------- FAQ ---------- */
+  document.querySelectorAll(".qa button").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var open = btn.parentElement.classList.contains("open");
+      document.querySelectorAll(".qa.open").forEach(function (o) {
+        o.classList.remove("open");
+      });
+      if (!open) btn.parentElement.classList.add("open");
+    });
+  });
+
+  /* ============================================================
+     INTERACTIVE INTENT RADAR (hero canvas)
+     A field of public-post nodes. A slow sweep scans them; nodes
+     light by intent, high-intent ones connect to the nest and
+     surface a question. Cursor adds parallax + proximity glow.
+     ============================================================ */
+  var COL = {
+    paper: "#F4F1E9",
+    ink: "#1C1B17",
+    accent: "#2E5E45",
+    soft: "#5A7C66",
+    line: "#CDC8B8",
+    ink3: "#6F6A5C",
+    ink4: "#9A9483",
+    tint: "#E6EBE3"
+  };
+  var cv = document.getElementById("radar");
+  if (cv) initRadar(cv);
+
+  /* ---------- scroll-driven product tour ---------- */
+  (function initTour() {
+    var sec = document.getElementById("product");
+    if (!sec || !sec.classList.contains("tour")) return;
+    var tabs = [].slice.call(sec.querySelectorAll(".tnav a"));
+    var panels = [].slice.call(sec.querySelectorAll(".tpanel"));
+    var n = tabs.length;
+    if (!n) return;
+    var current = -1,
+      locked = -1,
+      lockUntil = 0;
+    var prog = sec.querySelector(".tprog .trail i");
+    var count = sec.querySelector(".tcount");
+    function setStep(i) {
+      if (i === current) return;
+      current = i;
+      tabs.forEach(function (t, idx) {
+        t.classList.toggle("on", idx === i);
+      });
+      panels.forEach(function (p, idx) {
+        p.classList.toggle("on", idx === i);
+      });
+      if (prog) prog.style.width = (i + 1) / n * 100 + "%";
+      if (count) count.textContent = pad(i + 1) + " / " + pad(n);
+    }
+    function pad(x) {
+      return (x < 10 ? "0" : "") + x;
+    }
+    function onScroll() {
+      if (Date.now() < lockUntil) return; // honor a click jump briefly
+      if (sec.offsetParent === null) return;
+      var r = sec.getBoundingClientRect();
+      var total = sec.offsetHeight - window.innerHeight;
+      if (total <= 0) return; // stacked (mobile) — driven by clicks
+      var scrolled = Math.min(Math.max(-r.top, 0), total);
+      var p = scrolled / total;
+      setStep(Math.min(n - 1, Math.floor(p * n + 0.0001)));
+    }
+    tabs.forEach(function (t, i) {
+      t.addEventListener("click", function (e) {
+        e.preventDefault();
+        setStep(i);
+        lockUntil = Date.now() + 700;
+        var total = sec.offsetHeight - window.innerHeight;
+        if (total > 0) {
+          var target = sec.offsetTop + (i + 0.5) / n * total;
+          window.scrollTo({
+            top: target,
+            behavior: "smooth"
+          });
+        }
+      });
+    });
+    window.addEventListener("scroll", onScroll, {
+      passive: true
+    });
+    window.addEventListener("resize", onScroll);
+    setStep(0);
+    onScroll();
+    setTimeout(onScroll, 200);
+  })();
+  function initRadar(canvas) {
+    var ctx = canvas.getContext("2d");
+    var W = 0,
+      H = 0,
+      DPR = Math.min(window.devicePixelRatio || 1, 2);
+    var cx, cy, R;
+    var nodes = [];
+    var sweep = -Math.PI / 2;
+    var mouse = {
+      x: 0,
+      y: 0,
+      inside: false
+    };
+    var parallax = {
+      x: 0,
+      y: 0
+    };
+    var detectEl = document.getElementById("detect");
+    var scannedEl = document.getElementById("rf-scanned");
+    var highEl = document.getElementById("rf-high");
+    var scanned = 0,
+      highCount = 0;
+    var qPool = ["any cheaper PandaDoc alternative?", "better than Word for proposals?", "which communities send clients?", "freelance proposal tool w/ e-sign?", "what do you use instead of X?", "lightweight CRM rec?"];
+    var qi = 0;
+    function resize() {
+      var rect = canvas.getBoundingClientRect();
+      W = rect.width;
+      H = rect.height;
+      canvas.width = W * DPR;
+      canvas.height = H * DPR;
+      ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+      cx = W / 2;
+      cy = H / 2;
+      R = Math.min(W, H) / 2 - 14;
+      if (!nodes.length) seed();
+    }
+    function seed() {
+      nodes = [];
+      var N = 34;
+      for (var i = 0; i < N; i++) {
+        var ang = Math.random() * Math.PI * 2;
+        var rr = 0.16 + Math.random() * 0.82;
+        // intent distribution: mostly low, a few high
+        var roll = Math.random();
+        var intent = roll > 0.86 ? 70 + Math.random() * 26 : roll > 0.6 ? 40 + Math.random() * 28 : 8 + Math.random() * 30;
+        nodes.push({
+          ang: ang,
+          rr: rr,
+          intent: Math.round(intent),
+          lit: 0,
+          // 0..1 activation glow
+          scoredAt: -1e9,
+          drift: Math.random() * Math.PI * 2,
+          dspeed: 0.0006 + Math.random() * 0.0009,
+          rad: 1.4 + Math.random() * 1.8
+        });
+      }
+    }
+    function nodePos(n) {
+      var wob = Math.sin(n.drift) * 0.012;
+      var r = (n.rr + wob) * R;
+      return {
+        x: cx + Math.cos(n.ang) * r + parallax.x * (0.4 + n.rr * 0.6),
+        y: cy + Math.sin(n.ang) * r + parallax.y * (0.4 + n.rr * 0.6)
+      };
+    }
+    var last = performance.now();
+    function frame(now) {
+      var dt = Math.min(now - last, 50);
+      last = now;
+      ctx.clearRect(0, 0, W, H);
+
+      // parallax easing toward mouse
+      var tx = mouse.inside ? (mouse.x - cx) * 0.04 : 0;
+      var ty = mouse.inside ? (mouse.y - cy) * 0.04 : 0;
+      parallax.x += (tx - parallax.x) * 0.06;
+      parallax.y += (ty - parallax.y) * 0.06;
+      drawGrid();
+      if (!reduce) sweep += dt * 0.00052;
+      if (sweep > Math.PI * 1.5) sweep -= Math.PI * 2;
+      if (!reduce) drawSweep();
+
+      // nodes
+      nodes.forEach(function (n) {
+        n.drift += n.dspeed * dt;
+        var p = nodePos(n);
+        // activation when sweep angle passes node angle
+        if (!reduce) {
+          var na = Math.atan2(p.y - cy, p.x - cx);
+          var diff = Math.abs(angDiff(na, sweep));
+          if (diff < 0.06 && now - n.scoredAt > 4000) {
+            n.lit = 1;
+            n.scoredAt = now;
+            scanned++;
+            if (n.intent >= 70) {
+              highCount++;
+              surface(n, p);
+            }
+            updateFoot();
+          }
+        }
+        n.lit *= Math.pow(0.9975, dt); // slow fade
+
+        // proximity glow
+        var prox = 0;
+        if (mouse.inside) {
+          var d = Math.hypot(p.x - mouse.x, p.y - mouse.y);
+          prox = Math.max(0, 1 - d / 70);
+        }
+        drawNode(n, p, prox);
+      });
+
+      // nest center
+      drawNest();
+      requestAnimationFrame(frame);
+    }
+    function angDiff(a, b) {
+      var d = a - b;
+      while (d > Math.PI) d -= Math.PI * 2;
+      while (d < -Math.PI) d += Math.PI * 2;
+      return d;
+    }
+    function drawGrid() {
+      ctx.save();
+      ctx.strokeStyle = COL.line;
+      ctx.globalAlpha = 0.5;
+      ctx.lineWidth = 1;
+      [0.33, 0.66, 1].forEach(function (f) {
+        ctx.beginPath();
+        ctx.arc(cx + parallax.x * 0.3, cy + parallax.y * 0.3, R * f, 0, Math.PI * 2);
+        ctx.stroke();
+      });
+      ctx.globalAlpha = 0.32;
+      for (var a = 0; a < Math.PI * 2; a += Math.PI / 3) {
+        ctx.beginPath();
+        ctx.moveTo(cx + parallax.x * 0.3, cy + parallax.y * 0.3);
+        ctx.lineTo(cx + Math.cos(a) * R + parallax.x * 0.3, cy + Math.sin(a) * R + parallax.y * 0.3);
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
+    function drawSweep() {
+      var gx = cx + parallax.x * 0.3,
+        gy = cy + parallax.y * 0.3;
+      var grad = ctx.createRadialGradient(gx, gy, 0, gx, gy, R);
+      grad.addColorStop(0, "rgba(46,94,69,0.16)");
+      grad.addColorStop(1, "rgba(46,94,69,0)");
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(gx, gy);
+      ctx.arc(gx, gy, R, sweep - 0.5, sweep);
+      ctx.closePath();
+      ctx.fillStyle = grad;
+      ctx.fill();
+      // leading line
+      ctx.beginPath();
+      ctx.moveTo(gx, gy);
+      ctx.lineTo(gx + Math.cos(sweep) * R, gy + Math.sin(sweep) * R);
+      ctx.strokeStyle = "rgba(46,94,69,0.55)";
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+      ctx.restore();
+    }
+    function drawNode(n, p, prox) {
+      var high = n.intent >= 70,
+        med = n.intent >= 40;
+      var base = high ? COL.accent : med ? COL.soft : COL.ink4;
+      var r = n.rad + n.lit * 2.4 + prox * 3;
+
+      // connecting hairline for lit high-intent
+      if (high && n.lit > 0.05) {
+        ctx.save();
+        ctx.globalAlpha = n.lit * 0.5;
+        ctx.strokeStyle = COL.accent;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(cx + parallax.x * 0.3, cy + parallax.y * 0.3);
+        ctx.lineTo(p.x, p.y);
+        ctx.stroke();
+        ctx.restore();
+      }
+      // glow ring
+      if (n.lit > 0.05 || prox > 0.05) {
+        ctx.save();
+        ctx.globalAlpha = Math.max(n.lit, prox) * 0.6;
+        ctx.strokeStyle = base;
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, r + 4 + n.lit * 4, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.restore();
+      }
+      // dot
+      ctx.save();
+      ctx.globalAlpha = 0.35 + (med ? 0.35 : 0) + n.lit * 0.4 + prox * 0.4;
+      ctx.fillStyle = base;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+      // score label for lit high-intent or hovered
+      if (high && n.lit > 0.4 || prox > 0.5) {
+        ctx.save();
+        ctx.globalAlpha = Math.max(n.lit, prox);
+        ctx.fillStyle = high ? COL.accent : COL.ink3;
+        ctx.font = "600 10px 'IBM Plex Mono', monospace";
+        ctx.textAlign = "center";
+        ctx.fillText(String(n.intent), p.x, p.y - r - 6);
+        ctx.restore();
+      }
+    }
+    function drawNest() {
+      var gx = cx + parallax.x * 0.3,
+        gy = cy + parallax.y * 0.3;
+      ctx.save();
+      // chevron mark
+      ctx.translate(gx, gy);
+      ctx.strokeStyle = COL.accent;
+      ctx.lineWidth = 2;
+      ctx.lineJoin = "miter";
+      ctx.beginPath();
+      ctx.moveTo(-8, 4);
+      ctx.lineTo(0, -6);
+      ctx.lineTo(8, 4);
+      ctx.stroke();
+      ctx.globalAlpha = 0.5;
+      ctx.beginPath();
+      ctx.moveTo(-5, 9);
+      ctx.lineTo(0, 2);
+      ctx.lineTo(5, 9);
+      ctx.stroke();
+      ctx.restore();
+    }
+    function updateFoot() {
+      if (scannedEl) scannedEl.textContent = scanned.toString();
+      if (highEl) highEl.textContent = highCount.toString();
+    }
+    var detectTimer = null;
+    function surface(n, p) {
+      if (!detectEl) return;
+      detectEl.style.left = p.x + "px";
+      detectEl.style.top = p.y + "px";
+      detectEl.querySelector(".dq").textContent = "\u201C" + qPool[qi % qPool.length] + "\u201D";
+      qi++;
+      detectEl.classList.add("show");
+      clearTimeout(detectTimer);
+      detectTimer = setTimeout(function () {
+        detectEl.classList.remove("show");
+      }, 2600);
+    }
+    canvas.addEventListener("pointermove", function (e) {
+      var r = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - r.left;
+      mouse.y = e.clientY - r.top;
+      mouse.inside = true;
+    });
+    canvas.addEventListener("pointerleave", function () {
+      mouse.inside = false;
+    });
+    var ro = new ResizeObserver(resize);
+    ro.observe(canvas.parentElement);
+    resize();
+    if (reduce) {
+      // static: light all high-intent nodes once
+      nodes.forEach(function (n) {
+        if (n.intent >= 70) {
+          n.lit = 1;
+          highCount++;
+        }
+        scanned++;
+      });
+      updateFoot();
+      // one static frame
+      ctx.clearRect(0, 0, W, H);
+      drawGrid();
+      nodes.forEach(function (n) {
+        drawNode(n, nodePos(n), 0);
+      });
+      drawNest();
+    } else {
+      requestAnimationFrame(frame);
+    }
+  }
+})();
+})(); } catch (e) { __ds_ns.__errors.push({ path: "assets/landing.js", error: String((e && e.message) || e) }); }
+
+// assets/mobile.js
+try { (() => {
+/* ============================================================
+   THE LEADS NEST — Mobile prototype logic
+   Navigator (push/pop/tab) + screens + events. Vanilla.
+   ============================================================ */
+(function () {
+  "use strict";
+
+  /* ---------------- data ---------------- */
+  var DATA = {
+    org: {
+      name: "Acme Proposals",
+      plan: "Starter",
+      initials: "AP",
+      user: "Maya Okafor",
+      handle: "maya@acme.co"
+    },
+    stats: {
+      total: 248,
+      high: 41,
+      avg: 63,
+      copied: 29
+    },
+    usage: {
+      posts: [342, 500],
+      replies: [88, 100],
+      projects: [2, 3]
+    },
+    keywords: ["proposal tool", "client proposal", "Upwork proposal", "freelance proposal"],
+    leads: [{
+      id: "l1",
+      score: 81,
+      tier: "high",
+      source: "Reddit",
+      badge: "",
+      sub: "r/agency",
+      author: "u/agency_ops",
+      posted: "1d",
+      stage: "competitor-switching",
+      saved: false,
+      title: "Frustrated with PandaDoc pricing — any cheaper alternatives?",
+      body: "We've been using PandaDoc but the per-seat pricing is getting expensive as our agency grows. Anyone switched to something cheaper that still does proposals and contracts well? Need to decide this week.",
+      relevance: 88,
+      intent: 82,
+      urgency: 75,
+      fit: 70,
+      confidence: 62,
+      reason: "Mentions a competitor (PandaDoc) and explicit budget pressure, with strong buying signals and a near-term decision deadline.",
+      angle: "Acknowledge the pricing frustration, share one concrete way to cut proposal time, then mention Acme with disclosure.",
+      signals: ["frustrated with", "alternative", "decide this week"],
+      pains: ["Cost / pricing", "Outgrowing tool"],
+      draft: "Totally get the PandaDoc pricing pain as you add seats. One thing that helped us before switching anything: standardise 2–3 proposal templates so you're not rebuilding each one — that alone cut our prep time a lot. I'm building a small proposal tool in this space (Acme Proposals) — happy to share if it's useful, no pressure.",
+      disclosure: "I'm building a small proposal tool in this space (Acme Proposals) — sharing because it's relevant, not to pitch."
+    }, {
+      id: "l3",
+      score: 74,
+      tier: "high",
+      source: "Hacker News",
+      badge: "info",
+      sub: "Ask HN",
+      author: "swyx_builds",
+      posted: "2d",
+      stage: "problem-aware",
+      saved: false,
+      title: "Ask HN: how do you track which communities actually send you clients?",
+      body: "Running a small dev agency. We get clients from a few subreddits and Slack groups but have no idea which ones convert. How are people attributing this without a heavy CRM?",
+      relevance: 71,
+      intent: 64,
+      urgency: 55,
+      fit: 80,
+      confidence: 51,
+      reason: "Problem-aware post about attribution; adjacent to our ICP and a natural place to be genuinely helpful first.",
+      angle: "Share a lightweight attribution approach; only mention the product if asked.",
+      signals: ["how do you", "track", "without a heavy CRM"],
+      pains: ["No attribution", "Avoiding heavy CRM"],
+      draft: null
+    }, {
+      id: "l2",
+      score: 69,
+      tier: "med",
+      source: "Reddit",
+      badge: "",
+      sub: "r/freelance",
+      author: "u/design_freelance",
+      posted: "1d",
+      stage: "solution-aware",
+      saved: true,
+      title: "Looking for a proposal tool — anything better than Word?",
+      body: "I'm a freelance designer sending 5–10 client proposals a month. Writing them in Word is painful. Looking for a proposal tool that handles templates and e-signatures. Budget is flexible if it saves time.",
+      relevance: 84,
+      intent: 68,
+      urgency: 40,
+      fit: 72,
+      confidence: 58,
+      reason: "Freelancer explicitly looking for a proposal tool with templates and e-signatures; flexible budget signals real intent.",
+      angle: "Lead with a concrete tip on reusable templates, then mention Acme lightly with disclosure.",
+      signals: ["looking for", "recommend", "budget is flexible"],
+      pains: ["Manual workflow", "Wants e-sign"],
+      draft: null
+    }, {
+      id: "l4",
+      score: 33,
+      tier: "low",
+      source: "RSS",
+      badge: "gray",
+      sub: "indiehackers",
+      author: "maker_jo",
+      posted: "3d",
+      stage: "research",
+      saved: false,
+      title: "Roundup: 12 tools I tried for client onboarding this year",
+      body: "A long blog post listing onboarding tools. Mentions proposals briefly but mostly about contracts and scheduling.",
+      relevance: 48,
+      intent: 22,
+      urgency: 15,
+      fit: 40,
+      confidence: 44,
+      reason: "Low intent — a retrospective roundup, not someone actively asking. Weak fit.",
+      angle: "Probably skip. No active buying question.",
+      signals: [],
+      pains: [],
+      draft: null
+    }],
+    sources: [{
+      type: "Reddit",
+      meta: "Official API · 30m ago",
+      name: "r/freelance, r/agency, r/Upwork",
+      on: true
+    }, {
+      type: "Hacker News",
+      meta: "Algolia search · 2h ago",
+      name: "\u201cproposal software\u201d",
+      on: true
+    }, {
+      type: "RSS",
+      meta: "Public feed · 1d ago",
+      name: "indiehackers.com/feed",
+      on: true
+    }, {
+      type: "Manual",
+      meta: "Paste a public URL",
+      name: "Manual posts",
+      on: false
+    }],
+    projects: [{
+      name: "Proposal tool — Reddit + HN",
+      status: "Active",
+      sources: 4,
+      leads: 248
+    }, {
+      name: "Contract e-sign — niche forums",
+      status: "Active",
+      sources: 2,
+      leads: 96
+    }, {
+      name: "Onboarding flows — draft",
+      status: "Paused",
+      sources: 0,
+      leads: 0
+    }]
+  };
+  var saved = {},
+    setTog = {
+      digest: true,
+      weekly: false
+    };
+  function isSaved(l) {
+    return l.id in saved ? saved[l.id] : l.saved;
+  }
+  function lead(id) {
+    return DATA.leads.filter(function (l) {
+      return l.id === id;
+    })[0];
+  }
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  }
+  function countUp(n, rm) {
+    var target = parseFloat(n.getAttribute("data-count"));
+    if (isNaN(target)) return;
+    if (rm) {
+      n.textContent = Math.round(target).toLocaleString();
+      return;
+    }
+    var dur = 720,
+      t0 = null;
+    function step(ts) {
+      if (!t0) t0 = ts;
+      var p = Math.min((ts - t0) / dur, 1);
+      var e = 1 - Math.pow(1 - p, 3);
+      n.textContent = Math.round(target * e).toLocaleString();
+      if (p < 1) requestAnimationFrame(step);else n.textContent = Math.round(target).toLocaleString();
+    }
+    requestAnimationFrame(step);
+  }
+
+  /* ---------------- chrome helpers ---------------- */
+  function icon(name, sz) {
+    return '<i data-lucide="' + name + '"' + (sz ? ' style="width:' + sz + 'px;height:' + sz + 'px"' : '') + '></i>';
+  }
+  function badge(l) {
+    return '<span class="m-badge ' + (l.badge || "") + '">' + l.source + '</span>';
+  }
+  function tierColor(t) {
+    return t === "high" ? "var(--accent)" : t === "med" ? "var(--medium)" : "var(--low)";
+  }
+  function tierCls(t) {
+    return t === "med" ? " med" : t === "low" ? " low" : "";
+  }
+  function tabbar(active) {
+    var t = [["home", "home", "Home"], ["inbox", "inbox", "Inbox"], ["sources", "radio", "Sources"], ["settings", "settings", "Settings"]];
+    return '<div class="tabbar">' + t.map(function (x) {
+      return '<a data-tab="' + x[0] + '" class="' + (active === x[0] ? "on" : "") + '"><span class="tdot"></span>' + icon(x[1], 20) + '<span class="tl">' + x[2] + '</span></a>';
+    }).join("") + '</div>';
+  }
+  function leadRow(l) {
+    return '<div class="m-lead" data-open-lead="' + l.id + '"><div class="lscore' + tierCls(l.tier) + '">' + l.score + '</div>' + '<div style="min-width:0"><div class="lmeta">' + badge(l) + '<span>' + esc(l.sub) + ' · ' + l.posted + '</span></div>' + '<div class="ltitle">' + esc(l.title) + '</div></div></div>';
+  }
+  function meter(label, pair) {
+    var pct = Math.min(100, pair[0] / pair[1] * 100),
+      warn = pct >= 90 ? " warn" : "";
+    return '<div class="m-meter"><div class="mh"><span class="ml">' + label + '</span><span class="mv">' + pair[0] + ' <span class="dim">/ ' + pair[1] + '</span></span></div>' + '<div class="mt"><div class="mf' + warn + '" style="width:0" data-fill="' + pct + '"></div></div></div>';
+  }
+  function sbar(label, w, v) {
+    return '<div class="m-sbar"><div class="sh"><span class="sl2">' + label + '<em>· ' + w + '</em></span><span class="sv2">' + v + '</span></div><div class="st"><div class="sf" style="width:0" data-fill="' + v + '"></div></div></div>';
+  }
+  function ring(score) {
+    var c = 2 * Math.PI * 36,
+      off = c * (1 - score / 100);
+    return '<div class="ring"><svg width="84" height="84" viewBox="0 0 84 84">' + '<circle class="rt-bg" cx="42" cy="42" r="36" fill="none" stroke-width="5"/>' + '<circle class="rt-fg" cx="42" cy="42" r="36" fill="none" stroke-width="5" stroke-dasharray="' + c + '" stroke-dashoffset="' + c + '" data-ring-off="' + off + '"/>' + '</svg><div class="rnum"><b data-count="' + score + '">' + score + '</b></div></div>';
+  }
+
+  /* ---------------- SCREENS ---------------- */
+  var SCREENS = {};
+  SCREENS.splash = function () {
+    return {
+      dark: true,
+      status: "dark",
+      noIndicator: true,
+      body: '<div class="scr-inner" style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center">' + '<svg class="smk" viewBox="0 0 48 48"><path d="M12 30 L24 16 L36 30"/><path class="p2" d="M18 35 L24 28 L30 35"/></svg>' + '<div class="sw">The Leads <b>Nest</b></div><div class="scap">Calibrating intent radar</div></div>',
+      rootClass: "splash",
+      onMount: function () {
+        setTimeout(function () {
+          go("onboarding", {}, "fade");
+        }, 1750);
+      }
+    };
+  };
+  SCREENS.onboarding = function () {
+    function obar(label, w, v) {
+      return '<div class="m-sbar"><div class="sh"><span class="sl2">' + label + '<em>· ' + w + '</em></span><span class="sv2">' + v + '</span></div><div class="st"><div class="sf" style="width:0" data-fill="' + v + '"></div></div></div>';
+    }
+    function ocheck(t) {
+      return '<div class="ocheck">' + icon("check", 14) + '<span>' + t + '</span></div>';
+    }
+    var slides = [{
+      eb: "01 · Discover",
+      h: 'Find customers already <span class="accent">asking.</span>',
+      p: "We watch public conversations on Reddit, Hacker News and RSS for people describing the problem you solve.",
+      hero: '<div class="onb-radar"><span class="orr" style="width:96px;height:96px"></span><span class="orr" style="width:164px;height:164px"></span><span class="orr" style="width:232px;height:232px"></span><span class="osweep"></span>' + '<div class="ochip"><div class="lmeta"><span class="m-badge">Reddit</span><span>r/agency · 1d</span></div><div class="ltitle">Frustrated with PandaDoc pricing — any alternatives?</div><span class="oscore">81</span></div></div>'
+    }, {
+      eb: "02 · Score",
+      h: 'Ranked by <span class="accent">real intent.</span>',
+      p: "Relevance, intent, urgency and fit — one transparent score, so you act on the right threads first.",
+      hero: '<div class="onb-score">' + ring(81) + '<div class="obars">' + obar("Relevance", "35%", 88) + obar("Intent", "30%", 82) + obar("Urgency", "20%", 75) + obar("Fit", "15%", 70) + '</div></div>'
+    }, {
+      eb: "03 · Safe",
+      h: 'You post. <span class="accent">Never us.</span>',
+      p: "We draft a disclosed reply you review and send yourself — no auto-posting, no auto-DMs, official APIs only.",
+      hero: '<div class="onb-safe"><div class="oshield">' + icon("shield-check", 40) + '</div><div class="ochecks">' + ocheck("Official APIs only") + ocheck("No auto-posting, ever") + ocheck("Disclosure in every draft") + '</div></div>'
+    }];
+    return {
+      status: "light",
+      rootClass: "onb",
+      noBody: true,
+      body: '<div class="onb-top"><span class="onb-logo"><img src="assets/crest-mark.svg" alt=""/><span>The Leads <b>Nest</b></span></span><a class="onb-skip" data-go="signup">Skip</a></div>' + '<div class="onb-pager" id="onbPager">' + slides.map(function (s) {
+        return '<div class="onb-slide"><div class="ohero">' + s.hero + '</div>' + '<span class="eyebrow-m accent">' + s.eb + '</span>' + '<h2 style="margin-top:12px">' + s.h + '</h2><p>' + s.p + '</p></div>';
+      }).join("") + '</div>' + '<div class="onb-foot"><div class="onb-trust">Trusted by 1,200+ founder-led teams · Official APIs only</div>' + '<div class="dots" id="onbDots">' + slides.map(function (_, i) {
+        return '<i class="' + (i === 0 ? "on" : "") + '"></i>';
+      }).join("") + '</div>' + '<button class="m-btn" data-go="signup">Get started</button>' + '<div style="text-align:center;margin-top:14px"><a class="lnk" data-go="login" style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink-3)">I already have an account</a></div></div>',
+      onMount: function (el) {
+        var pager = el.querySelector("#onbPager"),
+          dots = el.querySelectorAll("#onbDots i");
+        pager.addEventListener("scroll", function () {
+          var i = Math.round(pager.scrollLeft / pager.clientWidth);
+          dots.forEach(function (d, idx) {
+            d.classList.toggle("on", idx === i);
+          });
+        }, {
+          passive: true
+        });
+        setTimeout(function () {
+          el.querySelectorAll("[data-fill]").forEach(function (b, k) {
+            setTimeout(function () {
+              b.style.width = b.getAttribute("data-fill") + "%";
+            }, k * 130);
+          });
+          var os = el.querySelector(".oscore");
+          if (os) os.classList.add("pop");
+        }, 420);
+        if (window.lucide) window.lucide.createIcons();
+      }
+    };
+  };
+  SCREENS.login = function () {
+    return {
+      status: "light",
+      topbar: backbar("Log in"),
+      body: '<div style="padding-top:6px"><h1 class="h-display" style="font-size:30px">Welcome back</h1>' + '<p style="font-family:var(--font-sans);font-size:14px;color:var(--ink-3);margin:10px 0 26px">Log in to your nest.</p>' + googleBtn("Continue with Google") + '<div class="m-divider"><span>or</span></div>' + '<div class="m-field"><label>Email</label><input type="email" value="maya@acme.co" inputmode="email"/></div>' + '<div class="m-field"><label>Password</label><input type="password" value="123456789"/></div>' + '<button class="m-btn" data-auth style="margin-top:6px">Log in</button>' + '<div style="text-align:center;margin-top:20px;font-family:var(--font-sans);font-size:13px;color:var(--ink-3)">New here? <a data-go="signup" style="color:var(--accent)">Create an account</a></div></div>'
+    };
+  };
+  SCREENS.signup = function () {
+    return {
+      status: "light",
+      topbar: backbar("Start free"),
+      body: '<div style="padding-top:6px"><h1 class="h-display" style="font-size:28px">Create your account</h1>' + '<p style="font-family:var(--font-sans);font-size:14px;color:var(--ink-3);margin:10px 0 24px">No card required. Demo workspace from minute one.</p>' + googleBtn("Sign up with Google") + '<div class="m-divider"><span>or</span></div>' + '<div class="m-field"><label>Full name</label><input type="text" value="Maya Okafor"/></div>' + '<div class="m-field"><label>Work email</label><input type="email" value="maya@acme.co"/></div>' + '<div class="m-field"><label>Password</label><input type="password" value="123456789"/></div>' + '<div style="display:flex;gap:10px;align-items:flex-start;margin:2px 0 16px"><span class="m-sw" style="width:42px;transform:scale(.8);transform-origin:left" data-static></span>' + '<span style="font-family:var(--font-sans);font-size:12px;line-height:1.45;color:var(--ink-3)">I\'ll review and post replies myself, with disclosure.</span></div>' + '<button class="m-btn" data-auth>Create free account</button>' + '<div style="text-align:center;margin-top:20px;font-family:var(--font-sans);font-size:13px;color:var(--ink-3)">Have an account? <a data-go="login" style="color:var(--accent)">Log in</a></div></div>'
+    };
+  };
+  SCREENS.home = function () {
+    var s = DATA.stats,
+      recent = DATA.leads.filter(function (l) {
+        return l.tier === "high";
+      });
+    return {
+      status: "light",
+      tab: "home",
+      fab: '<button class="fab" data-scan>' + icon("scan-line", 22) + '</button>',
+      topbar: '<div style="display:flex;align-items:center;gap:11px;width:100%">' + '<span class="m-av acc" style="width:34px;height:34px;font-size:13px">' + DATA.org.initials + '</span>' + '<div style="flex:1;min-width:0"><div style="font-family:var(--font-display);font-size:18px;color:var(--ink);line-height:1">' + DATA.org.name + '</div>' + '<div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-4);margin-top:2px">' + DATA.org.plan + ' plan</div></div>' + '<button class="iconbtn" data-go="digest">' + icon("bell", 16) + '</button></div>',
+      body: '<span class="eyebrow-m">Good morning, Maya</span>' + '<h1 class="h-display" style="font-size:27px;margin-top:12px">' + s.high + ' leads worth a look.</h1>' + '<div class="m-notice caution" style="margin:18px 0"><span style="color:var(--medium);flex:0 0 auto">' + icon("shield-check", 16) + '</span><div><div class="nt">Platform safety</div><p>We draft replies — you review and post them yourself.</p></div></div>' + '<div class="stat-row" style="margin-bottom:18px">' + '<div class="stat-cell"><div class="sl">Total leads</div><div class="sv" data-count="' + s.total + '">' + s.total + '</div><div class="sh">▲ 12 this week</div></div>' + '<div class="stat-cell"><div class="sl">High-intent</div><div class="sv" data-count="' + s.high + '">' + s.high + '</div><div class="sh">score ≥ 70</div></div>' + '<div class="stat-cell ink"><div class="sl">Avg score</div><div class="sv" data-count="' + s.avg + '">' + s.avg + '</div></div>' + '<div class="stat-cell acc"><div class="sl">Replies copied</div><div class="sv" data-count="' + s.copied + '">' + s.copied + '</div></div>' + '</div>' + '<div style="display:flex;gap:8px;margin-bottom:22px">' + chip("projects", "folder-kanban", "Projects") + chip("sources", "radio", "Sources") + chip("digest", "mail", "Digest") + '</div>' + '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px">' + '<span class="eyebrow-m accent">Recent high-intent</span><a data-tab="inbox" style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-3)">All →</a></div>' + recent.map(leadRow).join("") + '<div style="margin-top:20px"><span class="eyebrow-m">This month</span><div class="m-card" style="margin-top:10px">' + meter("Posts scanned", DATA.usage.posts) + meter("Reply drafts", DATA.usage.replies) + '</div></div>'
+    };
+  };
+  SCREENS.inbox = function (p) {
+    var seg = p.seg || "high";
+    var counts = {
+      all: DATA.leads.length,
+      high: DATA.leads.filter(function (l) {
+        return l.tier === "high";
+      }).length,
+      saved: DATA.leads.filter(isSaved).length
+    };
+    var list = DATA.leads.filter(function (l) {
+      return seg === "all" ? true : seg === "high" ? l.tier === "high" : isSaved(l);
+    });
+    function sb(id, label, c) {
+      return '<button data-seg="' + id + '" class="' + (seg === id ? "on" : "") + '">' + label + ' <span class="c">' + c + '</span></button>';
+    }
+    return {
+      status: "light",
+      tab: "inbox",
+      topbar: '<div class="tb-title">Lead inbox</div><div class="spacer"></div><button class="iconbtn" data-scan>' + icon("scan-line", 16) + '</button>',
+      body: '<div class="m-search" style="margin-bottom:14px">' + icon("search", 15) + '<input placeholder="Search leads, keywords…"/></div>' + '<div class="seg" style="margin-bottom:6px">' + sb("all", "All", counts.all) + sb("high", "High", counts.high) + sb("saved", "Saved", counts.saved) + '</div>' + '<div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-4);margin:14px 0 2px">' + list.length + ' shown</div>' + (list.length ? list.map(leadRow).join("") : '<div style="padding:40px 0;text-align:center;font-family:var(--font-sans);font-size:14px;color:var(--ink-3)">Nothing here yet.</div>')
+    };
+  };
+  SCREENS.lead = function (p) {
+    var l = lead(p.id) || DATA.leads[0],
+      sv = isSaved(l),
+      d = l.draft;
+    return {
+      status: "light",
+      topbar: backbar(l.source + " · " + l.sub),
+      body: '<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">' + '<span class="m-badge ' + (l.badge || "") + '">' + l.source + '</span><span class="m-badge gray">' + l.stage.replace(/-/g, " ") + '</span>' + '<span style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-4)">' + l.posted + ' ago</span></div>' + '<h1 class="h-display" style="font-size:24px;line-height:1.18">' + esc(l.title) + '</h1>' + '<div class="ring-wrap" style="margin:18px 0"><div>' + ring(l.score) + '</div>' + '<div><div class="eyebrow-m bare" style="color:' + tierColor(l.tier) + '">' + (l.tier === "high" ? "High intent" : l.tier === "med" ? "Medium" : "Low") + '</div>' + '<div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.04em;color:var(--ink-4);margin-top:6px">' + l.confidence + '% confidence</div></div></div>' + '<div class="m-card"><div style="display:flex;align-items:center;gap:9px;margin-bottom:12px"><span class="m-av soft" style="width:28px;height:28px;font-size:10px">' + l.author.replace(/^u\//, "").slice(0, 2).toUpperCase() + '</span>' + '<span style="font-family:var(--font-mono);font-size:11px;color:var(--ink-2)">' + esc(l.author) + '</span></div>' + '<p style="font-family:var(--font-sans);font-size:14px;line-height:1.6;color:var(--ink);margin:0">' + esc(l.body) + '</p></div>' + '<div style="margin:18px 0 8px"><span class="eyebrow-m accent">Reply draft</span></div>' + (d ? '<div class="draft">' + esc(d) + '</div>' + '<button class="m-btn" data-copy style="margin-top:12px">' + icon("clipboard", 13) + ' Copy reply</button>' + '<div class="m-notice accent" style="margin-top:12px"><span style="color:var(--accent);flex:0 0 auto">' + icon("pen-line", 15) + '</span><div><div class="nt">Suggested disclosure</div><p>' + esc(l.disclosure) + '</p></div></div>' + '<div class="m-notice caution" style="margin-top:10px"><span style="color:var(--medium);flex:0 0 auto">' + icon("shield-check", 15) + '</span><div><div class="nt">Before you post</div><ul><li>Disclose your affiliation first.</li><li>Personalise — don\'t reuse across threads.</li><li>Check the community\'s rules.</li></ul></div></div>' : '<button class="m-btn" data-gen>' + icon("sparkles", 13) + ' Generate reply</button>' + '<p style="font-family:var(--font-sans);font-size:13px;line-height:1.55;color:var(--ink-3);margin:12px 0 0">A helpful, transparent draft you review and copy. The Leads Nest never posts for you.</p>') + '<div style="margin:20px 0 8px"><span class="eyebrow-m">AI score breakdown</span></div>' + '<div class="m-card">' + sbar("Relevance", "35%", l.relevance) + sbar("Intent", "30%", l.intent) + sbar("Urgency", "20%", l.urgency) + sbar("Fit", "15%", l.fit) + '</div>' + (l.signals.length ? '<div style="margin:18px 0 8px"><span class="eyebrow-m">Why it\'s a lead</span></div>' + '<p style="font-family:var(--font-sans);font-size:13px;line-height:1.55;color:var(--ink-2)">' + esc(l.reason) + '</p>' + '<div class="m-tags" style="margin-top:12px">' + l.signals.map(function (x) {
+        return '<span class="m-tag">' + esc(x) + '</span>';
+      }).join("") + '</div>' : "") + '<div style="display:flex;gap:10px;margin-top:22px">' + '<button class="m-btn ' + (sv ? "" : "ghost") + '" data-save>' + icon("bookmark", 13) + ' ' + (sv ? "Saved" : "Save") + '</button>' + '<button class="m-btn danger" data-back>Not a lead</button></div>'
+    };
+  };
+  SCREENS.sources = function () {
+    return {
+      status: "light",
+      tab: "sources",
+      topbar: '<div class="tb-title">Sources</div><div class="spacer"></div><button class="iconbtn" data-toast="Add a public source">' + icon("plus", 16) + '</button>',
+      body: '<div class="m-notice accent" style="margin-bottom:16px"><span style="color:var(--accent);flex:0 0 auto">' + icon("shield-check", 15) + '</span><div><div class="nt">Public sources only</div><p>Official APIs and public feeds. No scraping, no logged-in pages.</p></div></div>' + DATA.sources.map(function (s, i) {
+        return '<div class="m-row"><div class="grow"><div class="rs2"><span class="m-badge ' + (s.on ? "tint" : "gray") + '">' + s.type + '</span> ' + esc(s.meta) + '</div>' + '<div class="rt2" style="font-size:15px">' + esc(s.name) + '</div></div><span class="m-sw' + (s.on ? "" : " off") + '" data-toggle-src="' + i + '"></span></div>';
+      }).join("")
+    };
+  };
+  SCREENS.projects = function () {
+    return {
+      status: "light",
+      topbar: backbar("Projects"),
+      body: '<span class="eyebrow-m">2 of 3 active</span><div style="margin-top:14px">' + DATA.projects.map(function (p) {
+        var paused = p.status === "Paused";
+        return '<div class="m-row"' + (paused ? ' style="opacity:.6"' : "") + '><div class="grow"><div class="rs2"><span class="m-badge ' + (paused ? "gray" : "tint") + '">' + p.status + '</span> ' + p.sources + ' sources · ' + p.leads + ' leads</div>' + '<div class="rt2">' + esc(p.name) + '</div></div>' + icon("chevron-right", 16) + '</div>';
+      }).join("") + '</div>' + '<button class="m-btn ghost" data-toast="New project" style="margin-top:18px">' + icon("plus", 14) + ' New project</button>'
+    };
+  };
+  SCREENS.digest = function () {
+    var top = DATA.leads.filter(function (l) {
+      return l.tier !== "low";
+    });
+    return {
+      status: "light",
+      topbar: backbar("Daily digest"),
+      body: '<span class="eyebrow-m accent">Sent 7:00 AM</span><h1 class="h-display" style="font-size:24px;margin-top:12px">' + top.length + ' high-intent leads today</h1>' + '<div style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-4);margin:8px 0 18px">digest@theleadsnest.com</div>' + top.map(leadRow).join("") + '<button class="m-btn ghost" data-go="settings" style="margin-top:20px">Digest settings</button>'
+    };
+  };
+  SCREENS.settings = function () {
+    return {
+      status: "light",
+      tab: "settings",
+      topbar: '<div class="tb-title">Settings</div>',
+      body: '<div class="m-row" data-go="profile" style="border-top:1px solid var(--line)"><span class="m-av acc" style="width:44px;height:44px;font-size:15px">' + DATA.org.initials + '</span>' + '<div class="grow"><div class="rt2">' + DATA.org.user + '</div><div style="font-family:var(--font-mono);font-size:10px;color:var(--ink-4);margin-top:3px">' + DATA.org.handle + '</div></div>' + icon("chevron-right", 16) + '</div>' + '<div style="margin:22px 0 8px"><span class="eyebrow-m">Workspace</span></div>' + '<div class="m-field"><label>Workspace name</label><input value="Acme Proposals"/></div>' + '<div class="m-field"><label>Plan</label><input value="Starter — $19 / mo" readonly/></div>' + '<div style="margin:18px 0 4px"><span class="eyebrow-m">Notifications</span></div>' + '<div class="m-row"><div class="grow"><div class="rt2" style="font-size:14px">Daily digest email</div><div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink-4);margin-top:3px">7:00 AM · your timezone</div></div><span class="m-sw' + (setTog.digest ? "" : " off") + '" data-toggle-set="digest"></span></div>' + '<div class="m-row"><div class="grow"><div class="rt2" style="font-size:14px">Weekly summary</div><div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink-4);margin-top:3px">Mondays · top movers</div></div><span class="m-sw' + (setTog.weekly ? "" : " off") + '" data-toggle-set="weekly"></span></div>' + '<div class="m-row"><div class="grow"><div class="rt2" style="font-size:14px">Auto-post replies</div><div style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink-4);margin-top:3px">Disabled by design</div></div><span class="m-sw off" style="opacity:.5"></span></div>' + '<button class="m-btn ghost" data-logout style="margin-top:22px">Log out</button>'
+    };
+  };
+  SCREENS.profile = function () {
+    return {
+      status: "light",
+      topbar: backbar("Profile"),
+      body: '<div style="display:flex;flex-direction:column;align-items:center;text-align:center;padding:10px 0 20px">' + '<span class="m-av acc" style="width:74px;height:74px;font-size:26px;border-radius:3px">' + DATA.org.initials + '</span>' + '<div class="h-display" style="font-size:24px;margin-top:14px">' + DATA.org.user + '</div>' + '<div style="font-family:var(--font-mono);font-size:11px;color:var(--ink-4);margin-top:5px">' + DATA.org.handle + '</div></div>' + '<div class="stat-row"><div class="stat-cell"><div class="sl">Leads found</div><div class="sv" data-count="248">248</div></div><div class="stat-cell"><div class="sl">Replies sent</div><div class="sv" data-count="29">29</div></div></div>' + '<div style="margin:20px 0 8px"><span class="eyebrow-m">Watched keywords</span></div>' + '<div class="m-tags">' + DATA.keywords.map(function (k) {
+        return '<span class="m-tag">' + esc(k) + '</span>';
+      }).join("") + '</div>' + '<button class="m-btn ghost" data-back style="margin-top:24px">Done</button>'
+    };
+  };
+  function backbar(title) {
+    return '<button class="iconbtn" data-back>' + icon("arrow-left", 16) + '</button><div class="tb-title">' + title + '</div>';
+  }
+  function chip(go, ic, label) {
+    return '<button class="m-card" data-go="' + go + '" style="flex:1;padding:14px 10px;display:flex;flex-direction:column;align-items:center;gap:7px"><span style="color:var(--accent)">' + icon(ic, 18) + '</span><span style="font-family:var(--font-mono);font-size:9px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-2)">' + label + '</span></button>';
+  }
+  function googleBtn(t) {
+    return '<button class="m-oauth" data-auth><svg width="15" height="15" viewBox="0 0 48 48"><path fill="#4285F4" d="M45 24c0-1.6-.1-3.1-.4-4.5H24v9h11.8c-.5 2.7-2 5-4.3 6.6v5.5h7C42.6 36.8 45 31 45 24z"/><path fill="#34A853" d="M24 46c5.9 0 10.8-2 14.4-5.3l-7-5.5c-2 1.3-4.5 2.1-7.4 2.1-5.7 0-10.5-3.8-12.2-9H4.5v5.7C8.1 41.1 15.5 46 24 46z"/><path fill="#FBBC05" d="M11.8 28.3c-.4-1.3-.7-2.7-.7-4.3s.3-3 .7-4.3v-5.7H4.5C2.9 17.3 2 20.5 2 24s.9 6.7 2.5 9.7l7.3-5.4z"/><path fill="#EA4335" d="M24 10.8c3.2 0 6.1 1.1 8.4 3.3l6.3-6.3C34.8 4.1 29.9 2 24 2 15.5 2 8.1 6.9 4.5 14.3l7.3 5.7c1.7-5.2 6.5-9.2 12.2-9.2z"/></svg>' + t + '</button>';
+  }
+
+  /* ---------------- navigator ---------------- */
+  var viewport = document.getElementById("viewport");
+  var statusbarEl = document.getElementById("statusbar");
+  var homeInd = document.getElementById("homeInd");
+  var nav = [{
+    id: "splash",
+    p: {}
+  }];
+  var curEl = null;
+  function cur() {
+    return nav[nav.length - 1];
+  }
+  function go(id, p, dir) {
+    nav.push({
+      id: id,
+      p: p || {}
+    });
+    render(dir || "push");
+  }
+  function back() {
+    if (nav.length > 1) {
+      nav.pop();
+      render("pop");
+    }
+  }
+  function setTab(tab) {
+    // if already in this tab root, no-op; else reset stack to tab
+    nav = [{
+      id: tab,
+      p: {}
+    }];
+    render("fade");
+  }
+  function authIn() {
+    nav = [{
+      id: "home",
+      p: {}
+    }];
+    render("fade");
+  }
+  function render(dir) {
+    var def = SCREENS[cur().id](cur().p);
+    var el = document.createElement("div");
+    el.className = "scr" + (def.dark ? " dark" : "") + (def.rootClass ? " " + def.rootClass : "") + " " + (dir === "push" ? "in-right" : dir === "pop" ? "in-left" : "in-fade");
+    var topbar = def.topbar ? '<div class="topbar' + (def.dark ? " dark" : "") + '">' + def.topbar + '</div>' : "";
+    var inner;
+    if (def.noBody) inner = def.body;else inner = '<div class="body' + (def.tab ? " has-tabbar" : "") + (def.topbar ? " has-topbar" : "") + '">' + def.body + '</div>';
+    el.innerHTML = topbar + inner + (def.fab || "") + (def.tab ? tabbar(def.tab) : "");
+    viewport.appendChild(el);
+    statusbarEl.className = "statusbar " + (def.status || "light");
+    homeInd.className = "home-ind" + (def.dark ? " on-dark" : "");
+    homeInd.style.display = def.noIndicator ? "none" : "block";
+    if (window.lucide) window.lucide.createIcons({
+      attrs: {
+        "stroke-width": 1.75,
+        width: 18,
+        height: 18
+      }
+    });
+    if (def.onMount) def.onMount(el);
+    // ring animation
+    el.querySelectorAll("[data-ring-off]").forEach(function (c) {
+      requestAnimationFrame(function () {
+        setTimeout(function () {
+          c.style.strokeDashoffset = c.getAttribute("data-ring-off");
+        }, 120);
+      });
+    });
+    // score bars / meters fill, count-ups, list stagger
+    var _rm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    el.querySelectorAll("[data-fill]").forEach(function (f, k) {
+      if (_rm) {
+        f.style.width = f.getAttribute("data-fill") + "%";
+        return;
+      }
+      setTimeout(function () {
+        f.style.width = f.getAttribute("data-fill") + "%";
+      }, 140 + k * 70);
+    });
+    el.querySelectorAll("[data-count]").forEach(function (n) {
+      countUp(n, _rm);
+    });
+    ["m-lead", "m-row", "acardrow"].forEach(function (cls) {
+      var items = el.getElementsByClassName(cls);
+      for (var k = 0; k < items.length; k++) items[k].style.animationDelay = Math.min(k * 0.045, 0.3) + "s";
+    });
+    var prev = curEl;
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        el.classList.add("settle");
+        el.classList.remove("in-right", "in-left", "in-fade");
+        if (prev) {
+          prev.classList.add(dir === "pop" ? "out-right" : dir === "push" ? "out-left" : "out-fade");
+          var pr = prev;
+          setTimeout(function () {
+            if (pr.parentNode) pr.parentNode.removeChild(pr);
+          }, 380);
+        }
+      });
+    });
+    curEl = el;
+    var b = el.querySelector(".body");
+    if (b) b.scrollTop = 0;
+  }
+
+  /* ---------------- scan sheet ---------------- */
+  function openScan() {
+    var mask = document.createElement("div");
+    mask.className = "sheet-mask";
+    mask.innerHTML = '<div class="sheet"><div class="grab"></div>' + '<div style="text-align:center"><span class="eyebrow-m accent bare" style="justify-content:center">Scanning public sources</span></div>' + '<div class="scan-radar" id="scanRadar"><svg width="150" height="150" viewBox="0 0 150 150">' + '<circle cx="75" cy="75" r="24" fill="none" stroke="var(--line)" stroke-width="1"/>' + '<circle cx="75" cy="75" r="48" fill="none" stroke="var(--line)" stroke-width="1"/>' + '<circle cx="75" cy="75" r="70" fill="none" stroke="var(--line)" stroke-width="1"/>' + '<line id="sweep" x1="75" y1="75" x2="75" y2="5" stroke="var(--accent)" stroke-width="2"/>' + '<g id="blips"></g></svg></div>' + '<div style="text-align:center;font-family:var(--font-mono);font-size:13px;color:var(--ink);font-variant-numeric:tabular-nums" id="scanCount">0 posts scanned</div>' + '<div style="text-align:center;font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-4);margin-top:6px" id="scanStat">Reddit · Hacker News · RSS</div>' + '</div>';
+    document.querySelector(".mask").appendChild(mask);
+    requestAnimationFrame(function () {
+      mask.classList.add("show");
+    });
+    var sweep = mask.querySelector("#sweep"),
+      blips = mask.querySelector("#blips"),
+      countEl = mask.querySelector("#scanCount");
+    var ang = -90,
+      count = 0,
+      target = 342,
+      t0 = performance.now(),
+      raf;
+    function frame(now) {
+      ang += 4;
+      var rad = ang * Math.PI / 180;
+      sweep.setAttribute("x2", (75 + Math.cos(rad) * 70).toFixed(1));
+      sweep.setAttribute("y2", (75 + Math.sin(rad) * 70).toFixed(1));
+      if (Math.random() > 0.78) {
+        var r = 16 + Math.random() * 54,
+          a = Math.random() * Math.PI * 2;
+        var c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        c.setAttribute("cx", (75 + Math.cos(a) * r).toFixed(1));
+        c.setAttribute("cy", (75 + Math.sin(a) * r).toFixed(1));
+        c.setAttribute("r", "2.5");
+        c.setAttribute("fill", Math.random() > 0.7 ? "var(--accent)" : "var(--accent-soft)");
+        blips.appendChild(c);
+        setTimeout(function () {
+          if (c.parentNode) c.parentNode.removeChild(c);
+        }, 900);
+      }
+      count = Math.min(target, Math.round((now - t0) / 1900 * target));
+      countEl.textContent = count.toLocaleString() + " posts scanned";
+      if (now - t0 < 1950) raf = requestAnimationFrame(frame);else finish();
+    }
+    function finish() {
+      mask.querySelector("#scanStat").textContent = "Done · 3 new high-intent leads";
+      setTimeout(function () {
+        mask.classList.remove("show");
+        setTimeout(function () {
+          if (mask.parentNode) mask.parentNode.removeChild(mask);
+        }, 360);
+        if (cur().id !== "inbox") setTab("inbox");
+        toast("Scan complete — 3 new high-intent leads");
+      }, 700);
+    }
+    raf = requestAnimationFrame(frame);
+    mask.addEventListener("click", function (e) {
+      if (e.target === mask) {
+        cancelAnimationFrame(raf);
+        mask.classList.remove("show");
+        setTimeout(function () {
+          if (mask.parentNode) mask.parentNode.removeChild(mask);
+        }, 360);
+      }
+    });
+  }
+
+  /* ---------------- toast ---------------- */
+  var toastEl = document.getElementById("toast");
+  function toast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add("show");
+    clearTimeout(toastEl._h);
+    toastEl._h = setTimeout(function () {
+      toastEl.classList.remove("show");
+    }, 2200);
+  }
+
+  /* ---------------- events ---------------- */
+  document.addEventListener("click", function (e) {
+    var t = e.target.closest("[data-go],[data-back],[data-tab],[data-seg],[data-open-lead],[data-gen],[data-copy],[data-save],[data-scan],[data-toggle-src],[data-toggle-set],[data-logout],[data-auth],[data-toast]");
+    if (!t) return;
+    if (t.hasAttribute("data-go")) go(t.getAttribute("data-go"), {}, "push");else if (t.hasAttribute("data-back")) back();else if (t.hasAttribute("data-tab")) setTab(t.getAttribute("data-tab"));else if (t.hasAttribute("data-seg")) {
+      nav[nav.length - 1] = {
+        id: "inbox",
+        p: {
+          seg: t.getAttribute("data-seg")
+        }
+      };
+      render("fade");
+    } else if (t.hasAttribute("data-open-lead")) go("lead", {
+      id: t.getAttribute("data-open-lead")
+    }, "push");else if (t.hasAttribute("data-gen")) {
+      var l = lead(cur().p.id);
+      if (l) {
+        l.draft = l.draft || draftFor(l);
+        toast("Draft generated — review before posting");
+        render("fade");
+      }
+    } else if (t.hasAttribute("data-copy")) toast("Copied — now post it yourself");else if (t.hasAttribute("data-save")) {
+      var l2 = lead(cur().p.id);
+      saved[l2.id] = !isSaved(l2);
+      toast(saved[l2.id] ? "Lead saved" : "Removed");
+      render("fade");
+    } else if (t.hasAttribute("data-scan")) openScan();else if (t.hasAttribute("data-toggle-src")) {
+      var i = +t.getAttribute("data-toggle-src");
+      DATA.sources[i].on = !DATA.sources[i].on;
+      t.classList.toggle("off");
+      toast(DATA.sources[i].on ? "Source enabled" : "Source paused");
+    } else if (t.hasAttribute("data-toggle-set")) {
+      var k = t.getAttribute("data-toggle-set");
+      setTog[k] = !setTog[k];
+      t.classList.toggle("off");
+    } else if (t.hasAttribute("data-logout")) {
+      nav = [{
+        id: "login",
+        p: {}
+      }];
+      render("fade");
+      toast("Logged out");
+    } else if (t.hasAttribute("data-auth")) authIn();else if (t.hasAttribute("data-toast")) toast(t.getAttribute("data-toast"));
+  });
+  function draftFor(l) {
+    return "Hey — saw your post about " + l.stage.replace(/-/g, " ") + ". A quick tip that helped us: standardise a couple of reusable templates so each one isn't from scratch. Happy to share what worked. (I build a small tool in this space — only mentioning since it's relevant, no pressure.)";
+  }
+
+  /* ---------------- scale device ---------------- */
+  function scale() {
+    var phone = document.querySelector(".phone");
+    var s = Math.min((window.innerHeight - 36) / 844, (window.innerWidth - 24) / 390, 1);
+    phone.style.transform = "scale(" + s + ")";
+  }
+  window.addEventListener("resize", scale);
+  scale();
+  render("fade");
+})();
+})(); } catch (e) { __ds_ns.__errors.push({ path: "assets/mobile.js", error: String((e && e.message) || e) }); }
 
 // components/core/Avatar.jsx
 try { (() => {

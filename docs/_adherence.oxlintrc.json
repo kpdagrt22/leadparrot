@@ -16,6 +16,7 @@
         "patterns": [
           {
             "group": [
+              "assets/**",
               "components/core/**",
               "components/data/**",
               "components/feedback/**",
