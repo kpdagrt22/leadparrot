@@ -6,6 +6,8 @@ LeadParrot is a high-intent lead-discovery and reply-draft tool. It monitors **p
 
 > LeadParrot **does not** auto-post, auto-DM, scrape private communities, or spam anyone. It is a discovery + drafting tool — you stay in control.
 
+> **Status & provenance:** Prototype built in hours with AI coding agents, directed and reviewed by [Prakash Kantumutchu (KP)](https://thisiskp.in). Never deployed as a commercial service; built to test end-to-end architecture, RLS, and deterministic fallback patterns. Verified on 23 Oct 2026: `tsc --noEmit` (0 errors) and **139 tests passing** across 24 test files (`npm test`). Case study: [thisiskp.in/work/agent-built-saas-prototypes](https://thisiskp.in/work/agent-built-saas-prototypes).
+
 ---
 
 ## Highlights
@@ -175,3 +177,7 @@ docs/
 ## Disclaimer
 
 > LeadParrot helps you discover public conversations and draft replies. **You are responsible for following each platform's rules before responding.** LeadParrot does not post for you.
+
+## License
+
+MIT — see [`LICENSE`](LICENSE).
